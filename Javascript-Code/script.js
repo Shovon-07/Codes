@@ -33,16 +33,27 @@ console.log(`Number to String = ${typeof(numToString)}`);
 
 
 //___ Array ___//
-let fruits = ["Mango", "Apple", "Bananna"];
+var fruits = ["Mango", "Apple", "Bananna"];
+
 fruits.push("Lichi"); // Add item as last item
 fruits.sort(); // Sorting array item
 document.getElementById("DisplayArray").innerHTML = fruits;
+
 console.log(`Access last element in array = ${fruits[fruits.length - 1]}`);
+
 fruits.pop("Lichi"); // Remove item as last item
+
 fruits[0] = "Goava"; // Change array item
 console.log(`Change array item = ${fruits}`);
+
 delete fruits[2]; // Delete array item
 console.log(`Delete array item = ${fruits}`);
+
+var fruits = ["Mango", "Apple", "Bananna"];
+fruits.splice(1,0,"Lichi"); // It add 1 item in '1' no position
+fruits.splice(0,1); // It remove 1 item from '0' no posotion
+console.log(`Array splice = ${fruits}`);
+
 
 
 //___ ___//
