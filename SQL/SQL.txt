@@ -1,0 +1,12 @@
+============> SQL <============
+Create table :
+CREATE TABLE table_name(Name varchar(50),Roll varchar(50),Phone varchar(50));
+
+Delete table :
+DROP TBLE table_name;
+
+Insert data: 
+INSERT INTO Student(Name, Roll, Phone ) VALUES ('Jubair', 'CMT-06', '017245845');+
+
+Delete data :
+DELETE FROM Student WHERE Id='2';
