@@ -93,20 +93,20 @@ boys.forEach(keys => {
 
 //___ Object ___//
 /*
-const obj = {
-    'FirstName' : "Al Jubair",
-    'LastName' : " shovon",
-    'age' : 21,
+let MyObject = {
+    fName : 'Al Jubair',
+    lName : "Shovon",
+    age : 21,
+    roll : 520157,
     // Method in object
-    'FullName' : function() {
-        return this.FirstName + this.LastName;
+    fullInfo : function() {
+        console.log(`Name = ${this.fName + this.lName}. \nAge = ${this.age}. \nRoll = ${this.roll}.`);
     }
-
 };
 
-console.log("Object = " + obj['FirstName']);
-console.log("Object = " + obj.LastName);
-console.log("Object = " + obj.FullName());
+console.log("Object = " + MyObject['fName']);
+console.log("Object = " + MyObject.lName);
+MyObject.fullInfo();
 */
 
 //___ Convert object to text ___//
@@ -171,17 +171,54 @@ console.log(`Pi = ${Math.PI}`); // It's return pi value
 
 //___ Random Number ___//
 console.log(`Random = ${Math.random()}`); // It's return random number
+
 console.log(`Random integer (1-9) = ${Math.floor(Math.random() * 10)}`); // It's return random integer number
+
 console.log(`Random integer (1-10) = ${Math.floor(Math.random() * 10) + 1}`); // It's return random integer number 1-10
+
 console.log(`Random integer (1-99) = ${Math.floor(Math.random() * 100)}`); // It's return random integer number 1-99
+
 console.log(`Random integer (1-100) = ${Math.floor(Math.random() * 100) + 1}`); // It's return random integer number 1-100
+
 console.log(`Random integer (1-9999) = ${Math.floor(Math.random() * 10000)}`); // It's return random integer number 1-9000
+
 console.log(`Random integer (1-10000) = ${Math.floor(Math.random() * 10000) + 1}`); // It's return random integer number 1-9000
+
+console.log(`Random integer (1-5) = ${Math.floor(Math.random() * (5 - 1 + 1) + 1)}`); // 1-5 random number
 */
 
 
+//___ Arrow function ___//
+/*
+person = () => {
+    let name = "shovon";
+    let roll = 520157;
+    console.log(`Name = ${name}. \nRoll = ${roll}`);
+}
+person();
+*/
 
 
+//___ OOP ___//
+/*
+class Students {
+    constructor(n,r,a) {
+        this.name = n;
+        this.roll = r;
+        this.age = a;
+        console.log(`Name = ${this.name}. \nRoll = ${this.roll}. \nAge = ${this.age}`);
+    }
+
+    Read(dept) {
+        console.log(`${this.name} is read in ${dept} depertment`);
+    }
+}
+let shovon = new Students('Shovon',520157,21);
+shovon.Read('Computer');
+
+let asik = new Students('Asik',520143,22);
+asik.Read('Civil');
+*/
 
 
 //__________________ Problem solving __________________//
