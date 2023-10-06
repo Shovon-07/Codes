@@ -1,0 +1,31 @@
+/*====== header start ======*/
+.headerNav,
+.headerNav ul {
+  background: var(--dark-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerNav ul {
+  padding: 20px 0 !important;
+}
+.headerNav ul li a {
+  color: var(--light-100);
+  margin: 0 20px;
+  text-decoration: none;
+  transition: var(--main-transition);
+}
+.headerNav ul li a:hover {
+  color: var(--main-clr);
+}
+/*====== header end ======*/
+
+/*=== Hero section start ===*/
+/*=== Hero section end ===*/
+
+/* React Hook Component */
+.addCssDom {
+  color: #ffe2a2;
+  background: blueviolet;
+  font-size: 30px;
+}
