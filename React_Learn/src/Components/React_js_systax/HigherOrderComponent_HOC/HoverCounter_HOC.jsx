@@ -1,7 +1,7 @@
 import React from "react";
 import withCounter_HOC from "./withCounter_HOC";
 
-const HoverCounter = (props) => {
+const HoverCounter_HOC = (props) => {
   const { ClickCount, ClickCounter } = props;
   return (
     <>
@@ -14,4 +14,4 @@ const HoverCounter = (props) => {
   );
 };
 
-export default withCounter_HOC(HoverCounter);
+export default withCounter_HOC(HoverCounter_HOC);
