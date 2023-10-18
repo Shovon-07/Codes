@@ -21,6 +21,21 @@
 /*====== header end ======*/
 
 /*=== Hero section start ===*/
+.hero {
+  width: 100%;
+  height: 100vh;
+  padding: 40px;
+  background: url("/src/assets/Images/hacker-face.jpg");
+  background-size: cover;
+  /* background-position: center; */
+  background-attachment: fixed;
+}
+.hero .heroTxt {
+  margin-top: 100px;
+}
+.hero .description {
+  line-height: 2rem;
+}
 /*=== Hero section end ===*/
 
 /* React Hook Component */

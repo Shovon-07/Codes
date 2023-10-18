@@ -3,7 +3,7 @@ import React from "react";
 const Contact = () => {
   return (
     <>
-      <div>
+      {/* <div>
         <input type="text" name="" placeholder="Name" />
       </div>
       <div>
@@ -11,7 +11,7 @@ const Contact = () => {
       </div>
       <div>
         <textarea name="" cols="30" rows="10" placeholder="Comments"></textarea>
-      </div>
+      </div> */}
     </>
   );
 };

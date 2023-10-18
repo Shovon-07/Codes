@@ -15,9 +15,12 @@
   --dark-80: #777;
   --dark-50: #888;
 
+  --body-clr: rgb(50 50 50);
+
   --main-clr: #f57224;
   --green: #11b320;
   --orrange: #ff9b24;
+  --off-white: rgb(255, 244, 194);
   --gold: #ffd700;
   --blue: #8972ff;
 
@@ -50,10 +53,13 @@
 html,
 body {
   font-family: var(--font-family);
-  background: var(--light-100);
 }
 body {
   overflow-x: hidden;
+}
+.body {
+  background-color: var(--body-clr);
+  color: var(--light-100);
 }
 ol,
 ul {
