@@ -13,10 +13,11 @@ import Hero from "./Components/Hero";
 import ClassComponent from "./Components/ClassComponent/ClassComponent";
 import FunctionalComponent from "./Components/FunctionalComponent/FunctionalComponent";
 
-import ClickCounter from "./Components/React_js_systax/HigherOrderComponent_HOC/ClickCounter";
-import HoverCounter from "./Components/React_js_systax/HigherOrderComponent_HOC/HoverCounter";
+import ClickCounter_HOC from "./Components/React_js_systax/HigherOrderComponent_HOC/ClickCounter_HOC";
+import HoverCounter_HOC from "./Components/React_js_systax/HigherOrderComponent_HOC/HoverCounter_HOC";
 
 import Statements from "./Components/React_js_systax/Statements";
+import RenderProps from "./Components/React_js_systax/RenderProps";
 import Hook from "./Components/React_js_systax/Hook";
 import NestedComponent from "./Components/React_js_systax/NestedComponent";
 
@@ -39,16 +40,25 @@ function App() {
       <br />
       <br />
 
-      <br />
-      <br />
-
-      <ClickCounter />
-      <HoverCounter />
+      {/* Higher Oreder Component */}
+      <ClickCounter_HOC />
+      <HoverCounter_HOC />
 
       <br />
       <br />
 
+      {/* React Syntax */}
       <Statements />
+
+      <br />
+      <br />
+
+      {/* Render Props */}
+      <RenderProps render={(isLoggedIn) => (isLoggedIn ? "Shovon" : "User")} />
+
+      <br />
+      <br />
+
       <Hook />
 
       <Contact />

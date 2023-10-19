@@ -30,9 +30,6 @@ const Statements = () => {
 
       <br />
       <h1 className="text-danger">Statemnts end</h1>
-
-      <br />
-      <br />
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import FunctionalUseState from "./FunctionalUseState";
+import FunctionalProps from "./FunctionalProps";
 
 const FunctionalComponent = () => {
   return (
@@ -8,6 +9,7 @@ const FunctionalComponent = () => {
       <br />
 
       <FunctionalUseState />
+      <FunctionalProps style={{ color: "green" }} msg={"Functional Props"} />
 
       <h1 className="text-danger">Functional Component End</h1>
     </>
