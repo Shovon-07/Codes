@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* Import css */
 import "./App.css";
@@ -16,7 +16,7 @@ import FunctionalComponent from "./Components/FunctionalComponent/FunctionalComp
 import ClickCounter_HOC from "./Components/React_js_systax/HigherOrderComponent_HOC/ClickCounter_HOC";
 import HoverCounter_HOC from "./Components/React_js_systax/HigherOrderComponent_HOC/HoverCounter_HOC";
 
-import Statements from "./Components/React_js_systax/Statements";
+// import Statements from "./Components/React_js_systax/Statements";
 import RenderProps from "./Components/React_js_systax/RenderProps";
 import Hook from "./Components/React_js_systax/Hook";
 import NestedComponent from "./Components/React_js_systax/NestedComponent";
@@ -30,15 +30,16 @@ function App() {
       <Header />
       <Hero />
 
+      <hr />
       <ClassComponent />
+      <hr />
 
       <br />
       <br />
 
+      <hr />
       <FunctionalComponent />
-
-      <br />
-      <br />
+      <hr />
 
       {/* Higher Oreder Component */}
       <ClickCounter_HOC />
@@ -48,7 +49,7 @@ function App() {
       <br />
 
       {/* React Syntax */}
-      <Statements />
+      {/* <Statements /> */}
 
       <br />
       <br />

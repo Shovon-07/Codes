@@ -4,7 +4,7 @@ const FunctionalProps = (props) => {
   return (
     <>
       <br />
-      <h3>Props in Class component</h3>
+      <h3>Props</h3>
       <p style={props.style}>{props.msg}</p>
 
       <br />

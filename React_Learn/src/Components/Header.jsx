@@ -1,5 +1,6 @@
 import React from "react";
-import Clock from "./Clock";
+import ClockInClassComponent from "./ClassComponent/ClockInClassComponent";
+import ClockInFunctionalComponent from "./FunctionalComponent/ClockInFunctionalComponent";
 
 const Header = () => {
   return (
@@ -10,7 +11,8 @@ const Header = () => {
         </div>
 
         <div className="headerNav px-4">
-          <Clock />
+          {/* <ClockInClassComponent /> */}
+          <ClockInFunctionalComponent />
           <ul>
             <li>
               <a href="">Home</a>
