@@ -2,6 +2,9 @@ import React from "react";
 import ClockInClassComponent from "./ClassComponent/ClockInClassComponent";
 import ClockInFunctionalComponent from "./FunctionalComponent/ClockInFunctionalComponent";
 
+// Routing
+import { NavLink } from "react-router-dom";
+
 const Header = () => {
   return (
     <>
@@ -13,12 +16,12 @@ const Header = () => {
         <div className="headerNav px-4">
           {/* <ClockInClassComponent /> */}
           <ClockInFunctionalComponent />
-          <ul>
+          {/* <ul>
             <li>
-              <a href="">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="">About</a>
+              <a href="/about">About</a>
             </li>
             <li>
               <a href="">Services</a>
@@ -28,6 +31,24 @@ const Header = () => {
             </li>
             <li>
               <a href="">Contact</a>
+            </li>
+          </ul> */}
+
+          <ul>
+            <li>
+              <NavLink to={"/"}>Home</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/about"}>About</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/services"}>Services</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/projects"}>Projects</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/contact"}>Contact</NavLink>
             </li>
           </ul>
         </div>

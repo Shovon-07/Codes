@@ -1,9 +1,11 @@
 import React from "react";
 import "../assets/Images/hacker-face.jpg";
+import Header from "../Components/Header";
 
-const Hero = () => {
+const Home = () => {
   return (
     <>
+      <Header />
       <div className="hero">
         {/* Bootstrap & Inline Css */}
         {/* <h1 className="text-center" style={{ color: "var(--off-white)" }}>
@@ -23,4 +25,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Home;
