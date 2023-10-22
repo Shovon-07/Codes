@@ -20,41 +20,40 @@ import RenderProps from "./Components/React_js_systax/RenderProps";
 import Hook from "./Components/React_js_systax/Hook";
 import NestedComponent from "./Components/React_js_systax/NestedComponent";
 
-import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 
-// Routing
-// import { Navigate, Route, Routes } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
+/* Routing */
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Projects from "./Pages/Projects";
+import Contact from "./Pages/Contact";
+import NestedRoute from "./Pages/NestedRoute";
 import NotFoundPage from "./Pages/NotFoundPage";
 
 function App() {
   return (
     <>
+      <Header />
       {/* Routing */}
-      {/* <Router>
-        <Header />
-
-        <Switch>
-          <Route exact path="/" Component={Home} />
-          <Route exact path="/about" Component={About} />
-        </Switch>
-      </Router> */}
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/Projects" element={<Projects />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
 
-        {/* Pass parameter/Id */}
-        <Route path="/MyPage/:id" element={<Mypage />} />
+        {/* Redirect any other path */}
+        <Route path="/redirect" element={<Navigate to="/contact" />} />
+
+        {/* Nested Route */}
+        <Route path="/nestedRoute/*" element={<NestedRoute />}>
+          <Route path="nestedRouteChild" element={<Contact />} />
+        </Route>
+
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
 
       {/* <Header /> */}
@@ -92,8 +91,6 @@ function App() {
       <br />
 
       <Hook />
-
-      <Contact />
 
       <NestedComponent>
         <Header />

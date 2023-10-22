@@ -5,7 +5,6 @@ import Header from "../Components/Header";
 const Home = () => {
   return (
     <>
-      <Header />
       <div className="hero">
         {/* Bootstrap & Inline Css */}
         {/* <h1 className="text-center" style={{ color: "var(--off-white)" }}>
