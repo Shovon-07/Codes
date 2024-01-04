@@ -55,7 +55,7 @@ popupBtn.addEventListener("click", () => {
 });
 //___ Contact alert end ___//
 
-/*
+
 let top_scroller = document.querySelector(".top_scroller");
 document.addEventListener("scroll", ()=> {
     let scroll = window.scrollY;
@@ -66,16 +66,16 @@ document.addEventListener("scroll", ()=> {
         top_scroller.classList.remove('fa_solid_viewer');
     }
 })
-*/
+
 
 //_____ one click go to top btn _____//
-// let top_scroller = document.querySelector(".top_scroller");
-// top_scroller.addEventListener("click", () => {
-//   window.scrollTo({ top: 0, behavior: "smooth" });
-// });
+ let top_scroller = document.querySelector(".top_scroller");
+ top_scroller.addEventListener("click", () => {
+   window.scrollTo({ top: 0, behavior: "smooth" });
+ });
+
 
 //_____ Password show & hide using javascript _____//
-/*
 let eye = document.querySelector("#eye");
 eye.addEventListener('click', () => {
     let pass_input = document.querySelector("#pass_input");
@@ -92,10 +92,10 @@ eye.addEventListener('click', () => {
         eye_cls.style.display = 'none';
     }
 })
-*/
+
 
 //_____ Password show & hide using jquery _____//
-/*
+
 $('#eye_open').click(function () { 
     if($('#pass_input').attr('type', 'password')) {
         $('#pass_input').attr('type', 'text');
@@ -110,10 +110,10 @@ $('#eye_cls').click(function () {
         $('#eye_cls').hide();
     }
 });
-*/
+
 
 //________ side bar dropdown ________//
-/*
+
 const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
 allDropdown.forEach(item=> {
     const a = item.parentElement.querySelector('a:first-child');
@@ -123,10 +123,10 @@ allDropdown.forEach(item=> {
         item.classList.toggle('show');
     })
 })
-*/
 
-//________ profile dropdown ________//
-/*
+
+//________ profile dropdown start ________//
+
 const profile = document.querySelector('nav .profile');
 const imgProfile = profile.querySelector('img');
 const dropdownProfile = profile.querySelector('.profile-link');
@@ -134,34 +134,36 @@ const dropdownProfile = profile.querySelector('.profile-link');
 imgProfile.addEventListener('click', function() {
     dropdownProfile.classList.toggle('show');
 })
-*/
+//________ profile dropdown end ________//
 
-// let number = document.querySelector("#number");
-// let counter = 0;
+//________ Set Interval start ________//
+ let number = document.querySelector("#number");
+ let counter = 0;
 
-// setInterval(() => {
-//     if (counter == 65) {
-//         clearInterval();
-//     }
-//     else {
-//         counter += 1;
-//         number.innerHTML = "HTML" + "<br>" + counter + "%";
-//         number.style.textAlign = "center";
-//     }
-// }, 30)
+ setInterval(() => {
+     if (counter == 65) {
+         clearInterval();
+     }
+     else {
+         counter += 1;
+         number.innerHTML = "HTML" + "<br>" + counter + "%";
+         number.style.textAlign = "center";
+     }
+ }, 30)
+ //________ Set Interval end ________//
 
 //_____ How to add active class _____//
-// let menus = document.querySelectorAll("#menu");
-// for (let i=0; i<menus.length; i++) {
-//     menus[i].addEventListener("click", function() {
-//         let active = document.getElementsByClassName("active");
-//         active[0].className = active[0].className.replace("active", " ");
-//         this.className += "active";
-//     })
-// }
+ let menus = document.querySelectorAll("#menu");
+ for (let i=0; i<menus.length; i++) {
+     menus[i].addEventListener("click", function() {
+         let active = document.getElementsByClassName("active");
+         active[0].className = active[0].className.replace("active", " ");
+         this.className += "active";
+     })
+}
 
 //___ Go to top start ___//
-/*
+
 var offset = 300;
 var duration = 100;
 jQuery(window).on("scroll", function () {
@@ -176,11 +178,11 @@ jQuery(".scroll-to-top").on("click", function (event) {
   jQuery("html, body").animate({ scrollTop: 0 }, duration);
   return false;
 });
-*/
+
 //___ Go to top end ___//
 
 //_____ Window scroll section animation _____//
-/*
+
 window.addEventListener("scroll", reveal);
 
 function reveal() {
@@ -200,7 +202,7 @@ function reveal() {
     }
   }
 }
-*/
+
 /************* My Full name section *************/
 /*
 document.querySelector("#see_my_full_name").addEventListener("click", () => {
