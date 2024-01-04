@@ -1,245 +1,304 @@
-//___ String method ___//
-/*
-let txt = "Al Jubair Shovon";
-let txt2 = " Cat";
-console.log("String length = " + txt.length);
-console.log("String slice = " + txt.slice(10,16)); // Parameter = 1st: start & 2nd: end
-console.log("String substr = " + txt.substr(3,6)); // Parameter = 1st: start & 2nd: length
-console.log("String replace = " + txt.replace("Jubair" , "Modon"));
-console.log("String replace all = " + txt.replaceAll("o" , "@"));
-console.log("String upper case = " + txt.toUpperCase());
-console.log("String lower case = " + txt.toLowerCase());
-console.log("String concat = " + txt.concat(" -->"+txt2)); // It join two string
-console.log("String trim = " + txt.trim()); // It remove white space
-console.log("String carAt = " + txt.charAt(10)); // It return specified charecter
-console.log(`String Interpolation = ${txt} -->${txt2} `); // String Interpolation
+//_____ Customize theme start _____//
+let toggle_theme = document.querySelector(".toggle-theme");
+let theme_icon = document.querySelector(".toggle-theme .fa-moon");
+let setThemeValue;
 
-if(txt.match("Shovon")) {
-    console.log("String match = " + "Congratulation");
-} else {
-    console.log("String match = " + "Sorry");
-}
+// Change theme
+const lightTheme = () => {
+  document.body.classList.add("light");
+  theme_icon.classList.replace("fa-moon", "fa-sun");
+  setThemeValue = localStorage.setItem("Theme", 1);
+};
+const darkTheme = () => {
+  document.body.classList.remove("light");
+  theme_icon.classList.replace("fa-sun", "fa-moon");
+  setThemeValue = localStorage.setItem("Theme", 2);
+};
+
+toggle_theme.addEventListener("click", () => {
+  if (!document.body.classList.contains("light")) {
+    lightTheme();
+  } else {
+    darkTheme();
+  }
+});
+
+// Stop refresh theme
+window.addEventListener("DOMContentLoaded", () => {
+  let getThemeValue = localStorage.getItem("Theme");
+  if (getThemeValue == 1) {
+    lightTheme();
+  } else if (getThemeValue == 2) {
+    darkTheme();
+  }
+});
+//_____ Customize theme end _____//
+
+//_____ Nav bar background change when Window was scrolled start _____//
+const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+  let pageHeight = window.scrollY;
+  header.classList.toggle("scrolled", pageHeight > 10);
+});
+//_____ Nav bar background change when Window was scrolled end _____//
+
+//___ Contact alert start ___//
+let showAlert = document.querySelector("#showAlert");
+let popup = document.querySelector(".popup");
+let popupBtn = document.querySelector(".popup button");
+
+showAlert.addEventListener("click", () => {
+  popup.classList.add("active");
+});
+popupBtn.addEventListener("click", () => {
+  popup.classList.remove("active");
+});
+//___ Contact alert end ___//
+
+/*
+let top_scroller = document.querySelector(".top_scroller");
+document.addEventListener("scroll", ()=> {
+    let scroll = window.scrollY;
+    if(scroll>100) {
+        top_scroller.classList.add('fa_solid_viewer');
+    }
+    else {
+        top_scroller.classList.remove('fa_solid_viewer');
+    }
+})
 */
 
-//___ String to number ___//
+//_____ one click go to top btn _____//
+// let top_scroller = document.querySelector(".top_scroller");
+// top_scroller.addEventListener("click", () => {
+//   window.scrollTo({ top: 0, behavior: "smooth" });
+// });
+
+//_____ Password show & hide using javascript _____//
 /*
-var str = "shovon";
-var strToNumber = Number(str);
-console.log(`String to number = ${typeof(strToNumber)}`);
+let eye = document.querySelector("#eye");
+eye.addEventListener('click', () => {
+    let pass_input = document.querySelector("#pass_input");
+    let eye_open = document.querySelector("#eye_open");
+    let eye_cls = document.querySelector("#eye_cls");
+
+    if (pass_input.type === 'password') {
+        pass_input.type = 'text';
+        eye_cls.style.display = 'block';
+        eye_open.style.display = 'none';
+    } else {
+        pass_input.type = 'password';
+        eye_open.style.display = 'block';
+        eye_cls.style.display = 'none';
+    }
+})
 */
 
-//___ Number to string ___//
+//_____ Password show & hide using jquery _____//
 /*
-var num = 123;
-var numToString = num.toString();
-console.log(`Number to String = ${typeof(numToString)}`);
-*/
-
-
-//___ Array ___//
-/*
-var fruits = ["Mango", "Apple", "Bananna"];
-
-fruits.push("Lichi"); // Add item as last item
-fruits.sort(); // Sorting array item
-console.log(fruits);
-// document.getElementById("DisplayArray").innerHTML = fruits;
-
-console.log(`Access last element in array = ${fruits[fruits.length - 1]}`);
-
-fruits.pop("Lichi"); // Remove item as last item
-
-fruits[0] = "Goava"; // Change array item
-console.log(`Change array item = ${fruits}`);
-
-delete fruits[2]; // Delete array item
-console.log(`Delete array item = ${fruits}`);
-
-var fruits = ["Mango", "Apple", "Bananna"];
-fruits.splice(1,0,"Lichi"); // It add 1 item in '1' no position
-fruits.splice(0,1); // It remove 1 item from '0' no posotion
-console.log(`Array splice = ${fruits}`);
-
-let students = ['shovon','jubair','asik'];
-let sliced = students.slice(1);
-console.log(sliced);
-
-var fruits = ["Mango", "Apple", "Bananna"];
-fruits.shift();
-console.log(`Shift array items = ${fruits}`); // It remove items from starting
-
-var fruits = ["Mango", "Apple", "Bananna"];
-fruits.unshift("Pineapple");
-console.log(`Unshift array items = ${fruits}`);// It add items in starting
-
-let boys = ['Shovon','Asik','Jony'];
-let girls = ['Meghla','Alina'];
-let marge = boys.concat(girls); // It's marge 2 or 3 array(array.concat(array,array))
-console.log(marge);
-
-// Loop in arrya (using for in loop)
-let boys = ['Shovon','Asik','Jony'];
-for(let x in boys) {
-    document.write(boys[x] + "</br>");
-}
-
-// Loop in arrya (using for each loop)
-let boys = ['Shovon','Asik','Jony'];
-boys.forEach(keys => {
-    document.write(keys + "</br>");
+$('#eye_open').click(function () { 
+    if($('#pass_input').attr('type', 'password')) {
+        $('#pass_input').attr('type', 'text');
+        $('#eye_open').hide();
+        $('#eye_cls').show();
+    }
+});
+$('#eye_cls').click(function () { 
+    if($('#pass_input').attr('type', 'text')) {
+        $('#pass_input').attr('type', 'password');
+        $('#eye_open').show();
+        $('#eye_cls').hide();
+    }
 });
 */
 
-
-//___ Object ___//
+//________ side bar dropdown ________//
 /*
-let MyObject = {
-    fName : 'Al Jubair',
-    lName : "Shovon",
-    age : 21,
-    roll : 520157,
-    // Method in object
-    fullInfo : function() {
-        console.log(`Name = ${this.fName + this.lName}. \nAge = ${this.age}. \nRoll = ${this.roll}.`);
-    }
-};
-
-console.log("Object = " + MyObject['fName']);
-console.log("Object = " + MyObject.lName);
-MyObject.fullInfo();
+const allDropdown = document.querySelectorAll('.sidebar .side-dropdown');
+allDropdown.forEach(item=> {
+    const a = item.parentElement.querySelector('a:first-child');
+    a.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.classList.toggle('active');
+        item.classList.toggle('show');
+    })
+})
 */
 
-//___ Convert object to text ___//
+//________ profile dropdown ________//
 /*
-let obj = {
-    name : 'shovon',
-    roll : 520157,
-    dept : 'CMT',
-};
-let txt = "";
-for(let x in obj) {
-    txt += obj[x];
-}
-document.write(txt);
+const profile = document.querySelector('nav .profile');
+const imgProfile = profile.querySelector('img');
+const dropdownProfile = profile.querySelector('.profile-link');
+
+imgProfile.addEventListener('click', function() {
+    dropdownProfile.classList.toggle('show');
+})
 */
 
-//___ Convert object to array ___//
+// let number = document.querySelector("#number");
+// let counter = 0;
+
+// setInterval(() => {
+//     if (counter == 65) {
+//         clearInterval();
+//     }
+//     else {
+//         counter += 1;
+//         number.innerHTML = "HTML" + "<br>" + counter + "%";
+//         number.style.textAlign = "center";
+//     }
+// }, 30)
+
+//_____ How to add active class _____//
+// let menus = document.querySelectorAll("#menu");
+// for (let i=0; i<menus.length; i++) {
+//     menus[i].addEventListener("click", function() {
+//         let active = document.getElementsByClassName("active");
+//         active[0].className = active[0].className.replace("active", " ");
+//         this.className += "active";
+//     })
+// }
+
+//___ Go to top start ___//
 /*
-let obj = {
-    name : 'shovon',
-    roll : 520157,
-    dept : 'CMT',
-};
-let arrayList = Object.keys(obj);
-console.log(arrayList);
+var offset = 300;
+var duration = 100;
+jQuery(window).on("scroll", function () {
+  if (jQuery(this).scrollTop() > offset) {
+    jQuery(".scroll-to-top").addClass("active-arrow");
+  } else {
+    jQuery(".scroll-to-top").removeClass("active-arrow");
+  }
+});
+jQuery(".scroll-to-top").on("click", function (event) {
+  event.preventDefault();
+  jQuery("html, body").animate({ scrollTop: 0 }, duration);
+  return false;
+});
 */
+//___ Go to top end ___//
 
-
-//___ Date Object ___//
+//_____ Window scroll section animation _____//
 /*
-/*** 
- * Date sequence => Year, Month, Day, Hour, Minute, Second, Milisecond
-***/
-// let d = new Date();
-// // document.write(d);
-// d.getFullYear();
-// d.getMonth();
-// d.getDate();
+window.addEventListener("scroll", reveal);
 
-/*** 
- * getMonth() methood return numaric value.
- * If we want to show months full text then follow this steps
-***/
-// const months = ["January","February","March","April","May","June","July","Augest","September","October","November","December"];
-// document.write(months[d.getMonth()]);
+function reveal() {
+  var reveal = document.querySelectorAll(
+    "#right_slide_box, #scale_box, #left_slide_box"
+  );
 
+  for (var i = 0; i < reveal.length; i++) {
+    var window_height = window.innerHeight;
+    var reveal_top = reveal[i].getBoundingClientRect().top;
+    var reveal_point = 50;
 
-//___ Math Object ___//
-/*
-let num = 1.9;
-console.log(`Round = ${Math.round(num)}`); // It's return round value
-console.log(`Ceil = ${Math.ceil(num)}`); // সবসময় উপরের সংখ্যা return করবে
-console.log(`Floor = ${Math.floor(num)}`); // সবসময় নিচের সংখ্যা return করবে
-console.log(`Power = ${Math.pow(2,3)}`); // It's return power => pow(number, power)
-console.log(`Sqrt = ${Math.sqrt(49)}`); // It's return squre root
-console.log(`Sign = ${Math.sign(0)}`); // যদি number positive হয় তাহলে 1 return করবে, negetive হলে-1, 0 হলে 0 return করবে
-console.log(`Abs = ${Math.abs(-2)}`); // It's return absulute/positive number
-console.log(`Max = ${Math.max(4,1,12,3)}`); // It;s return maximum number
-console.log(`Min = ${Math.min(4,12,3,5)}`); // It's return minimum number
-console.log(`Pi = ${Math.PI}`); // It's return pi value
-
-
-//___ Random Number ___//
-console.log(`Random = ${Math.random()}`); // It's return random number
-
-console.log(`Random integer (1-9) = ${Math.floor(Math.random() * 10)}`); // It's return random integer number
-
-console.log(`Random integer (1-10) = ${Math.floor(Math.random() * 10) + 1}`); // It's return random integer number 1-10
-
-console.log(`Random integer (1-99) = ${Math.floor(Math.random() * 100)}`); // It's return random integer number 1-99
-
-console.log(`Random integer (1-100) = ${Math.floor(Math.random() * 100) + 1}`); // It's return random integer number 1-100
-
-console.log(`Random integer (1-9999) = ${Math.floor(Math.random() * 10000)}`); // It's return random integer number 1-9000
-
-console.log(`Random integer (1-10000) = ${Math.floor(Math.random() * 10000) + 1}`); // It's return random integer number 1-9000
-
-console.log(`Random integer (1-5) = ${Math.floor(Math.random() * (5 - 1 + 1) + 1)}`); // 1-5 random number
-*/
-
-
-//___ Arrow function ___//
-/*
-person = () => {
-    let name = "shovon";
-    let roll = 520157;
-    console.log(`Name = ${name}. \nRoll = ${roll}`);
-}
-person();
-*/
-
-
-//___ OOP ___//
-/*
-class Students {
-    constructor(n,r,a) {
-        this.name = n;
-        this.roll = r;
-        this.age = a;
-        console.log(`Name = ${this.name}. \nRoll = ${this.roll}. \nAge = ${this.age}`);
-    }
-
-    Read(dept) {
-        console.log(`${this.name} is read in ${dept} depertment`);
-    }
-}
-let shovon = new Students('Shovon',520157,21);
-shovon.Read('Computer');
-
-let asik = new Students('Asik',520143,22);
-asik.Read('Civil');
-*/
-
-
-//__________________ Problem solving __________________//
-
-//___ How to print 1-6 random number (ludo game) ___//
-/*
-function getRandomIntNumber(min,max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-console.log(getRandomIntNumber(1,6));
-*/
-
-
-//___ How to find leep year ___//
-/*
-function getLeepYear(year) {
-    if((year % 400 === 0) || ((year % 4 === 0) && (year % 100 !== 0))) {
-        console.log(`${year} is leep year`);
+    if (reveal_top < window_height - reveal_point) {
+      reveal[i].classList.add("reveal");
     } else {
-        console.log(`${year} is not leep year`);
+      reveal[i].classList.remove("reveal");
     }
+  }
 }
-getLeepYear(2006);
+*/
+/************* My Full name section *************/
+/*
+document.querySelector("#see_my_full_name").addEventListener("click", () => {
+  document.querySelector("#my_full_name").style.visibility = "visible";
+
+  let img_change = document.querySelector("#img_change");
+  img_change.src = "web-page.jpg";
+});
+*/
+/************* Your Full name section *************/
+/*
+document.querySelector("#your_full_Name").addEventListener("click", () => {
+  let f_name = document.querySelector("#f_name").value;
+  let l_name = document.querySelector("#l_name").value;
+  let full_name_output = document.querySelector("#full_name_output");
+
+  let total_name = "Name =   " + f_name + " " + l_name;
+  full_name_output.value = total_name;
+});
+*/
+/************* Calculator section *************/
+/*
+document.querySelector("#sum_res_btn").addEventListener("click", () => {
+  let f_number = document.querySelector("#f_number");
+  let l_number = document.querySelector("#l_number");
+  let sum_output = document.querySelector("#sum_output");
+
+  let total_sum =
+    "Sum =    " + (parseInt(f_number.value) + parseInt(l_number.value));
+
+  sum_output.value = total_sum;
+});
+*/
+/************* Temperature Calculator section *************/
+/*
+document.querySelector("#tempa_res_btn").addEventListener("click", () => {
+  let f_tempa = document.querySelector("#f_tempa");
+  let tempa_output = document.querySelector("#tempa_output");
+
+  total_tempa = "Celsius =    " + (5 / 9) * (parseInt(f_tempa.value) - 32);
+
+  tempa_output.value = total_tempa;
+});
+*/
+/************* How many charecter section *************/
+/*
+document
+  .querySelector("#how_many_char_res_btn")
+  .addEventListener("click", () => {
+    let how_many_char = document.querySelector("#how_many_char");
+    let tempa_output = document.querySelector("#how_many_char_output");
+
+    total_char = "Total charecter =    " + how_many_char.value.length;
+
+    tempa_output.value = total_char;
+  });
+*/
+/************* Exam result section *************/
+/*
+document.querySelector("#exam_res_btn").addEventListener("click", () => {
+  let exam_mark = document.querySelector("#exam_mark").value;
+  let exam_point_output = document.querySelector("#exam_point_output");
+  let exam_grade_output = document.querySelector("#exam_grade_output");
+  let achive_txt = "You Achive = ";
+
+  if (exam_mark > 100 || exam_mark < 0) {
+    exam_point_output.value = "Invalid input";
+    exam_grade_output.value = "Invalid input";
+  } else if (exam_mark >= 80) {
+    exam_point_output.value = achive_txt + "4.00";
+    exam_grade_output.value = achive_txt + "A+";
+  } else if (exam_mark >= 75) {
+    exam_point_output.value = achive_txt + "3.75";
+    exam_grade_output.value = achive_txt + "A";
+  } else if (exam_mark >= 70) {
+    exam_point_output.value = achive_txt + "3.50";
+    exam_grade_output.value = achive_txt + "A-";
+  } else if (exam_mark >= 65) {
+    exam_point_output.value = achive_txt + "3.25";
+    exam_grade_output.value = achive_txt + "B+";
+  } else if (exam_mark >= 60) {
+    exam_point_output.value = achive_txt + "3.00";
+    exam_grade_output.value = achive_txt + "B";
+  } else if (exam_mark >= 55) {
+    exam_point_output.value = achive_txt + "2.75";
+    exam_grade_output.value = achive_txt + "B-";
+  } else if (exam_mark >= 50) {
+    exam_point_output.value = achive_txt + "2.50";
+    exam_grade_output.value = achive_txt + "C+";
+  } else if (exam_mark >= 45) {
+    exam_point_output.value = achive_txt + "2.25";
+    exam_grade_output.value = achive_txt + "C";
+  } else if (exam_mark >= 40) {
+    exam_point_output.value = achive_txt + "2.00";
+    exam_grade_output.value = achive_txt + "D";
+  } else {
+    exam_point_output.value = achive_txt + "0.00";
+    exam_grade_output.value = "You are FAIL";
+  }
+});
 */
