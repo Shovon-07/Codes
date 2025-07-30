@@ -1,5 +1,0 @@
-/* How to create laravel project */
-> composer create-project laravel/laravel app-name
-
-/* How to create a new controller */
-> php artisan make:controller ControllerName
