@@ -95,6 +95,30 @@ int main()
     // int recursionResult = RecursionFunc(5);
     // printf("Result of recursion : %d\n", recursionResult);
 
+    // int x = 10;
+    // int *pointerVar = &x;
+
+    // printf("Value of x = %d\n", x);
+    // printf("Address of x = %p\n", &x);
+
+    // printf("Value of pointer variable = %d\n", *pointerVar);
+    // printf("Address of pointer variable = ");
+    // printf("%p\n", pointerVar);
+
+    int xArr[4];
+    xArr[0] = 12;
+    xArr[1] = 2;
+    xArr[2] = 30;
+    xArr[3] = 20;
+
+    int i, length;
+    length = sizeof(xArr) / sizeof(xArr[0]);
+    for (i = 0; i < length; i++)
+    {
+        printf("%p\n", &xArr[i]);
+    }
+    printf("Address of x Array : %p\n", &xArr);
+
     return 0;
 }
 
