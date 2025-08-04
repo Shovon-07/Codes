@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include "./header/calculateor.h";
 
 //=>>> Function declaration
 int Calculator(int x, int y);
@@ -8,6 +9,9 @@ int RecursionFunc(int num);
 int main()
 {
     printf("Name : Al jubair shovon\n");
+
+    printf("Sum = %d\n", sum(3, 2));
+    printf("Mul = %d\n", mul(5, 2));
 
     // int studentId = 252311244, studentPaid = 25100;
     // char studentGrade = 'A';
