@@ -22,7 +22,7 @@ char *AgeCalculator()
     }
 }
 
-void EvenSeries()
+void EvenOddSeries()
 {
     int i;
     for (i = 1; i <= 100; i++)
@@ -30,6 +30,32 @@ void EvenSeries()
         if (i % 2 == 0)
         {
             printf("%d, ", i);
+        }
+    }
+}
+
+char *PrimeNumber(int num)
+{
+    if (num <= 1)
+    {
+        return "Please enter a number which is greater then 1";
+    }
+    else
+    {
+        for (int i = 1; i <= 10; i++)
+        {
+            // if (i == num)
+            // {
+            //     continue;
+            // }
+            if (num % i != 0 && num % num == 0)
+            {
+                return "Yes! This is a prime number.";
+            }
+            else
+            {
+                return "No! This is not a prime number.";
+            }
         }
     }
 }
