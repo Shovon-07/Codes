@@ -55,7 +55,20 @@ int main()
     //=>>> Task 8
     float celsius = 40;
     float fahrenheit = (celsius * 9 / 5) + 32;
-    printf("Celsius to fahrenheit = %f\n", fahrenheit);
+    // printf("Celsius to fahrenheit = %f\n", fahrenheit);
+
+    //=>>> Task 9
+    //=>>> Task 10
+    int years, weeks, days;
+    int totalDays;
+    printf("Enter days = ");
+    scanf("%d", &totalDays);
+
+    years = totalDays / 365;
+    weeks = (totalDays % 365) / 7;
+    days = (totalDays % 365) % 7;
+
+    printf("Year/s = %d\nWeeks = %d\nDays = %d\n", years, weeks, days);
 
     return 0;
 }
