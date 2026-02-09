@@ -41,18 +41,18 @@ int main()
     printf("The largest number is %d\n", result);
 
     // Process 2
-    // if (num1 > num2 && num1 > num3)
-    // {
-    //     printf("Number 1 is the largest number -> %d\n", num1);
-    // }
-    // else if (num2 > num1 && num2 > num3)
-    // {
-    //     printf("Number 2 is the largest number -> %d\n", num2);
-    // }
-    // else
-    // {
-    //     printf("Number 3 is the largest number -> %d\n", num3);
-    // }
+    if (num1 > num2 && num1 > num3)
+    {
+        printf("Number 1 is the largest number -> %d\n", num1);
+    }
+    else if (num2 > num1 && num2 > num3)
+    {
+        printf("Number 2 is the largest number -> %d\n", num2);
+    }
+    else
+    {
+        printf("Number 3 is the largest number -> %d\n", num3);
+    }
     */
 
     //=>>> Task 3
