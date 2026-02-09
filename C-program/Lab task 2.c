@@ -154,5 +154,40 @@ int main()
     }
     */
 
+    //=>>> Task 7
+    /*
+    int age;
+    printf("Enter age : ");
+    scanf("%d", &age);
+    if (age >= 18)
+    {
+        printf("Eligible to vote\n");
+    }
+    else
+    {
+        printf("Not eligible to vote\n");
+    }
+    */
+
+    //=>>> Task 8
+    /*
+    char charecter;
+    printf("Type something : ");
+    scanf("%c", &charecter);
+
+    if ((charecter >= 'A' && charecter <= 'Z') || (charecter >= 'a' && charecter <= 'z'))
+    {
+        printf("This is charecter\n");
+    }
+    else if (charecter >= '0' && charecter <= '9')
+    {
+        printf("This is number\n");
+    }
+    else
+    {
+        printf("This is special charecter\n");
+    }
+    */
+
     return 0;
 }
