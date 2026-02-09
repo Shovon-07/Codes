@@ -306,5 +306,95 @@ int main()
     }
     */
 
+    //=>>> Task 13
+    /*
+    float arm1, arm2, arm3;
+    printf("Enter the length of first side of the triangle : ");
+    scanf("%f", &arm1);
+    printf("Enter the length of second side of the triangle : ");
+    scanf("%f", &arm2);
+    printf("Enter the length of third side of the triangle : ");
+    scanf("%f", &arm3);
+
+    if (arm1 + arm2 > arm3 && arm1 + arm3 > arm2 && arm2 + arm3 > arm1)
+    {
+        printf("They can form a valid triangle\n");
+
+        if (arm1 == arm2 && arm1 == arm3 && arm2 == arm3)
+        {
+            printf("This equilateral triangle\n");
+        }
+        else if (arm1 == arm2 || arm1 == arm3 || arm2 == arm3)
+        {
+            printf("This isosceles triangle\n");
+        }
+        else
+        {
+            printf("This scalene triangle\n");
+        }
+    }
+    else
+    {
+        printf("They cannot form a valid triangle\n");
+    }
+    */
+
+    //=>>> Task 14
+    /*
+    int number;
+    printf("Enter a number : ");
+    scanf("%d", &number);
+
+    switch (number)
+    {
+    case 1:
+        printf("One\n");
+        break;
+    case 2:
+        printf("Two\n");
+        break;
+    case 3:
+        printf("Three\n");
+        break;
+    case 4:
+        printf("Four\n");
+        break;
+    case 5:
+        printf("Five\n");
+        break;
+    default:
+        printf("Nothing else\n");
+        break;
+    }
+    */
+
+    //=>>> Task 15
+    /*
+    int x, y;
+    printf("Enter coordinate points (x & y) : ");
+    scanf("%d%d", &x, &y);
+
+    if (x > 0 && y > 0)
+    {
+        printf("First quadrant\n");
+    }
+    else if (x < 0 && y > 0)
+    {
+        printf("Second quadrant\n");
+    }
+    else if (x < 0 && y < 0)
+    {
+        printf("Third quadrant\n");
+    }
+    else if (x > 0 && y < 0)
+    {
+        printf("Fourth quadrant\n");
+    }
+    else
+    {
+        printf("X = %d; Y= %d\n", x, y);
+    }
+    */
+
     return 0;
 }
