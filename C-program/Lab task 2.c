@@ -213,5 +213,98 @@ int main()
     printf("Gross salary = %.2f\n", grossSalary);
     */
 
+    //=>>> Task 10
+    /*
+    int number;
+    printf("Enter a number : ");
+    scanf("%d", &number);
+
+    switch (number)
+    {
+    case 1:
+        printf("January\n");
+        break;
+    case 2:
+        printf("February\n");
+        break;
+    case 3:
+        printf("March\n");
+        break;
+    case 4:
+        printf("April\n");
+        break;
+    case 5:
+        printf("May\n");
+        break;
+    case 6:
+        printf("June\n");
+        break;
+    case 7:
+        printf("July\n");
+        break;
+    case 8:
+        printf("August\n");
+        break;
+    case 9:
+        printf("September\n");
+        break;
+    case 10:
+        printf("October\n");
+        break;
+    case 11:
+        printf("November\n");
+        break;
+    case 12:
+        printf("December\n");
+        break;
+    default:
+        printf("Nothing else\n");
+    }
+    */
+
+    //=>>> Task 11
+    /*
+    float sellingPrice, costPrice, difference;
+    printf("Enter selling price : ");
+    scanf("%f", &sellingPrice);
+
+    printf("Enter cost price : ");
+    scanf("%f", &costPrice);
+
+    difference = sellingPrice - costPrice;
+    if (difference < 0)
+    {
+        printf("Loss = %.2f/-\n", -difference);
+    }
+    else if (difference > 0)
+    {
+        printf("Profit = %.2f/-\n", difference);
+    }
+    else
+    {
+        printf("No profit or loss\n");
+    }
+    */
+
+    //=>>> Task 12
+    /*
+    float arm1, arm2, arm3;
+    printf("Enter the length of first side of the triangle : ");
+    scanf("%f", &arm1);
+    printf("Enter the length of second side of the triangle : ");
+    scanf("%f", &arm2);
+    printf("Enter the length of third side of the triangle : ");
+    scanf("%f", &arm3);
+
+    if (arm1 + arm2 > arm3 && arm1 + arm3 > arm2 && arm2 + arm3 > arm1)
+    {
+        printf("They can form a valid triangle\n");
+    }
+    else
+    {
+        printf("They cannot form a valid triangle\n");
+    }
+    */
+
     return 0;
 }
