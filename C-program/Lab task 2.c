@@ -189,5 +189,29 @@ int main()
     }
     */
 
+    //=>>> Task 9
+    /*
+    float basicSalary, hra, da, grossSalary;
+    printf("Enter basic salary : ");
+    scanf("%f", &basicSalary);
+
+    if (basicSalary >= 20000)
+    {
+        hra = basicSalary * (30.0 / 100);
+        da = basicSalary * (95.0 / 100);
+    }
+    else
+    {
+        hra = basicSalary * (20.0 / 100);
+        da = basicSalary * (80.0 / 100);
+    }
+    grossSalary = basicSalary + hra + da;
+
+    printf("Basic salary = %.2f\n", basicSalary);
+    printf("HRA = %.2f\n", hra);
+    printf("DA = %.2f\n", da);
+    printf("Gross salary = %.2f\n", grossSalary);
+    */
+
     return 0;
 }
