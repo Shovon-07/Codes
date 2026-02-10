@@ -6,10 +6,10 @@
 
 #include <stdio.h>
 
-int main()
+void main()
 {
     char operator;
-    int num1, num2, result;
+    float num1, num2, result;
 
     printf("Type an operator between (+ - * / %%) : ");
     scanf("%c", &operator);
@@ -17,9 +17,9 @@ int main()
     if (operator == '+' || operator == '-' || operator == '*' || operator == '/' || operator == '%')
     {
         printf("Enter number 1 : ");
-        scanf("%d", &num1);
+        scanf("%f", &num1);
         printf("Enter number 2 : ");
-        scanf("%d", &num2);
+        scanf("%f", &num2);
 
         switch (operator)
         {
@@ -36,18 +36,16 @@ int main()
             result = num1 / num2;
             break;
         case '%':
-            result = num1 % num2;
+            result = (int)num1 % (int)num2;
             break;
         default:
             printf("Nothing else\n");
             break;
         }
-        printf("Result : %d %c %d = %d\n", num1, operator, num2, result);
+        printf("Result : %.2f %c %.2f = %.2f\n", num1, operator, num2, result);
     }
     else
     {
         printf("Please enter a valid operator\n");
     }
-
-    return 0;
 }
