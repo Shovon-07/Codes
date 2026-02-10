@@ -61,7 +61,7 @@ int main()
     printf("Enter the year : ");
     scanf("%d", &year);
 
-    if (year % 2 == 0)
+    if (year % 4 == 0)
     {
         printf("%d -> This is leep year\n", year);
     }
