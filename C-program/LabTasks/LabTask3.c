@@ -38,6 +38,7 @@ void main()
     //=>>> Task 5
     /*
     int n;
+    printf("Enter a number : ");
     scanf("%d", &n);
     for (int i = 1; i <= n; i += 1)
     {
@@ -48,6 +49,7 @@ void main()
     //=>>> Task 6
     /*
     int n, sum = 0;
+    printf("Enter a number : ");
     scanf("%d", &n);
     for (int i = 1; i <= n; i += 1)
     {
@@ -92,6 +94,7 @@ void main()
     //=>>> Task 11
     /*
     int nth, factorial = 1;
+    printf("Enter a number : ");
     scanf("%d", &nth);
 
     for (int i = 1; i <= nth; i += 1)
@@ -115,6 +118,7 @@ void main()
     */
 
     //=>>> Task 13
+    /*
     int multiple;
 
     for (int x = 1; x <= 10; x += 1)
@@ -129,4 +133,43 @@ void main()
             }
         }
     }
+    */
+
+    //=>>> Task 14
+
+    //=>>> Task 15
+    /*
+    int n, sum = 0;
+    printf("Enter a number : ");
+    scanf("%d", &n);
+
+    for (int x = 1; x <= n; x += 1)
+    {
+        if (x % 2 != 0)
+        {
+            continue;
+        }
+        sum += x;
+    }
+    printf("%d\n", sum);
+    */
+
+    //=>>> Task 16
+    /*
+    int n, product = 1;
+    printf("Enter a number : ");
+    scanf("%d", &n);
+
+    for (int x = 1; x <= n; x += 1)
+    {
+        if (x % 2 == 0)
+        {
+            continue;
+        }
+        product *= x;
+    }
+    printf("%d\n", product);
+    */
+
+    //=>>> Task 17
 }
