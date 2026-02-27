@@ -58,11 +58,18 @@ void main()
     printf("%d\n", sum);
     */
 
-    //=>>> Task 7 & 8
+    //=>>> Task 7
     /*
     for (int i = 1; i <= 10; i += 1)
     {
         // printf("%.1f\n", pow(i, 2)); // for task 7
+    }
+    */
+
+    //=>>> Task 8
+    /*
+    for (int i = 1; i <= 10; i += 1)
+    {
         // printf("%.1f\n", pow(i, 3)); // for task 8
     }
     */
@@ -79,7 +86,7 @@ void main()
     }
     */
 
-    //=>>> Task 10 (lack)
+    //=>>> Task 10
     /*
     for (int i = 1; i <= 100; i += 1)
     {
@@ -172,4 +179,26 @@ void main()
     */
 
     //=>>> Task 17
+    /*
+    int number, digit, sum = 0;
+    printf("Enter a number : ");
+    scanf("%d", &number);
+    while (number != 0)
+    {
+        digit = number % 10;
+        number /= 10;
+        sum += digit;
+        }
+    printf("%d\n", sum);
+    */
+
+    //=>>> Task 28
+    for (int x = 1; x <= 5; x++)
+    {
+        for (int y = 1; y <= x; y++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
 }
