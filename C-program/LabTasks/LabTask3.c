@@ -192,7 +192,21 @@ void main()
     printf("%d\n", sum);
     */
 
+    //=>>> Task 19
+    /*
+    int number, counted = 0;
+    printf("Enter a number : ");
+    scanf("%d", &number);
+    while (number != 0)
+    {
+        number /= 10;
+        counted += 1;
+    }
+    printf("%d\n", counted);
+    */
+
     //=>>> Task 28
+    /*
     for (int x = 1; x <= 5; x++)
     {
         for (int y = 1; y <= x; y++)
@@ -201,4 +215,5 @@ void main()
         }
         printf("\n");
     }
+    */
 }
