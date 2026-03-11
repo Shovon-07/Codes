@@ -192,6 +192,20 @@ void main()
     printf("%d\n", sum);
     */
 
+    //=>>> Task 18
+    /*
+    long long int number, reverse = 0;
+    printf("Enter a number : ");
+    scanf("%lld", &number);
+
+    while (number != 0)
+    {
+        reverse = reverse * 10 + number % 10;
+        number /= 10;
+    }
+    printf("Reverse = %lld\n", reverse);
+    */
+
     //=>>> Task 19
     /*
     int number, counted = 0;
@@ -216,4 +230,71 @@ void main()
         printf("\n");
     }
     */
+
+    //=>>> Task 20
+    /*
+    int number, storage, reverse = 0;
+    printf("Enter a number : ");
+    scanf("%d", &number);
+    storage = number;
+
+    while (number > 0)
+    {
+        reverse = reverse * 10 + number % 10;
+        number /= 10;
+    }
+
+    if (storage == reverse)
+    {
+        printf("Palindrome number.\n");
+    }
+    else
+    {
+        printf("Not palindrome number.\n");
+    }
+    */
+
+    //=>>> Task 21
+    /*
+    long long int n;
+    int flag = 0;
+    printf("Enter a number : ");
+    scanf("%lld", &n);
+    n = fabs(n);
+
+    for (int i = 2; i < n; i++)
+    {
+        if (n % i == 0)
+        {
+            flag += 1;
+            break;
+        }
+    }
+    if (flag == 0)
+    {
+        printf("Prime number.\n");
+    }
+    else
+    {
+        printf("Not prime number.\n");
+    }
+    */
+
+    //=>>> Task 22
+    // int n;
+    // scanf("%d", &n);
+    // for (int i = 2; i <= n; i++)
+    // {
+    //     int flag = 0;
+    //     for (int j = 2; j <= i / 2; j++)
+    //     {
+    //         if (i % j == 0)
+    //         {
+    //             flag = 1;
+    //             break;
+    //         }
+    //     }
+    //     if (flag == 0)
+    //         printf("%d ", i);
+    // }
 }
