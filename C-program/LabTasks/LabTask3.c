@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
 
 void main()
 {
+    clock_t starting = clock();
+
     //=>>> Task 1
     /*
     for (int i = 1; i <= 20; i += 1)
@@ -281,20 +284,21 @@ void main()
     */
 
     //=>>> Task 22
-    // int n;
-    // scanf("%d", &n);
-    // for (int i = 2; i <= n; i++)
-    // {
-    //     int flag = 0;
-    //     for (int j = 2; j <= i / 2; j++)
-    //     {
-    //         if (i % j == 0)
-    //         {
-    //             flag = 1;
-    //             break;
-    //         }
-    //     }
-    //     if (flag == 0)
-    //         printf("%d ", i);
-    // }
+    int n, flag = 0;
+    printf("Enter a number : ");
+    scanf("%d", &n);
+
+    for (int i = 2; i < n; i++)
+    {
+        if (n % i != 0)
+        {
+            flag += 1;
+        }
+    }
+    printf("%d\n", flag);
+
+    //=>>> Calculate execution time
+    clock_t ending = clock();
+    float executionTime = ((float)(ending - starting)) / CLOCKS_PER_SEC;
+    printf("\n\n\n\t\t\tExection time : %f second \n\n", executionTime);
 }
