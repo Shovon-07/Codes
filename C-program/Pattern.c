@@ -158,6 +158,55 @@ void main()
     //     printf("\n");
     // }
 
+    //=>>> Butterfly Pattern
+    // int n;
+    // printf("Enter a number : ");
+    // scanf("%d", &n);
+
+    // for (int row = 1; row <= n; row++)
+    // {
+    //     // Left pyramid
+    //     for (int col = 1; col <= row; col++)
+    //     {
+    //         printf(".");
+    //     }
+    //     // Left pyramid
+
+    //     // Right pyramid
+    //     for (int space = 1; space <= 2 * (n - row); space++)
+    //     {
+    //         printf(" ");
+    //     }
+    //     for (int col = 1; col <= row; col++)
+    //     {
+    //         printf(".");
+    //     }
+    //     // Right pyramid
+    //     printf("\n");
+    // }
+    // // Reverse pyramid
+    // for (int row = n - 1; row >= 1; row--)
+    // {
+    //     // Left pyramid
+    //     for (int col = 1; col <= row; col++)
+    //     {
+    //         printf(".");
+    //     }
+    //     // Left pyramid
+
+    //     // Right pyramid
+    //     for (int space = 1; space <= 2 * (n - row); space++)
+    //     {
+    //         printf(" ");
+    //     }
+    //     for (int col = 1; col <= row; col++)
+    //     {
+    //         printf(".");
+    //     }
+    //     // Right pyramid
+    //     printf("\n");
+    // }
+
     //=>>> Calculate execution time
     clock_t ending = clock();
     float executionTime = ((float)(ending - starting)) / CLOCKS_PER_SEC;
