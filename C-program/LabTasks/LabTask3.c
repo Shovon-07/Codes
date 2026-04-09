@@ -283,19 +283,33 @@ void main()
     }
     */
 
-    //=>>> Task 22
-    int n, flag = 0;
-    printf("Enter a number : ");
-    scanf("%d", &n);
+    //=>>> Task 25
+    // 0 1 1 2 3 5 8 13 21 ...
+    // int n, first = 0, second = 1, next;
+    // scanf("%d", &n);
 
-    for (int i = 2; i < n; i++)
+    // for (int i = 1; i <= n; ++i)
+    // {
+    //     printf("%d ", first);
+    //     next = first + second;
+    //     first = second;
+    //     second = next;
+    // }
+
+    int n, digit, sum = 0, copyN;
+    scanf("%d", &n);
+    copyN = n;
+
+    while (n != 0)
     {
-        if (n % i != 0)
-        {
-            flag += 1;
-        }
+        digit = n % 10;
+        sum += pow(digit, 3);
+        n /= 10;
     }
-    printf("%d\n", flag);
+    if (sum == copyN)
+        printf("Armstrong\n");
+    else
+        printf("Not Armstrong\n");
 
     //=>>> Calculate execution time
     clock_t ending = clock();

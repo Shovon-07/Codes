@@ -207,6 +207,88 @@ void main()
     //     printf("\n");
     // }
 
+    //=>>> Kite
+    // int n = 10;
+    // for (int row = 1; row <= n; row++)
+    // {
+    //     for (int space = 1; space <= n - row; space++)
+    //     {
+    //         printf(" ");
+    //     }
+    //     for (int col = 1; col <= row * 2 - 1; col++)
+    //     {
+    //         if (col == 1 || row == n || col == row * 2 - 1 || col == row * 2 / 2)
+    //         {
+    //             printf(".");
+    //         }
+    //         else
+    //         {
+    //             printf(" ");
+    //         }
+    //     }
+
+    //     printf("\n");
+    // }
+
+    // for (int row = n - 1; row >= 1; row--)
+    // {
+    //     for (int space = 1; space <= n - row; space++)
+    //     {
+    //         printf(" ");
+    //     }
+    //     for (int col = 1; col <= row * 2 - 1; col++)
+    //     {
+    //         if (col == 1 || row == n || col == row * 2 - 1 || col == row * 2 / 2)
+    //         {
+    //             printf(".");
+    //         }
+    //         else
+    //         {
+    //             printf(" ");
+    //         }
+    //     }
+
+    //     printf("\n");
+    // }
+    /**
+     * Pattern
+     * 1
+     * 0 1
+     * 1 0 1
+     * 0 1 0 1
+     **/
+    int n;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = 1; j <= i; j++)
+        {
+            if (i % 2 == 0)
+            {
+                if (j % 2 == 0)
+                {
+                    printf("1");
+                }
+                else
+                {
+                    printf("0");
+                }
+            }
+            else
+            {
+                if (j % 2 == 0)
+                {
+                    printf("0");
+                }
+                else
+                {
+                    printf("1");
+                }
+            }
+        }
+        printf("\n");
+    }
+
     //=>>> Calculate execution time
     clock_t ending = clock();
     float executionTime = ((float)(ending - starting)) / CLOCKS_PER_SEC;
