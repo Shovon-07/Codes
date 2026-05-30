@@ -146,6 +146,15 @@ void main()
     */
 
     //=>>> Task 14
+    // int x, y, pow = 1;
+    // printf("Enter a number : ");
+    // scanf("%d%d", &x, &y);
+
+    // for (int i = 1; i <= y; i += 1)
+    // {
+    //     pow *= x;
+    // }
+    // printf("%d\n", pow);
 
     //=>>> Task 15
     /*

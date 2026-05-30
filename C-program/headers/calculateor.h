@@ -1,13 +1,26 @@
-#ifndef calculateor_H
-#define calculateor_H
+#ifndef CALC_H
+#define CALC_H
+#include <stdio.h>
 
-int sum(int x, int y)
+int addition(int a, int b)
 {
-    return x + y;
+    int result = a + b;
+    printf("Addition = %d\n", result);
 }
-int mul(int x, int y)
+int substract(int a, int b)
 {
-    return x * y;
+    int result = a - b;
+    printf("Substract = %d\n", result);
+}
+int multiply(int a, int b)
+{
+    int result = a * b;
+    printf("Multiply = %d\n", result);
+}
+int division(int a, int b)
+{
+    int result = a / b;
+    printf("Division = %d\n", result);
 }
 
 #endif
