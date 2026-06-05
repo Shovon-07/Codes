@@ -1,14 +1,5 @@
 #include <stdio.h>
-#include <string.h>
 #include <math.h>
-#include "./headers/calculateor.h"
-
-struct students
-{
-    char name[100];
-    int id;
-    float cgpa;
-};
 
 int main()
 {
