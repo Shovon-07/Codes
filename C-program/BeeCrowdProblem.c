@@ -68,12 +68,14 @@ int main()
     // printf("SALARY = U$ %.2f\n", SALARY);
 
     //=>>> 9
-    char firstName[100];
-    double fixedSalary, totalSold, total;
-    scanf("%s", firstName);
-    scanf("%lf%lf", &fixedSalary, &totalSold);
-    total = fixedSalary + (totalSold * (15.0 / 100));
-    printf("TOTAL = R$ %.2lf\n", total);
+    // char firstName[100];
+    // double fixedSalary, totalSold, total;
+    // scanf("%s", firstName);
+    // scanf("%lf%lf", &fixedSalary, &totalSold);
+    // total = fixedSalary + (totalSold * (15.0 / 100));
+    // printf("TOTAL = R$ %.2lf\n", total);
+
+    //=>>> 10
 
     return 0;
 }
