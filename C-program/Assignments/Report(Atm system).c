@@ -11,35 +11,50 @@ int main()
     printf("Enter initial balance : ");
     scanf("%lld", &initBalance);
 
-    int q;
-    printf("How many times do you want to query? : ");
-    scanf("%d", &q);
-
-    for (int i = 1; i <= q; i++)
+    if (initBalance >= 0)
     {
-        int button;
-        printf("\nPress 1 for deposit, Press 2 for withdraw, Press 3 for check balance : ");
-        scanf("%d", &button);
 
-        switch (button)
+        int q;
+        printf("How many times do you want to query? : ");
+        scanf("%d", &q);
+
+        if (q >= 1 && q <= 1000)
         {
-        case 1:
-            printf("Enter deposit ammount : ");
-            scanf("%lld", &depAmmount);
-            deposit(&initBalance, depAmmount);
-            break;
-        case 2:
-            printf("Enter withdraw ammount : ");
-            scanf("%lld", &witdrawAmmount);
-            withdraw(&initBalance, witdrawAmmount);
-            break;
-        case 3:
-            showBalance(initBalance);
-            break;
-        default:
-            printf("Invalid input\n");
-            break;
+            for (int i = 1; i <= q; i++)
+            {
+                int button;
+                printf("\nPress 1 for deposit, Press 2 for withdraw, Press 3 for check balance : ");
+                scanf("%d", &button);
+
+                switch (button)
+                {
+                case 1:
+                    printf("Enter deposit ammount : ");
+                    scanf("%lld", &depAmmount);
+                    deposit(&initBalance, depAmmount);
+                    break;
+                case 2:
+                    printf("Enter withdraw ammount : ");
+                    scanf("%lld", &witdrawAmmount);
+                    withdraw(&initBalance, witdrawAmmount);
+                    break;
+                case 3:
+                    showBalance(initBalance);
+                    break;
+                default:
+                    printf("Invalid input\n");
+                    break;
+                }
+            }
         }
+        else
+        {
+            printf("Invalid query number\n");
+        }
+    }
+    else
+    {
+        printf("Invalid amount\n");
     }
 
     return 0;
