@@ -3,10 +3,25 @@
 int main()
 {
     //=>>> Task 1
-    char str[6] = {"shovon"};
-    printf("%s\n", str);
+    // char str[100];
+    // int count = 0;
+    // scanf("%s", str);
+
+    // for (int i = 0; str[i] != '\0'; i++)
+    // {
+    //     count++;
+    // }
+    // printf("%d", count);
 
     //=>>> Task 2
+    char str1[100], str2[100];
+    scanf("%s", str1);
+
+    for (int i = 0; str1[i] != '\0'; i++)
+    {
+        str2[i] = str1[i];
+    }
+    printf("Second string : %s\n", str2);
 
     //=>>> Task 3
 

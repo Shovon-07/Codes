@@ -245,5 +245,32 @@ int main()
     //     printf("\n");
     // }
 
+    //=>>> Problem 9
+    int row, col, i, j;
+    printf("Enter the row size : ");
+    scanf("%d", &row);
+    printf("Enter the column size : ");
+    scanf("%d", &col);
+
+    int arr[row][col];
+
+    printf("Enter the element of array : \n");
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < col; j++)
+        {
+            scanf("%d", &arr[i][j]);
+        }
+    }
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < col; j++)
+        {
+            if (i == j)
+                printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
     return 0;
 }

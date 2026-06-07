@@ -123,7 +123,7 @@ void main()
     //     printf("\n");
     // }
 
-    //=>>>Rectangle
+    //=>>> Rectangle
     // int n;
     // printf("Enter a number : ");
     // scanf("%d", &n);
@@ -250,6 +250,7 @@ void main()
 
     //     printf("\n");
     // }
+
     /**
      * Pattern
      * 1
