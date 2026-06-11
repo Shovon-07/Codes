@@ -41,7 +41,11 @@ int main()
         avg = sum / std[i].markLength;
         printf("Sum = %d\n", sum);
         printf("Avg = %d\n", avg);
+        sum = 0;
+        avg = 0;
     }
+
+    //=>>> Problem 2
 
     return 0;
 }
