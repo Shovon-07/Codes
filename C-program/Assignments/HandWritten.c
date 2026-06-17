@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
     //=>>> Problem 1
-    int stdLength, sum = 0, avg = 0;
+    int stdLength, sum = 0, passOrFailFlag = 0;
+    double avg = 0.00;
+    char passOrFail[5], grade;
 
     struct Students
     {
@@ -32,17 +35,43 @@ int main()
     for (int i = 0; i < stdLength; i++)
     {
         printf("\n");
-        printf("%s\n", std[i].id);
         for (int j = 0; j < std[i].markLength; j++)
         {
             sum += std[i].marks[j];
-            // printf("%d\n", std[i].marks[j]);
+            if (std[i].marks[j] < 40)
+            {
+                passOrFailFlag = 1;
+            }
         }
         avg = sum / std[i].markLength;
-        printf("Sum = %d\n", sum);
-        printf("Avg = %d\n", avg);
+        passOrFailFlag == 1 ? strcpy(passOrFail, "Fail") : strcpy(passOrFail, "Pass");
+
+        if (80 <= avg)
+        {
+            grade = 'A';
+        }
+        else if (70 <= avg && avg < 80)
+        {
+            grade = 'B';
+        }
+        else if (60 <= avg && avg < 70)
+        {
+            grade = 'C';
+        }
+        else if (50 <= avg && avg < 60)
+        {
+            grade = 'D';
+        }
+        else if (50 > avg)
+        {
+            grade = 'F';
+        }
+
+        printf("%s %.2lf %c %s\n", std[i].id, avg, grade, passOrFail);
+
         sum = 0;
         avg = 0;
+        passOrFailFlag = 0;
     }
 
     //=>>> Problem 2
