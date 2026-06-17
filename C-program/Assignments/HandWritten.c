@@ -4,8 +4,8 @@
 int main()
 {
     //=>>> Problem 1
-    int stdLength, sum = 0, passOrFailFlag = 0;
-    double avg = 0.00;
+    int stdLength, passOrFailFlag = 0;
+    double sum = 0.00, avg = 0.00;
     char passOrFail[5], grade;
 
     struct Students
