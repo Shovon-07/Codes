@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1784217985 source:/home/shovon/Documents/Codes/C++Project/main.cpp
-	<iostream>
-	"patternclass.h"
-
-1784217985 /home/shovon/Documents/Codes/C++Project/include/patternclass.h
-
