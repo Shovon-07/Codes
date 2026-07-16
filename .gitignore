@@ -1,5 +1,5 @@
 .vscode
-bin/Debug
-obj/Debug
-C++Project.depend
-C++Project.layout
+C++Project/bin/Debug
+C++Project/obj/Debug
+C++Project/C++Project.depend
+C++Project/C++Project.layout
