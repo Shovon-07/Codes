@@ -1,30 +1,18 @@
 #include <iostream>
+#include "patternclass.h"
+
 using namespace std;
 
 int add(int numbers[], int arrSize);
 
-class Cars
-{
-public:
-    string name;
-    int price;
-
-    void setValue(string nameParam, int priceParam)
-    {
-        name = nameParam;
-        price = priceParam;
-    }
-    void display()
-    {
-        cout << "Name: " << name << "\nPrice: " << price << endl;
-    }
-};
-
 int main()
 {
-    Cars car1;
-    car1.setValue("BMW", 8000000);
-    car1.display();
+    PatternClass pattern;
+//    pattern.LeftPyramid();
+    pattern.RightPyramid();
+
+    // string name = "Al jubair shovon";
+    // cout << name;
 
     // int n, result;
     // cout << "Enter length of array : ";
