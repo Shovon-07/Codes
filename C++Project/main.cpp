@@ -1,71 +1,41 @@
 #include <iostream>
-#include "patternclass.h"
 
 using namespace std;
 
-int add(int numbers[], int arrSize);
-
 int main()
 {
-    PatternClass pattern;
-//    pattern.LeftPyramid();
-    pattern.RightPyramid();
+    //=>>> Take input for the array elements and traverse or print them <<<=//
+    int n, delPosition;
+    cout << "Enter array size : ";
+    cin >> n;
 
-    // string name = "Al jubair shovon";
-    // cout << name;
+    int arr[n]; // Declare an array
 
-    // int n, result;
-    // cout << "Enter length of array : ";
-    // cin >> n;
-    // int nums[n];
-    // cout << "Enter the numbers : \n";
-    // for (int i = 0; i < n; i++)
-    // {
-    //     cin >> nums[i];
-    // }
-    // result = add(nums, n);
-    // cout << result << endl;
+    // Take input for array elements
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
 
-    // int m, n;
-    // cout << "Enter size of row : ";
-    // cin >> m;
-    // cout << "Enter size of column : ";
-    // cin >> n;
-    // int arr[m][n];
+    cout << "\n\nDeletion position : ";
+    cin >> delPosition;
 
-    // for (int i = 0; i < m; i++)
-    // {
-    //     cout << "Enter the value of " << i + 1 << "th row : ";
-    //     for (int j = 0; j < n; j++)
-    //     {
-    //         cin >> arr[i][j];
-    //     }
-    // }
-    // for (int i = 0; i < m; i++)
-    // {
-    //     for (int j = 0; j < n; j++)
-    //     {
-    //         cout << arr[i][j] << " ";
-    //     }
-    //     cout << endl;
-    // }
+    // Shift elements to the left
+    for (int i = delPosition; i <= n; i++)
+    {
+        arr[i] = arr[i + 1];
+    }
+
+    n -= 1; // Decrease the value of n as the array size also decreases
+
+    // Traverse/print array elements after deletion
+    cout << "\nArray elements after deletion\n";
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    cout << endl;
 
     return 0;
 }
-
-int add(int numbers[], int arrSize)
-{
-    int sum = 0;
-    for (int i = 0; i < arrSize; i++)
-    {
-        sum += numbers[i];
-    }
-    return sum;
-}
-
-/***
- **** Skiped
- * Bitwise operator
- *
-
-***/

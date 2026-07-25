@@ -34,8 +34,13 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ArrayCustomize.cpp" />
+		<Unit filename="Assignment.cpp" />
+		<Unit filename="backup.cpp" />
+		<Unit filename="include/leetcodeproblems.h" />
 		<Unit filename="include/patternclass.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/leetcodeproblems.cpp" />
 		<Unit filename="src/patternclass.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

@@ -49,3 +49,9 @@ void PatternClass::RightPyramid()
     }
 }
 
+//=>>> Full pyramid
+void PatternClass::FullPyramid(){
+    cout<<"Hi";
+}
+
+

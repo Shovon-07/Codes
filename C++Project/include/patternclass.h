@@ -8,6 +8,7 @@ public:
     PatternClass();
     void LeftPyramid();
     void RightPyramid();
+    void FullPyramid();
 
 protected:
 
