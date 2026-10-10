@@ -36,10 +36,13 @@
 		</Compiler>
 		<Unit filename="ArrayCustomize.cpp" />
 		<Unit filename="Assignment.cpp" />
+		<Unit filename="LabReport.cpp" />
 		<Unit filename="backup.cpp" />
 		<Unit filename="include/leetcodeproblems.h" />
 		<Unit filename="include/patternclass.h" />
+		<Unit filename="linkedList.cpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="oop_lab_report.cpp" />
 		<Unit filename="src/leetcodeproblems.cpp" />
 		<Unit filename="src/patternclass.cpp" />
 		<Extensions>
