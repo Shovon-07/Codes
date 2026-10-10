@@ -37,6 +37,7 @@
 //    return 0;
 //}
 
+//=>>> Linked List insertion (at head, at tail and at any position)
 // #include <iostream>
 // using namespace std;
 
@@ -73,7 +74,7 @@
 //     while (temp->next != nullptr)
 //         temp = temp->next;           // change temp to the next address
 //     Node *newNode = new Node(value); // create a new node
-//     temp->next = newNode;            // change the address of the last node to the address of the new node
+//     temp->next = newNode;            // //  replace the last node address to new node address
 //     newNode->next = nullptr;         // assign new node address as null
 //     traverse(head);
 // }
@@ -94,8 +95,8 @@
 //         return;
 //     }
 //     Node *newNode = new Node(value); // create a new node
-//     newNode->next = temp->next;      // replace the address of the new node with the address of the next node.
-//     temp->next = newNode;            // replace the address of the next node with the address of the new node.
+//     newNode->next = temp->next;      // replace the new node address with the next node address
+//     temp->next = newNode;            // replace the next node address with the next node address
 //     traverse(head);
 // }
 
@@ -135,6 +136,8 @@
 
 //     return 0;
 // }
+
+//=>>> Linked List deletion(at head, at tail, at any position)
 
 //=>>> Insert at head
 // #include <iostream>
