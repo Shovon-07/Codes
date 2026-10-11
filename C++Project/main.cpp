@@ -1,114 +1,74 @@
 #include <iostream>
 using namespace std;
 
-class Node
+class node
 {
 public:
     int value;
-    Node *next;
-    Node(int v)
+    node *next;
+    node(int v)
     {
-        value = v;      // set value for data part
-        next = nullptr; // Set null values ​​for link parts
+        value = v;
+        next = nullptr;
     }
 };
-void traverse(Node *&head)
+
+// Function to remove the Nth node from the end
+node *removeNthFromEnd(node *head, int n)
 {
-    Node *temp = head;
+    node *temp = new node(0); // Create a temporary node
+    temp->next = head;        // Point temp to the head
+    node *first = temp;
+    node *second = temp;
+    for (int i = 0; i <= n; i++)
+        first = first->next; // Move first pointer n+1 steps forward
+    // Move both pointers until first reaches NULL
+    while (first != nullptr)
+    {
+        first = first->next;
+        second = second->next;
+    }
+    node *deleteNode = second->next; // Node to be deleted
+    second->next = deleteNode->next; // Skip the node that needs to be deleted
+    delete deleteNode;               // Delete the node
+    return temp->next;
+}
+void traversing(node *head)
+{
+    node *temp = head;
     while (temp != nullptr)
     {
-        cout << temp->value << ", "; // print the values
-        temp = temp->next;           // change temp to the next address
+        cout << temp->value << ", ";
+        temp = temp->next;
     }
-}
-void deletionAtHead(Node *&head)
-{
-    if (head == nullptr)
-    {
-        cout << "Underflow" << endl;
-        return;
-    }
-    Node *temp = head; // Create a new node
-    head = head->next; // replace head to next variable of head
-    delete temp;       // delete current node
-    traverse(head);
-}
-void deletionAtTail(Node *&head)
-{
-    if (head == nullptr)
-    {
-        cout << "Underflow" << endl;
-        return;
-    }
-    if (head->next == nullptr)
-    {
-        deletionAtHead(head);
-        return;
-    }
-    Node *temp = head; // Create a new node
-    while (temp->next->next != nullptr)
-    {
-        temp = temp->next; // Move to the second-last node
-    }
-    temp->next = nullptr; // second last node become last node
-    delete temp->next;    // delete the last node
-    traverse(head);
-}
-void deletionAtPosition(Node *&head, int pos)
-{
-    Node *temp = head;
-    int currentPos = 1;
-    while (temp != nullptr && currentPos < pos - 1)
-        temp = temp->next, currentPos++; // Move to before given position
-    Node *deletNode = temp->next;        // create a deleteable node;
-    temp->next = deletNode->next;        // change previous node next address
-    delete deletNode;                    // delete given node
-    traverse(head);
 }
 
 int main()
 {
-    // Create nodes & insert value
-    Node *n1 = new Node(10);
-    Node *n2 = new Node(15);
-    Node *n3 = new Node(20);
-    Node *n4 = new Node(25);
-    Node *n5 = new Node(30);
-    Node *n6 = new Node(35);
-    Node *n7 = new Node(40);
-    Node *n8 = new Node(45);
-    Node *n9 = new Node(50);
-    Node *n10 = new Node(55);
+    // Create nodes
+    node *node1 = new node(1);
+    node *node2 = new node(2);
+    node *node3 = new node(3);
+    node *node4 = new node(4);
+    node *node5 = new node(5);
 
-    // Linking with the next node
-    n1->next = n2;
-    n2->next = n3;
-    n3->next = n4;
-    n4->next = n5;
-    n5->next = n6;
-    n6->next = n7;
-    n7->next = n8;
-    n8->next = n9;
-    n9->next = n10;
-    n10->next = nullptr;
+    // Connect the nodes
+    node1->next = node2;
+    node2->next = node3;
+    node3->next = node4;
+    node4->next = node5;
 
-    Node *head = n1;
+    node *head = node1; // Set head
 
-    cout << "Original list : \n";
-    traverse(head); // Display the original linked list
+    cout << "Original Linked List:" << endl;
+    traversing(head);
     cout << "\n\n";
 
-    cout << "After deletion at head : \n";
-    deletionAtHead(head); // deletion at head
-    cout << "\n\n";
+    head = removeNthFromEnd(head, 2); // Remove 2nd node from the end
 
-    cout << "After deletion at tail : \n";
-    deletionAtTail(head); // deletion at tail
-    cout << "\n\n";
-
-    cout << "After deletion at given position : \n";
-    deletionAtPosition(head, 3); // deletion at given position
-    cout << "\n\n";
+    cout << "After Removing 2nd Node From End:" << endl;
+    traversing(head);
+    cout << "\n";
     return 0;
 }
 

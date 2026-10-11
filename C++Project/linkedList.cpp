@@ -252,43 +252,171 @@
 //     return 0;
 // }
 
-//=>>> Insert at head
+//=>>> Move the elements from tail to head and head to tail
 // #include <iostream>
 // using namespace std;
-//
-// class Node {
+
+// class Node
+// {
 // public:
-//    int value;
-//    Node *next;
-//    Node(int v) {
-//        value = v; // set value for data part
-//        next = nullptr; // Set null values ​​for link parts
-//    }
-//};
-// void traverse(Node *head) {
-//    Node *temp = head;
-//    cout<<"New value inserted at head: ";
-//    while (temp != nullptr) {
-//        cout << temp->value << ", "; // print values
-//        temp = temp->next; // now point to the next node
-//    }
-//}
-// int main() {
-//    // Create nodes & insert value
-//    Node *n1 = new Node(10);
-//    Node *n2 = new Node(20);
-//    Node *n3 = new Node(30);
-//    Node *n4 = new Node(40);
-//    Node *n5 = new Node(50);
-//    Node *newNode=new Node(5); // create new node
-//
-//    // Linking with the next node
-//    n1->next = n2;
-//    n2->next = n3;
-//    n3->next = n4;
-//    n4->next = n5;
-//    n5->next = nullptr;
-//    newNode->next=n1; // linking to the first node
-//    traverse(newNode); // Call traversing function
-//    return 0;
-//}
+//     int value;
+//     Node *next;
+//     Node(int v)
+//     {
+//         value = v;      // set value for data part
+//         next = nullptr; // Set null values ​​for link parts
+//     }
+// };
+// void traverse(Node *&head)
+// {
+//     Node *temp = head;
+//     while (temp != nullptr)
+//     {
+//         cout << temp->value << ", "; // print the values
+//         temp = temp->next;           // change temp to the next address
+//     }
+// }
+// void moveTailToHead(Node *&head)
+// {
+//     if (head == NULL || head->next == NULL)
+//         return;
+//     Node *temp = head;
+//     while (temp->next->next != NULL)
+//         temp = temp->next; // Find second-last node
+//     Node *lastNode = temp->next;
+//     temp->next = NULL;
+//     lastNode->next = head;
+//     head = lastNode;
+//     traverse(head);
+// }
+// void moveHeadToTail(Node *&head)
+// {
+//     if (head == NULL || head->next == NULL)
+//         return;
+//     Node *oldHead = head;
+//     head = head->next;
+//     Node *temp = head;
+//     while (temp->next != NULL)
+//         temp = temp->next;
+//     temp->next = oldHead;
+//     oldHead->next = NULL;
+//     traverse(head);
+// }
+
+// int main()
+// {
+//     // Create nodes & insert value
+//     Node *n1 = new Node(10);
+//     Node *n2 = new Node(15);
+//     Node *n3 = new Node(20);
+//     Node *n4 = new Node(25);
+//     Node *n5 = new Node(30);
+
+//     // Linking with the next node
+//     n1->next = n2;
+//     n2->next = n3;
+//     n3->next = n4;
+//     n4->next = n5;
+//     n5->next = nullptr;
+
+//     Node *head = n1;
+
+//     cout << "Original list : \n";
+//     traverse(head); // Display the original linked list
+//     cout << "\n\n";
+
+//     cout << "Move Tail to Head : \n";
+//     moveTailToHead(head);
+//     cout << "\n\n";
+
+//     cout << "Move Head to Tail : \n";
+//     moveHeadToTail(head);
+//     cout << "\n\n";
+//     return 0;
+// }
+
+//=>>> Merge Two Sorted Lists( leetcode)
+// #include <iostream>
+// using namespace std;
+
+// class node
+// {
+// public:
+//     int value;
+//     node *next;
+//     node(int v)
+//     {
+//         value = v;
+//         next = nullptr;
+//     }
+// };
+// node *mergeTwoLists(node *head1, node *head2)
+// {
+//     node *temp = new node(0); // Create a temp node
+//     node *current = temp;     // Current pointer starts from temp
+//                               // Compare nodes from both lists
+//     while (head1 != nullptr && head2 != nullptr)
+//     {
+//         if (head1->value <= head2->value)
+//         {
+//             current->next = head1;
+//             head1 = head1->next;
+//         }
+//         else
+//         {
+//             current->next = head2;
+//             head2 = head2->next;
+//         }
+//         current = current->next; // Move current to the newly added node
+//     }
+//     if (head1 != nullptr)
+//         current->next = head1; // Add remaining nodes of list 1
+//     if (head2 != nullptr)
+//         current->next = head2; // Add remaining nodes of list 2
+//     return temp->next;
+// }
+// void traversing(node *head)
+// {
+//     node *temp = head;
+//     while (temp != nullptr)
+//     {
+//         cout << temp->value << ", ";
+//         temp = temp->next;
+//     }
+// }
+
+// int main()
+// {
+//     // First sorted list
+//     node *node1 = new node(1);
+//     node *node2 = new node(2);
+//     node *node3 = new node(4);
+//     node1->next = node2;
+//     node2->next = node3;
+
+//     node *head1 = node1;
+//     cout << "1st Linked List:" << endl;
+//     traversing(head1);
+//     cout << "\n\n";
+
+//     // Second sorted list
+//     node *node4 = new node(1);
+//     node *node5 = new node(3);
+//     node *node6 = new node(4);
+//     node4->next = node5;
+//     node5->next = node6;
+
+//     node *head2 = node4;
+//     cout << "2nd Linked List:" << endl;
+//     traversing(head2);
+//     cout << "\n\n";
+
+//     node *head = mergeTwoLists(head1, head2); // Merge the two sorted lists
+
+//     cout << "After Merging Two Sorted Lists:" << endl;
+//     traversing(head); // Display the merged list
+//     cout << "\n";
+//     return 0;
+// }
+
+//=>>> Remove Nth Node From End of List (leetcode)
