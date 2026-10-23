@@ -50,8 +50,8 @@
           <path
             id="edge-4-5"
             class="road"
-            d="M 150 280
-            Q 150 50 450 40"
+            d="M 200 150
+            Q 250 40 450 40"
           />
           <line id="edge-5-6" class="road" x1="450" y1="40" x2="600" y2="100" />
           <line
@@ -75,6 +75,14 @@
             class="road"
             points="400,450 450,360 650,360 650,300"
           />
+          <line
+            id="edge-4-9"
+            class="road"
+            x1="150"
+            y1="280"
+            x2="200"
+            y2="150"
+          />
         </g>
 
         <!-- Road distance labels -->
@@ -85,10 +93,12 @@
           <text x="200" y="355">100 m</text>
           <text x="575" y="380">200 m</text>
           <text x="100" y="310">20 m</text>
-          <text x="200" y="100">200 m</text>
-          <text x="560" y="60">50 m</text>
+          <text x="280" y="60">200 m</text>
+          <text x="560" y="70">50 m</text>
           <text x="720" y="300">100 m</text>
           <text x="550" y="355">150 m</text>
+          <text x="200" y="230">70 m</text>
+          <text x="650" y="160">20 m</text>
         </g>
 
         <!-- Vertices / Locations -->
@@ -102,6 +112,7 @@
           <circle id="node-garden" class="node" cx="600" cy="100" r="15" />
           <circle id="node-cafeteria" class="node" cx="650" cy="200" r="15" />
           <circle id="node-parking" class="node" cx="650" cy="300" r="15" />
+          <circle id="node-parking" class="node" cx="200" cy="150" r="15" />
         </g>
 
         <!-- Location names -->
@@ -112,9 +123,10 @@
           <text x="50" y="380" class="rotate">Bus stand</text>
           <text x="150" y="320" class="rotate">Ground 1</text>
           <text x="450" y="70">Ground 2</text>
-          <text x="600" y="130">Garden</text>
-          <text x="650" y="230">Cafeteria</text>
+          <text x="655" y="120">Bota. Garden</text>
+          <text x="690" y="220">Cafeteria</text>
           <text x="650" y="330">Parking</text>
+          <text x="200" y="200" class="rotate">Flower garden</text>
         </g>
       </svg>
     </div>
@@ -134,6 +146,7 @@ Ground 2 : n5 (coordinate : x="450" y="40")
 Garden : n6 (coordinate : x="600" y="100")
 Cafeteria : n7 (coordinate : x="650" y="200")
 Parking : n8 (coordinate : x="650" y="300")
+Flower garden : n9 (coordinate : x="200" y="150")
 
 
 250 (প্রথমটি)	Control point-এর X-coordinate (cx)

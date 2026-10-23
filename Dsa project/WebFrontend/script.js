@@ -43,6 +43,7 @@ function highlightPath(path) {
       // edge.style.filter = "drop-shadow(2px 3px 3px rgba(4, 255, 0, 0.93))";
     }
   }
+  console.log("Route founded");
 }
 
 highlightPath([2, 0, 3]);
