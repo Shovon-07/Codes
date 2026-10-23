@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./img/Vu logo.jpg" type="image/x-icon" />
     <title>Vu Navigation</title>
   </head>
 
@@ -37,17 +38,39 @@
             class="road"
             d="M 750 450
                 L 750 410
-                Q 750 410 750 380
+                Q 750 400 700 400
                 L 50 350"
+          />
+          <path
+            id="edge-2-4"
+            class="road"
+            d="M 50 350
+            Q 50 280 150 280"
+          />
+          <path
+            id="edge-4-5"
+            class="road"
+            d="M 150 280
+            Q 150 50 450 40"
+          />
+          <path
+            id="edge-5-6"
+            class="road"
+            d="M 450 40
+            Q 450 -30 700 100"
           />
         </g>
 
         <!-- Road distance labels -->
         <g id="distances" class="road-label">
           <text x="200" y="440">50 m</text>
-          <text x="575" y="440">100 m</text>
-          <text x="80" y="410">100 m</text>
-          <text x="200" y="355">200 m</text>
+          <text x="575" y="440">50 m</text>
+          <text x="80" y="410">10 m</text>
+          <text x="200" y="355">100 m</text>
+          <text x="575" y="380">200 m</text>
+          <text x="100" y="310">20 m</text>
+          <text x="200" y="100">200 m</text>
+          <text x="630" y="50">50 m</text>
         </g>
 
         <!-- Vertices / Locations -->
@@ -56,6 +79,9 @@
           <circle id="node-gate-2" class="node" cx="50" cy="450" r="15" />
           <circle id="node-gate-3" class="node" cx="750" cy="450" r="15" />
           <circle id="node-bus-stand" class="node" cx="50" cy="350" r="15" />
+          <circle id="node-ground-1" class="node" cx="150" cy="280" r="15" />
+          <circle id="node-ground-2" class="node" cx="450" cy="40" r="15" />
+          <circle id="node-garden" class="node" cx="700" cy="100" r="15" />
         </g>
 
         <!-- Location names -->
@@ -64,6 +90,9 @@
           <text x="50" y="480">Gate 2</text>
           <text x="750" y="480">Gate 3</text>
           <text x="50" y="380" class="rotate">Bus stand</text>
+          <text x="150" y="320" class="rotate">Ground 1</text>
+          <text x="450" y="70">Ground 2</text>
+          <text x="700" y="130">Garden</text>
         </g>
       </svg>
     </div>
@@ -73,9 +102,23 @@
 </html>
 
 <!-- 
-Note:
-Main gate : 0
-Gate 2 : 1
-Gate 3 : 2
-Bus stand : 3
+=====> Nodes coordinate : <=====
+Main gate : n0 (coordinate : x="400" y="450")
+Gate 2 : n1 (coordinate : x="50" y="450")
+Gate 3 : n2 (coordinate : x="750" y="450")
+Bus stand : n3 (coordinate : x="50" y="350")
+
+
+250 (প্রথমটি)	Control point-এর X-coordinate (cx)
+250 (দ্বিতীয়টি)	Control point-এর Y-coordinate (cy)
+250 (তৃতীয়টি)	Curve যেখানে শেষ হবে, তার X-coordinate
+220 (চতুর্থটি)	Curve যেখানে শেষ হবে, তার Y-coordinate
+
+
+<path
+            id="edge-0-4"
+            class="road"
+            d="M 50 450
+            Q 50 50 550 250"
+          />
 -->

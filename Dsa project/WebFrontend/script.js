@@ -47,4 +47,4 @@ function highlightPath(path) {
   }
 }
 
-highlightPath([0, 2, 3]);
+// highlightPath([0, 2, 3]);

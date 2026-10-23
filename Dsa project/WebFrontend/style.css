@@ -47,8 +47,9 @@ svg {
   font-size: 13px;
   font-weight: bold;
   text-transform: capitalize;
-  fill: #271811;
+  fill: #f37302;
   text-anchor: middle;
+  z-index: 100;
 }
 .node-label .rotate {
   transform: rotate(-6deg);
