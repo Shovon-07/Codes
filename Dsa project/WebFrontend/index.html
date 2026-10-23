@@ -54,17 +54,19 @@
             Q 150 50 450 40"
           />
           <line id="edge-5-6" class="road" x1="450" y1="40" x2="600" y2="100" />
-          <!-- <path
+          <line
             id="edge-6-7"
             class="road"
-            d="M 150 280
-            Q 600 50 600 40"
-          /> -->
+            x1="600"
+            y1="100"
+            x2="650"
+            y2="200"
+          />
           <line
             id="edge-7-2"
             class="road"
-            x1="730"
-            y1="250"
+            x1="650"
+            y1="200"
             x2="750"
             y2="450"
           />
@@ -79,8 +81,8 @@
           <text x="575" y="380">200 m</text>
           <text x="100" y="310">20 m</text>
           <text x="200" y="100">200 m</text>
-          <text x="560" y="50">50 m</text>
-          <text x="760" y="350">50 m</text>
+          <text x="560" y="60">50 m</text>
+          <text x="720" y="300">100 m</text>
         </g>
 
         <!-- Vertices / Locations -->
@@ -92,7 +94,8 @@
           <circle id="node-ground-1" class="node" cx="150" cy="280" r="15" />
           <circle id="node-ground-2" class="node" cx="450" cy="40" r="15" />
           <circle id="node-garden" class="node" cx="600" cy="100" r="15" />
-          <circle id="node-cafeteria" class="node" cx="730" cy="250" r="15" />
+          <circle id="node-cafeteria" class="node" cx="650" cy="200" r="15" />
+          <circle id="node-parking" class="node" cx="650" cy="300" r="15" />
         </g>
 
         <!-- Location names -->
@@ -104,7 +107,8 @@
           <text x="150" y="320" class="rotate">Ground 1</text>
           <text x="450" y="70">Ground 2</text>
           <text x="600" y="130">Garden</text>
-          <text x="730" y="280">Cafeteria</text>
+          <text x="650" y="230">Cafeteria</text>
+          <text x="650" y="330">Parking</text>
         </g>
       </svg>
     </div>
@@ -120,7 +124,8 @@ Gate 2 : n1 (coordinate : x="50" y="450")
 Gate 3 : n2 (coordinate : x="750" y="450")
 Bus stand : n3 (coordinate : x="50" y="350")
 Garden : n4 (coordinate : x="600" y="100")
-Cafeteria : n5 (coordinate : x="730" y="250")
+Cafeteria : n5 (coordinate : x="650" y="200")
+Parking : n6 (coordinate : x="650" y="300")
 
 
 250 (প্রথমটি)	Control point-এর X-coordinate (cx)
@@ -135,4 +140,6 @@ Cafeteria : n5 (coordinate : x="730" y="250")
             d="M 50 450
             Q 50 50 550 250"
           />
+
+          download completed : 4
 -->
