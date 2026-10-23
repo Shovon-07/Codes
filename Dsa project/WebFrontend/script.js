@@ -3,10 +3,11 @@ const names = [
   "gate-2",
   "gate-3",
   "bus-stand",
-  "library",
+  "ground-1",
+  "ground-2",
+  "garden",
   "cafeteria",
-  "cse-office",
-  "auditorium",
+  "parking",
 ];
 
 function highlightPath(path) {
@@ -17,34 +18,31 @@ function highlightPath(path) {
 
   // সব edge-এর আগের highlight মুছে ফেলো
   document.querySelectorAll("[id^='edge-']").forEach((edge) => {
-    edge.style.stroke = "gray";
-    edge.style.strokeWidth = "5";
+    edge.style.stroke = "#6a6e77";
+    // edge.style.strokeWidth = "5";
   });
 
   // Shortest path-এর vertex highlight
   path.forEach((v) => {
     const node = document.getElementById("node-" + names[v]);
-
     if (node) node.style.fill = "orange";
   });
 
   // Shortest path-এর edge highlight
   for (let i = 0; i < path.length - 1; i++) {
-    let u = names[path[i]];
-    let v = names[path[i + 1]];
-    // let u = path[i];
-    // let v = path[i + 1];
+    let u = path[i];
+    let v = path[i + 1];
 
-    // Undirected edge-এর জন্য ID একই রাখো
-    let edgeId = [u, v].sort().join("-");
-
-    const edge = document.getElementById("edge-" + edgeId);
+    // Undirected edge-এর জন্য numeric ID
+    let edgeId = `edge-${Math.min(u, v)}-${Math.max(u, v)}`;
+    const edge = document.getElementById(edgeId);
 
     if (edge) {
-      edge.style.stroke = "red";
-      edge.style.strokeWidth = "8";
+      edge.style.stroke = "#242629";
+      edge.style.strokeWidth = "5";
+      // edge.style.filter = "drop-shadow(2px 3px 3px rgba(4, 255, 0, 0.93))";
     }
   }
 }
 
-// highlightPath([0, 2, 3]);
+highlightPath([2, 0, 3]);
