@@ -8,7 +8,7 @@ int INF = INT_MAX;
 void addVertext(int v1, int v2, int weight, vector<vector<pair<int, int>>> &graph)
 {
     graph[v1].push_back({v2, weight});
-    // graph[v2].push_back({v1, weight});
+    graph[v2].push_back({v1, weight});
 }
 
 void dijkstra(int source, int destination,
@@ -90,30 +90,30 @@ void dijkstra(int source, int destination,
     }
 
     cout << "\nTotal Distance: "
-         << dist[destination] << " km\n";
+         << dist[destination] << " m\n";
 }
 
 
 int main()
 {
-    int vertex = 4;
+    int vertex = 10;
     vector<vector<pair<int, int>>> graph(vertex);
 
     // Vertex connection
     addVertext(0, 1, 50, graph);
     addVertext(0, 2, 50, graph);
-    addVertext(0, 3, 100, graph);
+    addVertext(0, 3, 150, graph);
     addVertext(0, 8, 130, graph);
     addVertext(1, 3, 10, graph);
     addVertext(3, 4, 20, graph);
-    addVertext(2, 2, 200, graph);
+    addVertext(2, 3, 300, graph);
     addVertext(4, 9, 30, graph);
     addVertext(9, 5, 100, graph);
     addVertext(5, 6, 50, graph);
     addVertext(6, 7, 10, graph);
     addVertext(7, 2, 150, graph);
 
-    dijkstra(0, 8, graph);
+    dijkstra(2, 3, graph);
 
     // Traverse adjacency list
     // for (int i = 0; i < vertex; i++)
