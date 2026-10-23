@@ -11,8 +11,8 @@ void addVertext(int v1, int v2, int weight, vector<vector<pair<int, int>>> &grap
     graph[v2].push_back({v1, weight});
 }
 
-void dijkstra(int source, int destination,
-              vector<vector<pair<int, int>>> &graph)
+vector<int> dijkstra(int source, int destination,
+                     vector<vector<pair<int, int>>> &graph)
 {
 
     int n = graph.size();
@@ -66,7 +66,7 @@ void dijkstra(int source, int destination,
     if (dist[destination] == INF)
     {
         cout << "No path found\n";
-        return;
+        return {};
     }
 
     // Shortest path তৈরি
@@ -89,10 +89,10 @@ void dijkstra(int source, int destination,
             cout << " -> ";
     }
 
-    cout << "\nTotal Distance: "
-         << dist[destination] << " m\n";
-}
+    cout << "\nTotal Distance: " << dist[destination] << " m\n";
 
+    return path;
+}
 
 int main()
 {
