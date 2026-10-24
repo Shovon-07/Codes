@@ -65,60 +65,49 @@ header h2 {
   border: 1px solid var(--light-dark);
   outline: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   padding: 5px 10px;
 }
-.controlPanel .searchBar div {
-  border: 1px solid var(--light-dark);
-  outline: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  padding: 5px 0 5px 10px;
-}
-.controlPanel .searchBar span {
-  cursor: pointer;
-  background: var(--light-dark);
-  padding: 6px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+.controlPanel button {
+  font-size: 0.8rem;
 }
 
 /*===> Map <=== */
+.mapSection {
+  display: flex;
+  align-items: start;
+  gap: 20px;
+}
 .map-container {
-  max-width: 800px;
+  flex-basis: 70%;
   margin: auto;
   background: white;
   border: 1px solid #ddd;
   border-radius: 12px;
   overflow: hidden;
 }
-
 svg {
   width: 100%;
   height: auto;
   display: block;
 }
-
 .road {
   stroke: var(--light-dark-2);
   stroke-width: 3;
   fill: none;
   stroke-linecap: round;
 }
-
 .road-label {
   font-size: 13px;
   font-weight: bold;
   fill: #374151;
   text-anchor: middle;
 }
-
 .node {
   fill: var(--blue);
   stroke: white;
   stroke-width: 3;
 }
-
 .node-label {
   font-size: 13px;
   font-weight: bold;
@@ -129,4 +118,31 @@ svg {
 }
 .node-label .rotate {
   transform: rotate(-6deg);
+}
+
+.mapSection .searchSection {
+  flex-basis: 30%;
+  min-height: 50vh;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.mapSection .searchSection div {
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 5px 0 5px 10px;
+}
+.mapSection .searchSection span {
+  cursor: pointer;
+  background: var(--light-dark);
+  padding: 6px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.mapSection .searchSection #searchList li {
+  padding: 10px 20px;
 }

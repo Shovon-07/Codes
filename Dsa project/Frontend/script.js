@@ -1,5 +1,5 @@
-const api = `https://dsa-project-sa2h.onrender.com`;
-// const api = `http://127.0.0.1:8080`;
+// const api = `https://dsa-project-sa2h.onrender.com`;
+const api = `http://127.0.0.1:8080`;
 const names = [
   "main-gate",
   "gate-2",
@@ -12,6 +12,7 @@ const names = [
   "parking",
   "flower-garder",
 ];
+let fetchedLocations = {};
 
 function highlightPath(path) {
   // সব vertex-এর আগের highlight মুছে ফেলো
@@ -81,6 +82,7 @@ async function loadLocations() {
 
     // C++ backend থেকে locations নিয়ে options তৈরি
     data.locations.forEach((location) => {
+      fetchedLocations[location.id] = location.name;
       // Source-এর option
       const sourceOption = document.createElement("option");
       sourceOption.value = location.id;
@@ -111,11 +113,8 @@ async function loadLocations() {
     destination.appendChild(destinationError);
   }
 }
-loadLocations();
 
 const findPath = async () => {
-  // const source=s;
-  // const destination=d;
   const source = Number(document.getElementById("source").value);
   const destination = Number(document.getElementById("destination").value);
   console.log(source);
@@ -150,3 +149,35 @@ const findPath = async () => {
     alert("Please enter source & destination");
   }
 };
+
+//=>>> searching
+const search = () => {
+  const input = document.getElementById("searchInput").value.trim();
+  const searchList = document.getElementById("searchList");
+
+  // Clear previous search results so they don't stack up
+  searchList.innerHTML = "";
+
+  // Filter the values and create an <li> for each match
+  input == ""
+    ? ""
+    : Object.values(fetchedLocations)
+        .filter((item) => item.toLowerCase().includes(input.toLowerCase()))
+        .forEach((item) => {
+          const createSearchList = document.createElement("li");
+          createSearchList.textContent = item; // Sets the text to the matching item
+          searchList.appendChild(createSearchList);
+        });
+};
+
+window.addEventListener("load", async () => {
+  await loadLocations();
+
+  const searchList = document.getElementById("searchList");
+  searchList.innerHTML = "";
+  Object.values(fetchedLocations).forEach((item) => {
+    const createSearchList = document.createElement("li");
+    createSearchList.textContent = item; // Sets the text to the matching item
+    searchList.appendChild(createSearchList);
+  });
+});
