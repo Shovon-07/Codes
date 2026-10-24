@@ -59,7 +59,7 @@ async function loadLocations() {
     const response = await fetch(`${api}/locations`);
 
     if (!response.ok) {
-      throw new Error("Failed to load");
+      throw new Error("None");
     }
 
     const data = await response.json();
@@ -71,11 +71,11 @@ async function loadLocations() {
     // দুইটি select-এর জন্য আলাদা default option
     const sourceDefault = document.createElement("option");
     sourceDefault.value = "-1";
-    sourceDefault.textContent = "Select source";
+    sourceDefault.textContent = "Source";
 
     const destinationDefault = document.createElement("option");
     destinationDefault.value = "-1";
-    destinationDefault.textContent = "Select destination";
+    destinationDefault.textContent = "Destination";
 
     source.appendChild(sourceDefault);
     destination.appendChild(destinationDefault);
@@ -103,11 +103,11 @@ async function loadLocations() {
 
     const sourceError = document.createElement("option");
     sourceError.value = "-1";
-    sourceError.textContent = "Failed to load";
+    sourceError.textContent = "None";
 
     const destinationError = document.createElement("option");
     destinationError.value = "-1";
-    destinationError.textContent = "Failed to load";
+    destinationError.textContent = "None";
 
     source.appendChild(sourceError);
     destination.appendChild(destinationError);

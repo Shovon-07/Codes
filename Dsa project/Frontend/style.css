@@ -80,16 +80,18 @@ header h2 {
   gap: 20px;
 }
 .map-container {
-  flex-basis: 60%;
-  margin: auto;
+  flex-basis: 70%;
+  /* max-height: 60vh; */
+  /* margin: auto; */
   background: white;
   border: 1px solid var(--light-dark);
   border-radius: 12px;
   overflow: hidden;
 }
 svg {
-  width: 90%;
+  width: 100%;
   height: auto;
+  max-height: 60vh;
   display: block;
 }
 .road {
@@ -179,6 +181,16 @@ svg {
 }
 
 @media (width <= 470px) {
+  .controlPanel .selector {
+    gap: 10px;
+  }
+  .controlPanel .selector select {
+    width: 100px;
+    padding: 5px;
+  }
+}
+
+@media (width <= 340px) {
   .controlPanel .selector {
     flex-direction: column;
     justify-content: start;
