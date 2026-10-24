@@ -11,13 +11,14 @@
   --light-green: #69f957;
 }
 body {
-  background: #f3f4f6;
+  background: #ebebeb;
   font-family: Arial, Helvetica, sans-serif;
 }
 .container {
   padding: 0 20px 20px 20px;
 }
 button {
+  background: var(--light-blue);
   border: 1px solid var(--light-dark);
   outline: none;
   border-radius: 5px;
@@ -52,9 +53,6 @@ header h2 {
 /*===> Control Panel <=== */
 .controlPanel {
   margin: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .controlPanel .selector {
   display: flex;
@@ -62,11 +60,13 @@ header h2 {
   gap: 20px;
 }
 .controlPanel .selector select {
+  background: #fff;
   border: 1px solid var(--light-dark);
   outline: none;
   border-radius: 5px;
   font-size: 0.8rem;
   padding: 5px 10px;
+  width: 150px;
 }
 .controlPanel button {
   font-size: 0.8rem;
@@ -83,7 +83,7 @@ header h2 {
   flex-basis: 60%;
   margin: auto;
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--light-dark);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -125,7 +125,7 @@ svg {
   flex-basis: 30%;
   height: 50vh;
   background: white;
-  border: 1px solid #ddd;
+  border: 1px solid var(--light-dark);
   border-radius: 12px;
   overflow-y: scroll;
 }
@@ -161,4 +161,31 @@ svg {
 }
 .mapSection .searchSection #searchList li {
   padding: 10px 5px;
+}
+
+/* Responsive */
+@media (width <= 768px) {
+  .mapSection {
+    flex-direction: column;
+  }
+  .map-container,
+  .searchSection {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .searchSection {
+    max-height: 30vh !important;
+  }
+}
+
+@media (width <= 470px) {
+  .controlPanel .selector {
+    flex-direction: column;
+    justify-content: start;
+    /* align-items: start; */
+    gap: 5px;
+  }
+  .controlPanel .selector select {
+    width: 100%;
+  }
 }
