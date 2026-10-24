@@ -1,5 +1,5 @@
-// const api = `https://dsa-project-sa2h.onrender.com`;
-const api = `http://127.0.0.1:8080`;
+const api = `https://dsa-project-sa2h.onrender.com`;
+// const api = `http://127.0.0.1:8080`;
 const names = [
   "main-gate",
   "gate-2",
@@ -59,7 +59,7 @@ async function loadLocations() {
     const response = await fetch(`${api}/locations`);
 
     if (!response.ok) {
-      throw new Error("Failed to load locations");
+      throw new Error("Failed to load");
     }
 
     const data = await response.json();
@@ -103,11 +103,11 @@ async function loadLocations() {
 
     const sourceError = document.createElement("option");
     sourceError.value = "-1";
-    sourceError.textContent = "Failed to load locations";
+    sourceError.textContent = "Failed to load";
 
     const destinationError = document.createElement("option");
     destinationError.value = "-1";
-    destinationError.textContent = "Failed to load locations";
+    destinationError.textContent = "Failed to load";
 
     source.appendChild(sourceError);
     destination.appendChild(destinationError);
