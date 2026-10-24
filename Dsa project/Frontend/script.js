@@ -1,4 +1,4 @@
-
+// const api=`https://dsa-project-sa2h.onrender.com`;
 const api=`http://127.0.0.1:8080`;
 const names = [
   "main-gate",
@@ -10,6 +10,7 @@ const names = [
   "garden",
   "cafeteria",
   "parking",
+  "flower-garder"
 ];
 
 function highlightPath(path) {
@@ -53,7 +54,7 @@ function highlightPath(path) {
 const findPath=async () => {
     // const a = Number(document.getElementById("a").value);
     // const b = Number(document.getElementById("b").value);
-    const source=1;const destination=5;
+    const source=7;const destination=2;
 
     try {
         const response = await fetch(`${api}/find-path`, {
