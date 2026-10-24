@@ -159,25 +159,29 @@ const search = () => {
   searchList.innerHTML = "";
 
   // Filter the values and create an <li> for each match
-  input == ""
-    ? ""
+  input === ""
+    ? Object.values(fetchedLocations).forEach((item) => {
+        const createSearchList = document.createElement("li");
+        createSearchList.textContent = item;
+        searchList.appendChild(createSearchList);
+      })
     : Object.values(fetchedLocations)
         .filter((item) => item.toLowerCase().includes(input.toLowerCase()))
         .forEach((item) => {
           const createSearchList = document.createElement("li");
-          createSearchList.textContent = item; // Sets the text to the matching item
+          createSearchList.textContent = item;
           searchList.appendChild(createSearchList);
         });
 };
 
 window.addEventListener("load", async () => {
+  // ১. ডেটা লোড হওয়া পর্যন্ত অপেক্ষা করুন
   await loadLocations();
 
-  const searchList = document.getElementById("searchList");
-  searchList.innerHTML = "";
-  Object.values(fetchedLocations).forEach((item) => {
-    const createSearchList = document.createElement("li");
-    createSearchList.textContent = item; // Sets the text to the matching item
-    searchList.appendChild(createSearchList);
-  });
+  // ২. পেজ লোড হওয়ার পর প্রথমবার সব লিস্ট দেখানোর জন্য search() কল করুন
+  search();
+
+  // ৩. ইনপুট ফিল্ডে কিছু লিখলে বা মুছলে automatic search ফাংশনটি রান করাতে listener যোগ করুন
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", search);
 });
