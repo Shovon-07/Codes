@@ -67,6 +67,22 @@ int main()
                             "application/json");
                     } });
 
+    server.Get("/locations", [](const httplib::Request &req, httplib::Response &res)
+               { json locations = {
+        {"locations", {
+            {{"id", 0}, {"name", "Main gate"}},
+            {{"id", 1}, {"name", "Gate 2"}},
+            {{"id", 2}, {"name", "Gate 3"}},
+            {{"id", 5}, {"name", "Ground 2"}},
+            {{"id", 6}, {"name", "Botanical garden"}}
+        }}
+    };
+
+    res.set_content(
+        locations.dump(),
+        "application/json"
+    ); });
+
     const char *envPort = getenv("PORT");
     int port = envPort ? stoi(envPort) : 8080;
     cout << "C++ Backend running on port " << port << '\n';
