@@ -1,13 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --light-dark: #bfbfbf;
+  --light-dark-2: #9499a4;
+  --light-blue: #2563eb;
+  --light-green: #69f957;
+}
 body {
   font-family: Arial, sans-serif;
   background: #f3f4f6;
   padding: 20px;
 }
+button {
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+input {
+  border: none;
+  outline: none;
+}
 
-h2 {
+/*===> Header <=== */
+header h2 {
   text-align: center;
 }
 
+/*===> Control Panel <=== */
+.controlPanel {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.controlPanel .selector {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.controlPanel .selector select {
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+.controlPanel .searchBar div {
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 5px 0 5px 10px;
+}
+.controlPanel .searchBar span {
+  cursor: pointer;
+  background: var(--light-blue);
+  padding: 6px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/*===> Map <=== */
 .map-container {
   max-width: 800px;
   margin: auto;
@@ -24,7 +83,7 @@ svg {
 }
 
 .road {
-  stroke: #6a6e77;
+  stroke: var(--light-dark-2);
   stroke-width: 3;
   fill: none;
   stroke-linecap: round;
@@ -38,7 +97,7 @@ svg {
 }
 
 .node {
-  fill: #2563eb;
+  fill: var(--light-blue);
   stroke: white;
   stroke-width: 3;
 }

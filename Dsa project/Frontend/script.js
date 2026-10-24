@@ -1,5 +1,5 @@
 // const api=`https://dsa-project-sa2h.onrender.com`;
-const api=`http://127.0.0.1:8080`;
+const api = `http://127.0.0.1:8080`;
 const names = [
   "main-gate",
   "gate-2",
@@ -10,7 +10,7 @@ const names = [
   "garden",
   "cafeteria",
   "parking",
-  "flower-garder"
+  "flower-garder",
 ];
 
 function highlightPath(path) {
@@ -21,14 +21,14 @@ function highlightPath(path) {
 
   // সব edge-এর আগের highlight মুছে ফেলো
   document.querySelectorAll("[id^='edge-']").forEach((edge) => {
-    edge.style.stroke = "#6a6e77";
+    edge.style.stroke = "#9499a4";
     // edge.style.strokeWidth = "5";
   });
 
   // Shortest path-এর vertex highlight
   path.forEach((v) => {
     const node = document.getElementById("node-" + names[v]);
-    if (node) node.style.fill = "orange";
+    if (node) node.style.fill = "#69f957";
   });
 
   // Shortest path-এর edge highlight
@@ -51,34 +51,40 @@ function highlightPath(path) {
 
 //-------------
 
-const findPath=async () => {
-    // const a = Number(document.getElementById("a").value);
-    // const b = Number(document.getElementById("b").value);
-    const source=0;const destination=6;
+const findPath = async () => {
+  // const source=s;
+  // const destination=d;
+  const source = Number(document.getElementById("source").value);
+  const destination = Number(document.getElementById("destination").value);
+  console.log(source);
+  console.log(destination);
 
+  if (source >= 0 && destination >= 0) {
     try {
-        const response = await fetch(`${api}/find-path`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ source,destination })
-        });
+      const response = await fetch(`${api}/find-path`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ source, destination }),
+      });
 
-        if (!response.ok) {
-            throw new Error("Backend request failed");
-        }
+      if (!response.ok) {
+        throw new Error("Backend request failed");
+      }
 
-        const data = await response.json();
-        console.log(data.path);
-        highlightPath(data.path);           
+      const data = await response.json();
+      console.log(data.path);
+      highlightPath(data.path);
 
-        // document.getElementById("result").textContent =
-        //     "Result: " + data.result;
-
+      // document.getElementById("result").textContent =
+      //     "Result: " + data.result;
     } catch (error) {
-        // document.getElementById("result").textContent =
-        //     "Backend-এর সঙ্গে সংযোগ করা যায়নি।";
-        console.error(error);
+      // document.getElementById("result").textContent =
+      //     "Backend-এর সঙ্গে সংযোগ করা যায়নি।";
+      console.error(error);
     }
-}
+  } else {
+    alert("Please enter source & destination");
+  }
+};

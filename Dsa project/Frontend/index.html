@@ -9,7 +9,41 @@
   </head>
 
   <body>
-    <h2>Varendra Campus Map</h2>
+    <header>
+      <h2>Varendra Campus Map</h2>
+    </header>
+
+    <section class="controlPanel">
+      <div class="selector">
+        <select name="" id="source">
+          <option value="-1">Select source</option>
+          <option value="0">Main gate</option>
+          <option value="1">G2</option>
+          <option value="2">G3</option>
+          <option value="5">Ground 2</option>
+          <option value="6">Botanical garden</option>
+        </select>
+
+        <select name="" id="destination">
+          <option value="-1">Select destination</option>
+          <option value="0">Main gate</option>
+          <option value="1">G2</option>
+          <option value="2">G3</option>
+          <option value="5">Ground 2</option>
+          <option value="6">Botanical garden</option>
+        </select>
+        <div>
+          <button onclick="findPath()">Find path</button>
+        </div>
+      </div>
+      <div class="searchBar">
+        <div>
+          <input type="Search location" />
+          <span>Go</span>
+        </div>
+      </div>
+    </section>
+
     <div class="map-container">
       <svg viewBox="0 0 800 500">
         <!-- Roads / Edges -->
@@ -112,7 +146,13 @@
           <circle id="node-garden" class="node" cx="600" cy="100" r="15" />
           <circle id="node-cafeteria" class="node" cx="650" cy="200" r="15" />
           <circle id="node-parking" class="node" cx="650" cy="300" r="15" />
-          <circle id="node-flower-garder" class="node" cx="200" cy="150" r="15" />
+          <circle
+            id="node-flower-garder"
+            class="node"
+            cx="200"
+            cy="150"
+            r="15"
+          />
         </g>
 
         <!-- Location names -->
@@ -129,10 +169,6 @@
           <text x="200" y="200" class="rotate">Flower garden</text>
         </g>
       </svg>
-    </div>
-
-    <div>
-      <button onclick="findPath()">Find path</button>
     </div>
 
     <script src="script.js"></script>
