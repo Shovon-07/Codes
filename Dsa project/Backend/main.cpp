@@ -73,8 +73,13 @@ int main()
             {{"id", 0}, {"name", "Main gate"}},
             {{"id", 1}, {"name", "Gate 2"}},
             {{"id", 2}, {"name", "Gate 3"}},
+            {{"id", 3}, {"name", "Bus stand"}},
+            {{"id", 4}, {"name", "Ground 1"}},
             {{"id", 5}, {"name", "Ground 2"}},
-            {{"id", 6}, {"name", "Botanical garden"}}
+            {{"id", 6}, {"name", "Botanical garden"}},
+            {{"id", 7}, {"name", "Cafeteria"}},
+            {{"id", 8}, {"name", "Parking"}},
+            {{"id", 9}, {"name", "Flower garden"}},
         }}
     };
 
