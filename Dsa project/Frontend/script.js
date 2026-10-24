@@ -1,3 +1,5 @@
+
+const api=`http://127.0.0.1:8080`;
 const names = [
   "main-gate",
   "gate-2",
@@ -46,4 +48,36 @@ function highlightPath(path) {
   console.log("Route founded");
 }
 
-highlightPath([2, 0, 3]);
+//-------------
+
+const findPath=async () => {
+    // const a = Number(document.getElementById("a").value);
+    // const b = Number(document.getElementById("b").value);
+    const source=1;const destination=5;
+
+    try {
+        const response = await fetch(`${api}/find-path`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ source,destination })
+        });
+
+        if (!response.ok) {
+            throw new Error("Backend request failed");
+        }
+
+        const data = await response.json();
+        console.log(data.path);
+        highlightPath(data.path);           
+
+        // document.getElementById("result").textContent =
+        //     "Result: " + data.result;
+
+    } catch (error) {
+        // document.getElementById("result").textContent =
+        //     "Backend-এর সঙ্গে সংযোগ করা যায়নি।";
+        console.error(error);
+    }
+}

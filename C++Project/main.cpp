@@ -79,11 +79,13 @@ vector<int> dijkstra(int source, int destination,
     }
 
     // উল্টো দিক থেকে সঠিক দিক
+    vector<int> exactPath;
     cout << "Shortest Path: ";
 
     for (int i = path.size() - 1; i >= 0; i--)
     {
         cout << path[i];
+        exactPath.push_back(path[i]);
 
         if (i > 0)
             cout << " -> ";
@@ -91,7 +93,7 @@ vector<int> dijkstra(int source, int destination,
 
     cout << "\nTotal Distance: " << dist[destination] << " m\n";
 
-    return path;
+    return exactPath;
 }
 
 int main()
@@ -113,7 +115,9 @@ int main()
     addVertext(6, 7, 10, graph);
     addVertext(7, 2, 150, graph);
 
-    dijkstra(2, 3, graph);
+    vector<int> result = dijkstra(2, 3, graph);
+
+    cout << "\n\n\n Print :" << result[0];
 
     // Traverse adjacency list
     // for (int i = 0; i < vertex; i++)
