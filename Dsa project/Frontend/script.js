@@ -52,65 +52,64 @@ function highlightPath(path) {
 //=>>> Work with api
 async function loadLocations() {
   const source = document.getElementById("source");
-    const destination = document.getElementById("destination");
+  const destination = document.getElementById("destination");
 
-    try {
-        const response = await fetch(`${api}/locations`);
+  try {
+    const response = await fetch(`${api}/locations`);
 
-        if (!response.ok) {
-            throw new Error("Failed to load locations");
-        }
-
-        const data = await response.json();
-
-        // পুরোনো options মুছে ফেলো
-        source.replaceChildren();
-        destination.replaceChildren();
-
-        // দুইটি select-এর জন্য আলাদা default option
-        const sourceDefault = document.createElement("option");
-        sourceDefault.value = "-1";
-        sourceDefault.textContent = "Select source";
-
-        const destinationDefault = document.createElement("option");
-        destinationDefault.value = "-1";
-        destinationDefault.textContent = "Select destination";
-
-        source.appendChild(sourceDefault);
-        destination.appendChild(destinationDefault);
-
-        // C++ backend থেকে locations নিয়ে options তৈরি
-        data.locations.forEach(location => {
-            // Source-এর option
-            const sourceOption = document.createElement("option");
-            sourceOption.value = location.id;
-            sourceOption.textContent = location.name;
-            source.appendChild(sourceOption);
-
-            // Destination-এর option
-            const destinationOption = document.createElement("option");
-            destinationOption.value = location.id;
-            destinationOption.textContent = location.name;
-            destination.appendChild(destinationOption);
-        });
-
-    } catch (error) {
-        console.error("Error loading locations:", error);
-
-        source.replaceChildren();
-        destination.replaceChildren();
-
-        const sourceError = document.createElement("option");
-        sourceError.value = "-1";
-        sourceError.textContent = "Failed to load locations";
-
-        const destinationError = document.createElement("option");
-        destinationError.value = "-1";
-        destinationError.textContent = "Failed to load locations";
-
-        source.appendChild(sourceError);
-        destination.appendChild(destinationError);
+    if (!response.ok) {
+      throw new Error("Failed to load locations");
     }
+
+    const data = await response.json();
+
+    // পুরোনো options মুছে ফেলো
+    source.replaceChildren();
+    destination.replaceChildren();
+
+    // দুইটি select-এর জন্য আলাদা default option
+    const sourceDefault = document.createElement("option");
+    sourceDefault.value = "-1";
+    sourceDefault.textContent = "Select source";
+
+    const destinationDefault = document.createElement("option");
+    destinationDefault.value = "-1";
+    destinationDefault.textContent = "Select destination";
+
+    source.appendChild(sourceDefault);
+    destination.appendChild(destinationDefault);
+
+    // C++ backend থেকে locations নিয়ে options তৈরি
+    data.locations.forEach((location) => {
+      // Source-এর option
+      const sourceOption = document.createElement("option");
+      sourceOption.value = location.id;
+      sourceOption.textContent = location.name;
+      source.appendChild(sourceOption);
+
+      // Destination-এর option
+      const destinationOption = document.createElement("option");
+      destinationOption.value = location.id;
+      destinationOption.textContent = location.name;
+      destination.appendChild(destinationOption);
+    });
+  } catch (error) {
+    console.error("Error loading locations:", error);
+
+    source.replaceChildren();
+    destination.replaceChildren();
+
+    const sourceError = document.createElement("option");
+    sourceError.value = "-1";
+    sourceError.textContent = "Failed to load locations";
+
+    const destinationError = document.createElement("option");
+    destinationError.value = "-1";
+    destinationError.textContent = "Failed to load locations";
+
+    source.appendChild(sourceError);
+    destination.appendChild(destinationError);
+  }
 }
 loadLocations();
 
