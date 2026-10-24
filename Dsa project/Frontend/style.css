@@ -6,13 +6,16 @@
 :root {
   --light-dark: #bfbfbf;
   --light-dark-2: #9499a4;
-  --light-blue: #2563eb;
+  --light-blue: #dadaf2;
+  --blue: #2563eb;
   --light-green: #69f957;
 }
 body {
   font-family: Arial, sans-serif;
   background: #f3f4f6;
-  padding: 20px;
+}
+.container{
+  padding: 0 20px;
 }
 button {
   border: 1px solid var(--light-dark);
@@ -28,13 +31,18 @@ input {
 }
 
 /*===> Header <=== */
+header {
+      background: var(--light-blue);
+    padding: 10px 0;
+    box-shadow: 0px 1px 5px 1px #bababa;
+}
 header h2 {
   text-align: center;
 }
 
 /*===> Control Panel <=== */
 .controlPanel {
-  margin: 20px 0;
+  margin: 30px 0 20px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,7 +68,7 @@ header h2 {
 }
 .controlPanel .searchBar span {
   cursor: pointer;
-  background: var(--light-blue);
+  background: var(--blue);
   padding: 6px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -97,7 +105,7 @@ svg {
 }
 
 .node {
-  fill: var(--light-blue);
+  fill: var(--blue);
   stroke: white;
   stroke-width: 3;
 }
