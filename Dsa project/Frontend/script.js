@@ -1,5 +1,5 @@
-// const api=`https://dsa-project-sa2h.onrender.com`;
-const api = `http://127.0.0.1:8080`;
+const api = `https://dsa-project-sa2h.onrender.com`;
+// const api = `http://127.0.0.1:8080`;
 const names = [
   "main-gate",
   "gate-2",
