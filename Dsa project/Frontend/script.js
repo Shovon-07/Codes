@@ -54,7 +54,7 @@ function highlightPath(path) {
 const findPath=async () => {
     // const a = Number(document.getElementById("a").value);
     // const b = Number(document.getElementById("b").value);
-    const source=7;const destination=2;
+    const source=0;const destination=6;
 
     try {
         const response = await fetch(`${api}/find-path`, {
