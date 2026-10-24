@@ -1,9 +1,12 @@
 #include <iostream>
 #include <httplib.h>
 #include <nlohmann/json.hpp>
+#include <cstdlib>
+
 #include <vector>
 #include <queue>
 #include <climits>
+
 using namespace std;
 using json = nlohmann::json;
 
@@ -151,6 +154,8 @@ int main()
                             "application/json");
                     } });
 
-    cout << "C++ Backend running on port 8080\n";
-    server.listen("127.0.0.1", 8080);
+    const char *envPort = getenv("PORT");
+    int port = envPort ? stoi(envPort) : 8080;
+    cout << "C++ Backend running on port " << port << '\n';
+    server.listen("0.0.0.0", port);
 }
