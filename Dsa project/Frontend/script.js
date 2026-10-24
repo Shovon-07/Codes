@@ -1,5 +1,5 @@
-const api = `https://dsa-project-sa2h.onrender.com`;
-// const api = `http://127.0.0.1:8080`;
+// const api = `https://dsa-project-sa2h.onrender.com`;
+const api = `http://127.0.0.1:8080`;
 const names = [
   "main-gate",
   "gate-2",
@@ -14,30 +14,30 @@ const names = [
 ];
 let fetchedLocations = {};
 
-function highlightPath(path) {
-  // সব vertex-এর আগের highlight মুছে ফেলো
+function highlightPath(path,distance) {
+  // Remove any previous highlights from all vertices.
   document.querySelectorAll("[id^='node-']").forEach((node) => {
     node.style.fill = "#2563eb";
   });
 
-  // সব edge-এর আগের highlight মুছে ফেলো
+  // Remove all previous highlights from the edges.
   document.querySelectorAll("[id^='edge-']").forEach((edge) => {
     edge.style.stroke = "#9499a4";
     // edge.style.strokeWidth = "5";
   });
 
-  // Shortest path-এর vertex highlight
+  // Vertex highlight of shortest path
   path.forEach((v) => {
     const node = document.getElementById("node-" + names[v]);
     if (node) node.style.fill = "#69f957";
   });
 
-  // Shortest path-এর edge highlight
+  // Edge highlight of shortest path
   for (let i = 0; i < path.length - 1; i++) {
     let u = path[i];
     let v = path[i + 1];
 
-    // Undirected edge-এর জন্য numeric ID
+    // Numeric ID for an undirected edge
     let edgeId = `edge-${Math.min(u, v)}-${Math.max(u, v)}`;
     const edge = document.getElementById(edgeId);
 
@@ -47,6 +47,8 @@ function highlightPath(path) {
       // edge.style.filter = "drop-shadow(2px 3px 3px rgba(4, 255, 0, 0.93))";
     }
   }
+
+  document.getElementById("distanceMonitor").innerHTML = distance+" m";
   console.log("Route founded");
 }
 
@@ -64,11 +66,11 @@ async function loadLocations() {
 
     const data = await response.json();
 
-    // পুরোনো options মুছে ফেলো
+    // Delete the old options.
     source.replaceChildren();
     destination.replaceChildren();
 
-    // দুইটি select-এর জন্য আলাদা default option
+    // Separate default options for two select elements
     const sourceDefault = document.createElement("option");
     sourceDefault.value = "-1";
     sourceDefault.textContent = "Source";
@@ -80,16 +82,16 @@ async function loadLocations() {
     source.appendChild(sourceDefault);
     destination.appendChild(destinationDefault);
 
-    // C++ backend থেকে locations নিয়ে options তৈরি
+    // Generate options using locations from the backend
     data.locations.forEach((location) => {
       fetchedLocations[location.id] = location.name;
-      // Source-এর option
+      // Source option
       const sourceOption = document.createElement("option");
       sourceOption.value = location.id;
       sourceOption.textContent = location.name;
       source.appendChild(sourceOption);
 
-      // Destination-এর option
+      // Destination option
       const destinationOption = document.createElement("option");
       destinationOption.value = location.id;
       destinationOption.textContent = location.name;
@@ -117,8 +119,6 @@ async function loadLocations() {
 const findPath = async () => {
   const source = Number(document.getElementById("source").value);
   const destination = Number(document.getElementById("destination").value);
-  console.log(source);
-  console.log(destination);
 
   if (source >= 0 && destination >= 0) {
     try {
@@ -136,13 +136,9 @@ const findPath = async () => {
 
       const data = await response.json();
       console.log(data.path);
-      highlightPath(data.path);
-
-      // document.getElementById("result").textContent =
-      //     "Result: " + data.result;
+      console.log(data.distance);
+      highlightPath(data.path,data.distance);
     } catch (error) {
-      // document.getElementById("result").textContent =
-      //     "Backend-এর সঙ্গে সংযোগ করা যায়নি।";
       console.error(error);
     }
   } else {
@@ -175,13 +171,8 @@ const search = () => {
 };
 
 window.addEventListener("load", async () => {
-  // ১. ডেটা লোড হওয়া পর্যন্ত অপেক্ষা করুন
   await loadLocations();
-
-  // ২. পেজ লোড হওয়ার পর প্রথমবার সব লিস্ট দেখানোর জন্য search() কল করুন
   search();
-
-  // ৩. ইনপুট ফিল্ডে কিছু লিখলে বা মুছলে automatic search ফাংশনটি রান করাতে listener যোগ করুন
   const searchInput = document.getElementById("searchInput");
   searchInput.addEventListener("input", search);
 });

@@ -87,6 +87,7 @@ header h2 {
   border: 1px solid var(--light-dark);
   border-radius: 12px;
   overflow: hidden;
+  position: relative;
 }
 svg {
   width: 100%;
@@ -121,6 +122,13 @@ svg {
 }
 .node-label .rotate {
   transform: rotate(-6deg);
+}
+.mapSection .distanceMonitor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 20px 0 0;
+  color: #00ab13;
 }
 
 .mapSection .searchSection {

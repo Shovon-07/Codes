@@ -16,13 +16,13 @@ vector<vector<pair<int, int>>> graph(vertex);
 
 void addVertext(int v1, int v2, int weight, vector<vector<pair<int, int>>> &graph);
 
-vector<int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph);
+pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph);
 
 int main()
 {
     httplib::Server server;
     // CORS headers
-    server.set_default_headers({{"Access-Control-Allow-Origin", "https://vu-navigation.netlify.app"}, {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"}, {"Access-Control-Allow-Headers", "Content-Type"}});
+    server.set_default_headers({{"Access-Control-Allow-Origin", "http://127.0.0.1:5500"}, {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"}, {"Access-Control-Allow-Headers", "Content-Type"}});
 
     // Vertex connection
     addVertext(0, 1, 50, graph);
@@ -50,10 +50,11 @@ int main()
                         json data = json::parse(req.body);
                         int source = data.at("source").get<int>();
                         int destination = data.at("destination").get<int>();
-                        vector<int> result = dijkstra(source, destination, graph);
+                        // vector<int> result = dijkstra(source, destination, graph);
+                        auto [path, totalDist] = dijkstra(source, destination, graph);
 
                         json response = {
-                            {"path", result}};
+                            {"path", path},{"distance",totalDist}};
 
                         res.set_content(
                             response.dump(),
@@ -100,12 +101,11 @@ void addVertext(int v1, int v2, int weight, vector<vector<pair<int, int>>> &grap
     graph[v2].push_back({v1, weight});
 }
 
-vector<int> dijkstra(int source, int destination,
-                     vector<vector<pair<int, int>>> &graph)
+pair<vector<int>, int> dijkstra(int source, int destination,
+                                vector<vector<pair<int, int>>> &graph)
 {
 
     int n = graph.size();
-
     vector<int> dist(n, INF);
     vector<int> parent(n, -1);
 
@@ -126,15 +126,15 @@ vector<int> dijkstra(int source, int destination,
         int u = pq.top().second;
         pq.pop();
 
-        // পুরোনো entry হলে skip
+        // Skip if it's an old entry
         if (currentDist != dist[u])
             continue;
 
-        // Destination-এ পৌঁছে গেছি
+        // Reached the destination.
         if (u == destination)
             break;
 
-        // u-এর সব neighbor পরীক্ষা
+        // Examine all neighbors of u
         for (auto edge : graph[u])
         {
 
@@ -167,7 +167,7 @@ vector<int> dijkstra(int source, int destination,
         path.push_back(v);
     }
 
-    // উল্টো দিক থেকে সঠিক দিক
+    // From the wrong direction to the right direction
     vector<int> exactPath;
     cout << "Shortest Path: ";
 
@@ -182,5 +182,5 @@ vector<int> dijkstra(int source, int destination,
 
     cout << "\nTotal Distance: " << dist[destination] << " m\n";
 
-    return exactPath;
+    return {exactPath, dist[destination]};
 }
