@@ -14,7 +14,7 @@ int INF = INT_MAX;
 int vertex = 10;
 vector<vector<pair<int, int>>> graph(vertex);
 
-void addVertext(int v1, int v2, int weight, vector<vector<pair<int, int>>> &graph);
+void addVertex(int v1, int v2, int weight, vector<vector<pair<int, int>>> &graph);
 
 pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph);
 
@@ -25,18 +25,18 @@ int main()
     server.set_default_headers({{"Access-Control-Allow-Origin", "http://127.0.0.1:5500"}, {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"}, {"Access-Control-Allow-Headers", "Content-Type"}});
 
     // Vertex connection
-    addVertext(0, 1, 50, graph);
-    addVertext(0, 2, 50, graph);
-    addVertext(0, 3, 150, graph);
-    addVertext(0, 8, 130, graph);
-    addVertext(1, 3, 10, graph);
-    addVertext(3, 4, 20, graph);
-    addVertext(2, 3, 300, graph);
-    addVertext(4, 9, 30, graph);
-    addVertext(9, 5, 100, graph);
-    addVertext(5, 6, 50, graph);
-    addVertext(6, 7, 10, graph);
-    addVertext(7, 2, 150, graph);
+    addVertex(0, 1, 50, graph);
+    addVertex(0, 2, 50, graph);
+    addVertex(0, 3, 150, graph);
+    addVertex(0, 8, 130, graph);
+    addVertex(1, 3, 10, graph);
+    addVertex(3, 4, 20, graph);
+    addVertex(2, 3, 300, graph);
+    addVertex(4, 9, 30, graph);
+    addVertex(9, 5, 100, graph);
+    addVertex(5, 6, 50, graph);
+    addVertex(6, 7, 10, graph);
+    addVertex(7, 2, 150, graph);
 
     // OPTIONS: Preflight request
     server.Options("/find-path", [](const httplib::Request &req, httplib::Response &res)
@@ -95,7 +95,7 @@ int main()
     server.listen("0.0.0.0", port);
 }
 
-void addVertext(int v1, int v2, int weight, vector<vector<pair<int, int>>> &graph)
+void addVertex(int v1, int v2, int weight, vector<vector<pair<int, int>>> &graph)
 {
     graph[v1].push_back({v2, weight});
     graph[v2].push_back({v1, weight});
@@ -184,3 +184,9 @@ pair<vector<int>, int> dijkstra(int source, int destination,
 
     return {exactPath, dist[destination]};
 }
+
+/*
+run backend =>
+g++ main.cpp -std=c++17 -o server -lcpp-httplib -pthread
+./server
+*/

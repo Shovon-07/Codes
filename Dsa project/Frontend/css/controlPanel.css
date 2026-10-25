@@ -1,0 +1,21 @@
+/*===> Control Panel <=== */
+.controlPanel {
+  margin: 20px 0;
+}
+.controlPanel .selector {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.controlPanel .selector select {
+  background: #fff;
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  width: 150px;
+}
+.controlPanel button {
+  font-size: 0.8rem;
+}

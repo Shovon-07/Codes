@@ -1,0 +1,18 @@
+/*===> Header <=== */
+header {
+  background: var(--light-blue);
+  padding: 5px 0;
+  font-size: 13px;
+  box-shadow: 0px 1px 5px 1px #bababa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+header img {
+  width: 20px;
+  height: 100%;
+}
+header h2 {
+  text-align: center;
+}
