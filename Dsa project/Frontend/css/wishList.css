@@ -16,7 +16,6 @@
   background: #fff;
   border: 1px solid var(--light-dark);
   border-radius: 12px;
-  padding: 10px;
   max-height: 30vh;
   overflow-y: scroll;
   display: flex;
@@ -29,14 +28,15 @@
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  width: 30%;
-  border-right: 1px solid var(--light-dark);
-  padding-right: 5px;
+  width: 35%;
+  background: var(--light-blue);
+  padding: 10px;
 }
 .wishList .list-selector h3 {
   cursor: pointer;
 }
-.wishList .list-selector h3:hover {
+.wishList .list-selector h3:hover,
+.wishList .list-selector h3.selected {
   color: var(--blue);
 }
 .wishList .places ol {
