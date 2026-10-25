@@ -17,5 +17,5 @@
   width: 150px;
 }
 .controlPanel button {
-  font-size: 0.8rem;
+  background: var(--light-blue);
 }

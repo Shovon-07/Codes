@@ -9,7 +9,7 @@
   flex-basis: 70%;
   /* max-height: 60vh; */
   /* margin: auto; */
-  background: white;
+  background: #fff;
   border: 1px solid var(--light-dark);
   border-radius: 12px;
   overflow: hidden;
@@ -35,7 +35,7 @@ svg {
 }
 .node {
   fill: var(--blue);
-  stroke: white;
+  stroke: #fff;
   stroke-width: 3;
 }
 .node-label {
@@ -60,7 +60,7 @@ svg {
 .mapSection .searchSection {
   flex-basis: 30%;
   height: 50vh;
-  background: white;
+  background: #fff;
   border: 1px solid var(--light-dark);
   border-radius: 12px;
   overflow-y: scroll;

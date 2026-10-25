@@ -1,0 +1,33 @@
+.wishList {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin: 20px 0;
+  gap: 20px;
+}
+.wishList .list {
+  flex-basis: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.wishList .places {
+  flex-basis: 40%;
+  background: #fff;
+  border: 1px solid var(--light-dark);
+  border-radius: 12px;
+  padding: 10px 20px;
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+.wishList .places ol {
+  padding: 10px 20px 10px 40px;
+}
+.wishList .places li {
+  padding: 5px;
+}
+.wishList button {
+}
+.wishList button i {
+  margin-right: 8px;
+}

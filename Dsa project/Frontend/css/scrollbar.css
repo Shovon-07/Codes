@@ -1,0 +1,32 @@
+.custom-scrollbar {
+  /* format: scrollbar-color: [thumb-color] [track-color] */
+  scrollbar-color: #a0aec0 #edf2f7;
+  scrollbar-width: thin; /* Options: auto | thin | none */
+}
+
+/* ==========================================================================
+   2. WebKit Syntax (Safari, Legacy Chrome & Edge)
+   ========================================================================== */
+/* The width of the entire vertical scrollbar (or height for horizontal) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* The background track behind the draggable thumb */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #edf2f7;
+  border-radius: 10px;
+}
+
+/* The draggable handle itself */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #a0aec0;
+  border-radius: 10px;
+  border: 2px solid #edf2f7; /* Creates padding/fake margin around the thumb */
+}
+
+/* Hover effects (Supported in WebKit browsers only) */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #718096;
+}

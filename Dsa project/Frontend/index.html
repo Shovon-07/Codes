@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/map.css" />
     <link rel="stylesheet" href="./css/controlPanel.css" />
+    <link rel="stylesheet" href="./css/wishList.css" />
+    <link rel="stylesheet" href="./css/scrollbar.css" />
     <link rel="shortcut icon" href="./img/Vu logo.jpg" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -18,7 +20,7 @@
     <title>Vu Navigation</title>
   </head>
 
-  <body>
+  <body class="custom-scrollbar">
     <header>
       <img src="./img/Vu logo.jpg" alt="" />
       <h2>Varendra Campus Map</h2>
@@ -227,8 +229,26 @@
         </div>
       </section>
 
-      <section class="list">
-        <button><i class="fa-regular fa-heart"></i>Favorite</button>
+      <section class="wishList">
+        <div class="list">
+          <button><i class="fa-regular fa-heart"></i>Favorites</button>
+          <button><i class="fa-regular fa-bookmark"></i>Saved places</button>
+          <button><i class="fa-regular fa-flag"></i>Want to go</button>
+        </div>
+        <div class="places">
+          <h3>Favorites</h3>
+          <ol>
+            <li>Main gate -> Cafeteria</li>
+            <li>Gate 2 -> Flower garden</li>
+            <li>Flower garden -> Gate 3</li>
+            <li>Main gate -> Cafeteria</li>
+            <li>Gate 2 -> Flower garden</li>
+            <li>Flower garden -> Gate 3</li>
+            <li>Main gate -> Cafeteria</li>
+            <li>Gate 2 -> Flower garden</li>
+            <li>Flower garden -> Gate 3</li>
+          </ol>
+        </div>
       </section>
     </div>
     <script src="script.js"></script>
