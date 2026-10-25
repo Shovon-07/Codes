@@ -22,7 +22,7 @@ int main()
 {
     httplib::Server server;
     // CORS headers
-    server.set_default_headers({{"Access-Control-Allow-Origin", "http://127.0.0.1:5500"}, {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"}, {"Access-Control-Allow-Headers", "Content-Type"}});
+    server.set_default_headers({{"Access-Control-Allow-Origin", "https://vu-navigation.netlify.app"}, {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"}, {"Access-Control-Allow-Headers", "Content-Type"}});
 
     // Vertex connection
     addVertex(0, 1, 50, graph);

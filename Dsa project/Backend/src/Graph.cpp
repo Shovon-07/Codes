@@ -1,4 +1,3 @@
-
 #include "Graph.h"
 
 void addVertex(int v1, int v2, int weight, Graph &graph)
