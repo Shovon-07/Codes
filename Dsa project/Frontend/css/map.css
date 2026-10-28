@@ -70,6 +70,11 @@ svg {
   stroke: #fff;
   stroke-width: 3;
 }
+.building {
+  fill: #00000012;
+  stroke: #fff;
+  stroke-width: 3;
+}
 .node-label {
   font-size: 13px;
   font-weight: bold;
