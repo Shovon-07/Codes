@@ -5,20 +5,26 @@ struct Node {
     int data;
     Node* next;
 };
-
 class Queue {
-    Node* front=nullptr;
-    Node* rear=nullptr;
+    Node* front;
+    Node* rear;
+
 public:
+    Queue() {
+        front = rear = nullptr;
+    }
     void enqueue(int value) {
         Node* newNode = new Node();
         newNode->data = value;
-        newNode->next = nullptr;
-        if (rear == nullptr) {
+        // First Node
+        if (front == nullptr) {
             front = rear = newNode;
-        } else {
+            rear->next = front;
+        }
+        else {
             rear->next = newNode;
             rear = newNode;
+            rear->next = front;
         }
     }
     void dequeue() {
@@ -27,21 +33,28 @@ public:
             return;
         }
         Node* temp = front;
-        front = front->next;
-        if (front == nullptr)
-            rear = nullptr;
+        // Only One Node
+        if (front == rear) {
+            front = rear = nullptr;
+        }
+        else {
+            front = front->next;
+            rear->next = front;
+        }
         delete temp;
     }
-
     void display() {
-        Node* temp = front;
-        if (temp == nullptr) {
+        if (front == nullptr) {
             cout << "Queue is Empty\n";
             return;
         }
-        while (temp != NULL) {
+        Node* temp = front;
+        while (temp != nullptr) {
             cout << temp->data << " ";
             temp = temp->next;
+            if (temp == front) {
+                break;
+            }
         }
         cout << endl;
     }
@@ -50,13 +63,12 @@ public:
 int main() {
     Queue q;
 
-    q.enqueue(100); q.enqueue(200); q.enqueue(300);  q.enqueue(400);  q.enqueue(500);
+    q.enqueue(100); q.enqueue(200); q.enqueue(300); q.enqueue(400); q.enqueue(500);
     cout << "After enqueue : ";
     q.display();
 
     q.dequeue();
     cout << "After dequeue : ";
     q.display();
-
     return 0;
 }

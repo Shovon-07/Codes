@@ -1,41 +1,60 @@
 #include <iostream>
 using namespace std;
-#define size 5
 
+struct Node {
+    int data;
+    Node* next;
+};
 class Queue {
-    int arrQueue[size], front= -1, rear= -1;
+    Node* front;
+    Node* rear;
+
 public:
+    Queue() {
+        front = rear = nullptr;
+    }
     void enqueue(int value) {
-        if (rear == size - 1) {
-            cout << "Overflow\n";
-            return;
-        } 
-        if (front == -1 && rear == -1) {
-            front = 0;
-            rear = 0;
-        } else {
-            rear++;
+        Node* newNode = new Node();
+        newNode->data = value;
+        // First Node
+        if (front == nullptr) {
+            front = rear = newNode;
+            rear->next = front;
         }
-        arrQueue[rear] = value;
+        else {
+            rear->next = newNode;
+            rear = newNode;
+            rear->next = front;
+        }
     }
     void dequeue() {
-        if (front == -1 || front > rear) {
+        if (front == nullptr) {
             cout << "Underflow\n";
             return;
-        } 
-        front++;
-        if (front > rear) {
-            front = -1;
-            rear = -1;
         }
+        Node* temp = front;
+        // Only One Node
+        if (front == rear) {
+            front = rear = nullptr;
+        }
+        else {
+            front = front->next;
+            rear->next = front;
+        }
+        delete temp;
     }
     void display() {
-        if (front == -1 || front > rear) {
-            cout << "Queue is empty\n";
+        if (front == nullptr) {
+            cout << "Queue is Empty\n";
             return;
         }
-        for (int i = front; i <= rear; i++) {
-            cout << arrQueue[i] << " ";
+        Node* temp = front;
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->next;
+            if (temp == front) {
+                break;
+            }
         }
         cout << endl;
     }
@@ -44,13 +63,12 @@ public:
 int main() {
     Queue q;
 
-    q.enqueue(10); q.enqueue(20); q.enqueue(30); q.enqueue(40); q.enqueue(50);
+    q.enqueue(100); q.enqueue(200); q.enqueue(300); q.enqueue(400); q.enqueue(500);
     cout << "After enqueue : ";
     q.display();
 
     q.dequeue();
     cout << "After dequeue : ";
     q.display();
-
     return 0;
 }
