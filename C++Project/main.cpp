@@ -1,30 +1,32 @@
 #include <iostream>
 using namespace std;
 
-class Complex
+class Number
 {
-    int real, imag;
+    int value;
 
 public:
-    Complex(int r, int i) { real = r, imag = i; }
-    Complex operator+(Complex num)
+    Number(int v) { value = v; }
+    Number operator--()
     {
-        Complex temp(0, 0);
-        temp.real = real + num.real;
-        temp.imag = imag + num.imag;
-        return temp;
+        return value -= 2;
+    }
+    Number operator+(Number num)
+    {
+        return value + num.value;
     }
     void display()
     {
-        cout << real << " + " << imag << "i" << endl;
+        cout << value << endl;
     }
 };
 
 int main()
 {
-    Complex n1(3, 4);
-    Complex n2(2, 5);
-    Complex n3 = n1 + n2;
+    Number n1(10);
+    --n1;
+    Number n2(20);
+    Number n3 = n1 + n2;
     n3.display();
 
     return 0;
