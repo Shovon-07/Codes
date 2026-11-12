@@ -1,118 +1,139 @@
-// const api = `https://dsa-project-sa2h.onrender.com`;
 const api = `http://127.0.0.1:8080`;
+
 const names = [
-  "main-gate",
-  "gate-2",
-  "gate-3",
-  "bus-stand",
-  "ground-1",
-  "ground-2",
-  "garden",
-  "cafeteria",
-  "parking",
-  "flower-garder",
+  "main-gate",        // 0
+  "gate-2",           // 1
+  "gate-3",           // 2
+  "bus-stand",        // 3
+  "play-ground-1",    // 4
+  "play-ground-2",    // 5
+  "garden",           // 6
+  "canteen",          // 7
+  "mid-corridor",     // 8
+  "library",          // 9
+  "gate-tl",          // 10
+  "info-desk",        // 11
+  "boys-common",      // 12
+  "mosque",           // 13
+  "pharmacy",         // 14
+  "plaza",            // 15
+  "sinat",            // 16
+  "inventory",        // 17
+  "auditorium",       // 18
+  "eee-lab",          // 19
+  "girls-common",     // 20
+  "cr-center",        // 21
+  "american-corner",  // 22
+  "ncc-bank",         // 23
+  "cse-faculty",      // 24
+  "bba-dept",         // 25
+  "eee-office",       // 26
+  "lift",             // 27
+  "cse-office",       // 28
+  "parking",          // 29
+  "medical",          // 30
+  "gate-tr",          // 31
+  "gate-br",          // 32
+  "junc-main",        // 33
+  "junc-tl",          // 34
+  "junc-tr",          // 35
+  "junc-spine",       // 36
+  "junc-se",          // 37
+  "junc-east"         // 38
 ];
+
 let fetchedLocations = {};
 
-function highlightPath(path,distance) {
-  // Remove any previous highlights from all vertices.
+function highlightPath(path, distance, reachable) {
+  // Reset all nodes
   document.querySelectorAll("[id^='node-']").forEach((node) => {
-    node.style.fill = "#2563eb";
+    node.style.fill = node.classList.contains("junction") ? "#64748b" : "#2563eb";
   });
 
-  // Remove all previous highlights from the edges.
+  // Reset all edges & arrows
   document.querySelectorAll("[id^='edge-']").forEach((edge) => {
     edge.style.stroke = "#9499a4";
-    // edge.style.strokeWidth = "5";
+    edge.style.strokeWidth = "2.8";
+    edge.setAttribute("marker-end", "url(#arrow)");
   });
 
-  // Vertex highlight of shortest path
-  path.forEach((v) => {
+  if (!reachable || path.length === 0) {
+    document.getElementById("distanceMonitor").innerHTML = "No route (One-way)";
+    document.getElementById("distanceMonitor").style.color = "#dc2626";
+    return;
+  }
+
+  document.getElementById("distanceMonitor").style.color = "#00ab13";
+
+  // Highlight active nodes
+  path.forEach((v, idx) => {
     const node = document.getElementById("node-" + names[v]);
-    if (node) node.style.fill = "#69f957";
+    if (node) {
+      if (idx === 0) {
+        node.style.fill = "#f59e0b"; // Source (Orange)
+      } else if (idx === path.length - 1) {
+        node.style.fill = "#ef4444"; // Destination (Red)
+      } else {
+        node.style.fill = "#22c55e"; // Intermediate path nodes (Green)
+      }
+    }
   });
 
-  // Edge highlight of shortest path
+  // Highlight directed edges in sequence (u -> v)
   for (let i = 0; i < path.length - 1; i++) {
     let u = path[i];
     let v = path[i + 1];
 
-    // Numeric ID for an undirected edge
-    let edgeId = `edge-${Math.min(u, v)}-${Math.max(u, v)}`;
+    let edgeId = `edge-${u}-${v}`;
     const edge = document.getElementById(edgeId);
 
     if (edge) {
-      edge.style.stroke = "#242629";
-      edge.style.strokeWidth = "5";
-      // edge.style.filter = "drop-shadow(2px 3px 3px rgba(4, 255, 0, 0.93))";
+      edge.style.stroke = "#16a34a";
+      edge.style.strokeWidth = "4.5";
+      edge.setAttribute("marker-end", "url(#arrow-active)");
     }
   }
 
-  document.getElementById("distanceMonitor").innerHTML = distance+" m";
-  console.log("Route founded");
+  document.getElementById("distanceMonitor").innerHTML = distance + " m";
 }
 
-//=>>> Work with api
 async function loadLocations() {
   const source = document.getElementById("source");
   const destination = document.getElementById("destination");
 
   try {
     const response = await fetch(`${api}/locations`);
-
-    if (!response.ok) {
-      throw new Error("None");
-    }
+    if (!response.ok) throw new Error("Failed");
 
     const data = await response.json();
-
-    // Delete the old options.
     source.replaceChildren();
     destination.replaceChildren();
 
-    // Separate default options for two select elements
-    const sourceDefault = document.createElement("option");
-    sourceDefault.value = "-1";
-    sourceDefault.textContent = "Source";
+    const sDef = document.createElement("option");
+    sDef.value = "-1";
+    sDef.textContent = "Source";
+    source.appendChild(sDef);
 
-    const destinationDefault = document.createElement("option");
-    destinationDefault.value = "-1";
-    destinationDefault.textContent = "Destination";
+    const dDef = document.createElement("option");
+    dDef.value = "-1";
+    dDef.textContent = "Destination";
+    destination.appendChild(dDef);
 
-    source.appendChild(sourceDefault);
-    destination.appendChild(destinationDefault);
+    data.locations.forEach((loc) => {
+      fetchedLocations[loc.id] = loc.name;
 
-    // Generate options using locations from the backend
-    data.locations.forEach((location) => {
-      fetchedLocations[location.id] = location.name;
-      // Source option
-      const sourceOption = document.createElement("option");
-      sourceOption.value = location.id;
-      sourceOption.textContent = location.name;
-      source.appendChild(sourceOption);
+      const opt1 = document.createElement("option");
+      opt1.value = loc.id;
+      opt1.textContent = loc.name;
+      source.appendChild(opt1);
 
-      // Destination option
-      const destinationOption = document.createElement("option");
-      destinationOption.value = location.id;
-      destinationOption.textContent = location.name;
-      destination.appendChild(destinationOption);
+      const opt2 = document.createElement("option");
+      opt2.value = loc.id;
+      opt2.textContent = loc.name;
+      destination.appendChild(opt2);
     });
   } catch (error) {
     console.error("Error loading locations:", error);
-
-    source.replaceChildren();
-    destination.replaceChildren();
-
-    const sourceError = document.createElement("option");
-    sourceError.value = "-1";
-    sourceError.textContent = "None";
-
-    const destinationError = document.createElement("option");
-    destinationError.value = "-1";
-    destinationError.textContent = "None";
-
-    source.appendChild(sourceError);
-    destination.appendChild(destinationError);
   }
 }
 
@@ -124,20 +145,14 @@ const findPath = async () => {
     try {
       const response = await fetch(`${api}/find-path`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ source, destination }),
       });
 
-      if (!response.ok) {
-        throw new Error("Backend request failed");
-      }
+      if (!response.ok) throw new Error("Backend request failed");
 
       const data = await response.json();
-      console.log(data.path);
-      console.log(data.distance);
-      highlightPath(data.path,data.distance);
+      highlightPath(data.path, data.distance, data.reachable);
     } catch (error) {
       console.error(error);
     }
@@ -146,33 +161,28 @@ const findPath = async () => {
   }
 };
 
-//=>>> searching
 const search = () => {
   const input = document.getElementById("searchInput").value.trim();
   const searchList = document.getElementById("searchList");
-
-  // Clear previous search results so they don't stack up
   searchList.innerHTML = "";
 
-  // Filter the values and create an <li> for each match
-  input === ""
-    ? Object.values(fetchedLocations).forEach((item) => {
-        const createSearchList = document.createElement("li");
-        createSearchList.textContent = item;
-        searchList.appendChild(createSearchList);
-      })
-    : Object.values(fetchedLocations)
-        .filter((item) => item.toLowerCase().includes(input.toLowerCase()))
-        .forEach((item) => {
-          const createSearchList = document.createElement("li");
-          createSearchList.textContent = item;
-          searchList.appendChild(createSearchList);
-        });
+  const entries = Object.values(fetchedLocations);
+  const filtered =
+    input === ""
+      ? entries
+      : entries.filter((item) =>
+          item.toLowerCase().includes(input.toLowerCase())
+        );
+
+  filtered.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    searchList.appendChild(li);
+  });
 };
 
 window.addEventListener("load", async () => {
   await loadLocations();
   search();
-  const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("input", search);
+  document.getElementById("searchInput").addEventListener("input", search);
 });
