@@ -34,27 +34,23 @@ const names = [
   "medical",          // 30
   "gate-tr",          // 31
   "gate-br",          // 32
-  "junc-main",        // 33
-  "junc-tl",          // 34
-  "junc-tr",          // 35
-  "junc-spine",       // 36
-  "junc-se",          // 37
-  "junc-east"         // 38
+  "stair",            // 33
+  "junc-main",        // 34
+  "junc-tl",          // 35
+  "junc-tr",          // 36
+  "junc-se"           // 37
 ];
 
 let fetchedLocations = {};
 
 function highlightPath(path, distance, reachable) {
-  // Reset all nodes
   document.querySelectorAll("[id^='node-']").forEach((node) => {
     node.style.fill = node.classList.contains("junction") ? "#64748b" : "#2563eb";
   });
 
-  // Reset all edges & arrows
   document.querySelectorAll("[id^='edge-']").forEach((edge) => {
     edge.style.stroke = "#9499a4";
     edge.style.strokeWidth = "2.8";
-    edge.setAttribute("marker-end", "url(#arrow)");
   });
 
   if (!reachable || path.length === 0) {
@@ -65,33 +61,30 @@ function highlightPath(path, distance, reachable) {
 
   document.getElementById("distanceMonitor").style.color = "#00ab13";
 
-  // Highlight active nodes
   path.forEach((v, idx) => {
     const node = document.getElementById("node-" + names[v]);
     if (node) {
       if (idx === 0) {
-        node.style.fill = "#f59e0b"; // Source (Orange)
+        node.style.fill = "#f59e0b"; // Source
       } else if (idx === path.length - 1) {
-        node.style.fill = "#ef4444"; // Destination (Red)
+        node.style.fill = "#ef4444"; // Destination
       } else {
-        node.style.fill = "#22c55e"; // Intermediate path nodes (Green)
+        node.style.fill = "#22c55e"; // Intermediate
       }
     }
   });
 
-  // Highlight directed edges in sequence (u -> v)
   for (let i = 0; i < path.length - 1; i++) {
-    let u = path[i];
-    let v = path[i + 1];
+    const u = path[i];
+    const v = path[i + 1];
 
-    let edgeId = `edge-${u}-${v}`;
-    const edge = document.getElementById(edgeId);
+    const forward = document.getElementById(`edge-${u}-${v}`);
+    const backward = document.getElementById(`edge-${v}-${u}`);
+    const edge = forward || backward;
+    if (!edge) continue;
 
-    if (edge) {
-      edge.style.stroke = "#16a34a";
-      edge.style.strokeWidth = "4.5";
-      edge.setAttribute("marker-end", "url(#arrow-active)");
-    }
+    edge.style.stroke = "#16a34a";
+    edge.style.strokeWidth = "4.5";
   }
 
   document.getElementById("distanceMonitor").innerHTML = distance + " m";
@@ -141,6 +134,11 @@ const findPath = async () => {
   const source = Number(document.getElementById("source").value);
   const destination = Number(document.getElementById("destination").value);
 
+  if (source >= 0 && destination >= 0 && source === destination) {
+    highlightPath([source], 0, true);
+    return;
+  }
+
   if (source >= 0 && destination >= 0) {
     try {
       const response = await fetch(`${api}/find-path`, {
@@ -155,6 +153,7 @@ const findPath = async () => {
       highlightPath(data.path, data.distance, data.reachable);
     } catch (error) {
       console.error(error);
+      alert("Backend server is not running (start the C++ server first).");
     }
   } else {
     alert("Please enter source & destination");

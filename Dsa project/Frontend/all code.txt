@@ -1,0 +1,1319 @@
+index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/map.css" />
+    <link rel="stylesheet" href="./css/controlPanel.css" />
+    <link rel="stylesheet" href="./css/wishList.css" />
+    <link rel="stylesheet" href="./css/scrollbar.css" />
+    <link rel="shortcut icon" href="./img/Vu logo.jpg" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Vu Navigation</title>
+  </head>
+
+  <body class="custom-scrollbar">
+    <header>
+      <img src="./img/Vu logo.jpg" alt="Logo" />
+      <h2>Varendra Campus Map</h2>
+    </header>
+
+    <div class="container">
+      <section class="controlPanel">
+        <div class="selector">
+          <select id="source">
+            <option value="-1">Source</option>
+          </select>
+
+          <select id="destination">
+            <option value="-1">Destination</option>
+          </select>
+          <div>
+            <button onclick="findPath()">Find path</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="mapSection">
+        <div class="map-container">
+          <div class="map-controls">
+            <button id="zoomIn" aria-label="Zoom in">+</button>
+            <button id="zoomOut" aria-label="Zoom out">−</button>
+            <button id="resetMap" aria-label="Reset map">⌂</button>
+          </div>
+          <svg
+            id="campusMap"
+            viewBox="0 0 1020 730"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <!-- Default Road Arrow -->
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="7"
+                refY="5"
+                markerWidth="5.5"
+                markerHeight="5.5"
+                orient="auto-start-reverse"
+              >
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b" />
+              </marker>
+              <!-- Active Shortest Path Arrow -->
+              <marker
+                id="arrow-active"
+                viewBox="0 0 10 10"
+                refX="7"
+                refY="5"
+                markerWidth="5.5"
+                markerHeight="5.5"
+                orient="auto-start-reverse"
+              >
+                <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+              </marker>
+            </defs>
+
+            <g id="mapContent">
+              <!-- Academic Building Complex (Exact Sketch Geometry) -->
+              <g id="buildings">
+                <path
+                  d="M 185 175 L 835 175 L 835 465 L 470 465 L 470 365 L 185 365 Z"
+                  fill="#f8fafc"
+                  stroke="#475569"
+                  stroke-width="2.5"
+                />
+                <!-- Central Tree Circle (Left Courtyard) -->
+                <circle
+                  cx="340"
+                  cy="455"
+                  r="42"
+                  fill="#dcfce7"
+                  stroke="#16a34a"
+                  stroke-width="2"
+                />
+                <text
+                  x="340"
+                  y="459"
+                  font-size="13"
+                  font-weight="bold"
+                  fill="#15803d"
+                  text-anchor="middle"
+                >
+                  Tree
+                </text>
+              </g>
+
+              <!-- Roads & Directed Pathways (Matching Hand-Drawn Arrows) -->
+              <g id="roads">
+                <!-- Bottom Horizontal Main Road -->
+                <line id="edge-0-1" class="road" x1="370" y1="675" x2="65" y2="675" marker-end="url(#arrow)" />
+                <line id="edge-0-2" class="road" x1="370" y1="675" x2="945" y2="675" marker-end="url(#arrow)" />
+
+                <!-- Left & Top Outer Perimeter -->
+                <path id="edge-1-3" class="road" d="M 65 675 Q 40 480 40 310" marker-end="url(#arrow)" />
+                <path id="edge-3-34" class="road" d="M 40 310 Q 42 220 75 160" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-34-4" class="road" d="M 75 160 Q 135 75 280 55" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-4-5" class="road" d="M 280 55 Q 600 42 910 60" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Right Outer Perimeter -->
+                <path id="edge-2-7" class="road" d="M 945 675 Q 962 520 960 375" marker-end="url(#arrow)" />
+                <path id="edge-7-6" class="road" d="M 960 375 Q 968 250 960 135" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-6-35" class="road" d="M 960 135 Q 952 110 925 95" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-35-5" class="road" d="M 925 95 Q 920 75 910 60" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Main Gate Entry & Inner Curves -->
+                <line id="edge-0-33" class="road" x1="370" y1="675" x2="370" y2="590" marker-end="url(#arrow)" />
+                <path id="edge-1-33" class="road" d="M 65 675 Q 210 620 370 590" marker-end="url(#arrow)" />
+                <path id="edge-33-9" class="road" d="M 370 590 Q 315 590 265 565" marker-end="url(#arrow)" />
+                <path id="edge-33-39" class="road" d="M 370 590 L 490 590 L 490 510" marker-end="url(#arrow)" />
+                <path id="edge-39-8" class="road" d="M 490 510 L 490 430" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Bus Stand & Top-Left Gate Connections -->
+                <path id="edge-9-3" class="road" d="M 265 565 Q 160 510 120 390 Q 85 320 40 310" marker-end="url(#arrow)" />
+                <line id="edge-34-10" class="road" x1="75" y1="160" x2="185" y2="195" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Top-Left Wing -->
+                <line id="edge-10-11" class="road" x1="185" y1="195" x2="235" y2="255" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-11-13" class="road" d="M 235 255 Q 290 215 340 245" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-13-14" class="road" x1="340" y1="245" x2="415" y2="265" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-14-15" class="road" d="M 415 265 Q 465 260 490 275" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <line id="edge-11-12" class="road" x1="235" y1="255" x2="315" y2="325" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-12-16" class="road" x1="315" y1="325" x2="415" y2="325" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-16-36" class="road" x1="415" y1="325" x2="490" y2="325" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Central Spine & Left Courtyard -->
+                <line id="edge-15-36" class="road" x1="490" y1="275" x2="490" y2="325" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-36-8" class="road" x1="490" y1="325" x2="490" y2="430" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <path id="edge-9-17" class="road" d="M 265 565 Q 210 495 220 415" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-17-18" class="road" d="M 220 415 Q 270 380 325 395" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-18-19" class="road" d="M 325 395 Q 395 415 430 490" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-8-19" class="road" d="M 490 430 Q 435 445 430 490" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-19-37" class="road" d="M 430 490 Q 425 545 540 545" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Top-Right Wing -->
+                <path id="edge-36-20" class="road" d="M 490 325 Q 545 310 565 215" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-20-21" class="road" d="M 565 215 Q 640 225 715 205" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-36-22" class="road" d="M 490 325 Q 555 315 590 270" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-22-21" class="road" d="M 590 270 Q 665 260 715 205" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Bottom-Right Wing & Offices -->
+                <path id="edge-8-23" class="road" d="M 490 430 L 535 430 L 535 375" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-23-22" class="road" d="M 535 375 Q 585 360 590 270" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-23-25" class="road" d="M 535 375 Q 615 375 660 415" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <line id="edge-8-24" class="road" x1="490" y1="430" x2="590" y2="430" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-24-25" class="road" x1="590" y1="430" x2="660" y2="415" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-25-27" class="road" x1="660" y1="415" x2="740" y2="385" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <line id="edge-21-26" class="road" x1="715" y1="205" x2="740" y2="310" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-26-27" class="road" x1="740" y1="310" x2="740" y2="385" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-27-38" class="road" x1="740" y1="385" x2="755" y2="420" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-38-28" class="road" x1="755" y1="420" x2="770" y2="450" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Parking & Medical Loop -->
+                <path id="edge-25-29" class="road" d="M 660 415 L 680 515" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-29-30" class="road" x1="680" y1="515" x2="715" y2="515" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-30-38" class="road" d="M 715 515 L 705 425 L 755 420" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-8-37" class="road" x1="490" y1="430" x2="540" y2="545" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-37-29" class="road" d="M 540 545 Q 615 545 680 515" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Right Side Gates to Garden & Canteen -->
+                <line id="edge-21-31" class="road" x1="715" y1="205" x2="835" y2="245" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-31-35" class="road" d="M 835 245 Q 890 175 925 95" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-38-32" class="road" x1="755" y1="420" x2="835" y2="420" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-32-7" class="road" d="M 835 420 Q 900 420 960 375" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+
+                <!-- Extra roads from the road list (two-way) -->
+                <path id="edge-12-17" class="road" d="M 315 325 Q 230 345 220 415" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-12-14" class="road" x1="315" y1="325" x2="415" y2="265" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-14-20" class="road" d="M 415 265 Q 480 215 565 215" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <line id="edge-24-37" class="road" x1="590" y1="430" x2="540" y2="545" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <path id="edge-37-9" class="road" d="M 540 545 Q 400 520 265 565" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+              </g>
+
+              <!-- Estimated Distance Labels Next to Roads -->
+              <g class="road-distance">
+                <text x="215" y="667">90m</text>
+                <text x="650" y="667">140m</text>
+                <text x="25" y="490">100m</text>
+                <text x="42" y="235">45m</text>
+                <text x="150" y="95">85m</text>
+                <text x="595" y="38">160m</text>
+                <text x="975" y="525">110m</text>
+                <text x="978" y="255">80m</text>
+                <text x="955" y="98">35m</text>
+                <text x="932" y="68">40m</text>
+                <text x="352" y="635">35m</text>
+                <text x="215" y="618">95m</text>
+                <text x="315" y="575">45m</text>
+                <text x="435" y="582">25m</text>
+                <text x="115" y="455">90m</text>
+                <text x="130" y="168">40m</text>
+                <text x="195" y="232">30m</text>
+                <text x="285" y="218">35m</text>
+                <text x="378" y="248">25m</text>
+                <text x="455" y="255">30m</text>
+                <text x="260" y="302">30m</text>
+                <text x="365" y="318">25m</text>
+                <text x="452" y="318">25m</text>
+                <text x="475" y="302">30m</text>
+                <text x="475" y="380">35m</text>
+                <text x="210" y="495">50m</text>
+                <text x="265" y="382">30m</text>
+                <text x="385" y="425">35m</text>
+                <text x="452" y="455">30m</text>
+                <text x="465" y="535">45m</text>
+                <text x="525" y="260">40m</text>
+                <text x="640" y="205">45m</text>
+                <text x="535" y="302">35m</text>
+                <text x="655" y="255">40m</text>
+                <text x="515" y="405">25m</text>
+                <text x="572" y="330">30m</text>
+                <text x="610" y="370">35m</text>
+                <text x="545" y="423">30m</text>
+                <text x="625" y="415">25m</text>
+                <text x="700" y="392">25m</text>
+                <text x="742" y="260">35m</text>
+                <text x="752" y="350">20m</text>
+                <text x="760" y="402">20m</text>
+                <text x="780" y="435">20m</text>
+                <text x="658" y="470">30m</text>
+                <text x="698" y="508">15m</text>
+                <text x="722" y="468">35m</text>
+                <text x="528" y="490">45m</text>
+                <text x="615" y="555">30m</text>
+                <text x="778" y="218">35m</text>
+                <text x="875" y="165">45m</text>
+                <text x="795" y="412">30m</text>
+                <text x="900" y="412">40m</text>
+                <text x="508" y="478">30m</text>
+                <text x="240" y="350">55m</text>
+                <text x="350" y="282">40m</text>
+                <text x="485" y="212">65m</text>
+                <text x="580" y="492">50m</text>
+                <text x="330" y="545">110m</text>
+              </g>
+
+              <!-- Vertices / Nodes (0 to 39) -->
+              <g id="locations">
+                <!-- Main Locations (0 to 32) -->
+                <circle id="node-main-gate" class="node" cx="370" cy="675" r="8.5" />
+                <circle id="node-gate-2" class="node" cx="65" cy="675" r="8.5" />
+                <circle id="node-gate-3" class="node" cx="945" cy="675" r="8.5" />
+                <circle id="node-bus-stand" class="node" cx="40" cy="310" r="8.5" />
+                <circle id="node-play-ground-1" class="node" cx="280" cy="55" r="8.5" />
+                <circle id="node-play-ground-2" class="node" cx="910" cy="60" r="8.5" />
+                <circle id="node-garden" class="node" cx="960" cy="135" r="8.5" />
+                <circle id="node-canteen" class="node" cx="960" cy="375" r="8.5" />
+                <circle id="node-mid-corridor" class="node" cx="490" cy="430" r="7.5" />
+                <circle id="node-library" class="node" cx="265" cy="565" r="8.5" />
+                <circle id="node-gate-tl" class="node" cx="185" cy="195" r="7.5" />
+                <circle id="node-info-desk" class="node junction" cx="235" cy="255" r="4.5" />
+                <circle id="node-boys-common" class="node" cx="315" cy="325" r="7.5" />
+                <circle id="node-mosque" class="node" cx="340" cy="245" r="7.5" />
+                <circle id="node-pharmacy" class="node" cx="415" cy="265" r="7.5" />
+                <circle id="node-plaza" class="node" cx="490" cy="275" r="7.5" />
+                <circle id="node-sinat" class="node" cx="415" cy="325" r="7.5" />
+                <circle id="node-inventory" class="node" cx="220" cy="415" r="7.5" />
+                <circle id="node-auditorium" class="node" cx="325" cy="395" r="7.5" />
+                <circle id="node-eee-lab" class="node" cx="430" cy="490" r="7.5" />
+                <circle id="node-girls-common" class="node" cx="565" cy="215" r="7.5" />
+                <circle id="node-cr-center" class="node" cx="715" cy="205" r="7.5" />
+                <circle id="node-american-corner" class="node" cx="590" cy="270" r="7.5" />
+                <circle id="node-ncc-bank" class="node" cx="535" cy="375" r="7.5" />
+                <circle id="node-cse-faculty" class="node" cx="590" cy="430" r="7.5" />
+                <circle id="node-bba-dept" class="node" cx="660" cy="415" r="7.5" />
+                <circle id="node-eee-office" class="node" cx="740" cy="310" r="7.5" />
+                <circle id="node-lift" class="node" cx="740" cy="385" r="7.5" />
+                <circle id="node-cse-office" class="node" cx="770" cy="450" r="7.5" />
+                <circle id="node-parking" class="node" cx="680" cy="515" r="7.5" />
+                <circle id="node-medical" class="node" cx="715" cy="515" r="7.5" />
+                <circle id="node-gate-tr" class="node" cx="835" cy="245" r="7.5" />
+                <circle id="node-gate-br" class="node" cx="835" cy="420" r="7.5" />
+
+                <!-- Junction Nodes (33 to 38 - smaller connector dots) -->
+                <circle id="node-stair" class="node" cx="490" cy="510" r="7.5" />
+
+                <circle id="node-junc-main" class="node junction" cx="370" cy="590" r="4.5" />
+                <circle id="node-junc-tl" class="node junction" cx="75" cy="160" r="4.5" />
+                <circle id="node-junc-tr" class="node junction" cx="925" cy="95" r="4.5" />
+                <circle id="node-junc-spine" class="node junction" cx="490" cy="325" r="4.5" />
+                <circle id="node-junc-se" class="node junction" cx="540" cy="545" r="4.5" />
+                <circle id="node-junc-east" class="node junction" cx="755" cy="420" r="4.5" />
+              </g>
+
+              <!-- Labels -->
+              <g class="node-label">
+                <text x="370" y="702">Main Gate</text>
+                <text x="65" y="702">Gate 2</text>
+                <text x="945" y="702">Gate 3</text>
+                <text x="20" y="315" transform="rotate(-90 20,315)">Bus Stand</text>
+                <text x="280" y="38">Play Ground 1</text>
+                <text x="910" y="42">Play Ground 2</text>
+                <text x="985" y="140">Garden</text>
+                <text x="988" y="380">Canteen</text>
+                <text x="265" y="592">Library (b)</text>
+                <text x="165" y="212">Gate</text>
+                <text x="305" y="346">Boys Common (b)</text>
+                <text x="340" y="228">Mosque (2nd)</text>
+                <text x="415" y="248">Pharmacy (b)</text>
+                <text x="518" y="272">Plaza (2nd)</text>
+                <text x="415" y="346">Sinat (3rd)</text>
+                <text x="215" y="440">Inventory (b)</text>
+                <text x="345" y="385">Auditorium (b)</text>
+                <text x="430" y="512">EEE Lab (b)</text>
+                <text x="605" y="205">Girls Common</text>
+                <text x="735" y="195">CR Center</text>
+                <text x="625" y="290">American Corner (2nd)</text>
+                <text x="535" y="362">NCC Bank</text>
+                <text x="590" y="452">CSE Faculty</text>
+                <text x="665" y="400">BBA Dept (2nd)</text>
+                <text x="785" y="315">EEE Prog. Office</text>
+                <text x="762" y="382">Lift</text>
+                <text x="785" y="468">CSE Prog. Office</text>
+                <text x="525" y="514">Stair</text>
+                <text x="665" y="538">Parking</text>
+                <text x="725" y="538">Medical</text>
+                <text x="855" y="250">Gate</text>
+                <text x="855" y="425">Gate</text>
+              </g>
+            </g>
+          </svg>
+
+          <div class="distanceMonitor"><h3 id="distanceMonitor">0 m</h3></div>
+        </div>
+        <div class="searchSection">
+          <div>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search location"
+            />
+          </div>
+          <ol id="searchList"></ol>
+        </div>
+      </section>
+
+      <section class="wishList">
+        <div class="list">
+          <button><i class="fa-regular fa-heart"></i>Favorites +</button>
+          <button><i class="fa-regular fa-bookmark"></i>Saved places +</button>
+          <button><i class="fa-regular fa-flag"></i>Want to go +</button>
+        </div>
+        <div class="places">
+          <div class="list-selector">
+            <h3 class="selected">
+              <i class="fa-regular fa-heart"></i>Favorites
+            </h3>
+            <h3><i class="fa-regular fa-bookmark"></i>Saved</h3>
+            <h3><i class="fa-regular fa-flag"></i>Want to go</h3>
+          </div>
+          <ol>
+            <li>Main Gate -> CSE Faculty</li>
+            <li>Gate 2 -> Library (b)</li>
+            <li>Bus Stand -> Canteen</li>
+          </ol>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <h3>Created by Shovon, Snigdha & Faria</h3>
+    </footer>
+    <script src="./js/script.js"></script>
+    <script src="./js/map-controll.js"></script>
+  </body>
+</html>
+
+script.js
+const api = `http://127.0.0.1:8080`;
+
+const names = [
+  "main-gate",        // 0
+  "gate-2",           // 1
+  "gate-3",           // 2
+  "bus-stand",        // 3
+  "play-ground-1",    // 4
+  "play-ground-2",    // 5
+  "garden",           // 6
+  "canteen",          // 7
+  "mid-corridor",     // 8
+  "library",          // 9
+  "gate-tl",          // 10
+  "info-desk",        // 11
+  "boys-common",      // 12
+  "mosque",           // 13
+  "pharmacy",         // 14
+  "plaza",            // 15
+  "sinat",            // 16
+  "inventory",        // 17
+  "auditorium",       // 18
+  "eee-lab",          // 19
+  "girls-common",     // 20
+  "cr-center",        // 21
+  "american-corner",  // 22
+  "ncc-bank",         // 23
+  "cse-faculty",      // 24
+  "bba-dept",         // 25
+  "eee-office",       // 26
+  "lift",             // 27
+  "cse-office",       // 28
+  "parking",          // 29
+  "medical",          // 30
+  "gate-tr",          // 31
+  "gate-br",          // 32
+  "junc-main",        // 33
+  "junc-tl",          // 34
+  "junc-tr",          // 35
+  "junc-spine",       // 36
+  "junc-se",          // 37
+  "junc-east",        // 38
+  "stair"             // 39
+];
+
+let fetchedLocations = {};
+
+function highlightPath(path, distance, reachable) {
+  // Reset all nodes
+  document.querySelectorAll("[id^='node-']").forEach((node) => {
+    node.style.fill = node.classList.contains("junction") ? "#64748b" : "#2563eb";
+  });
+
+  // Reset all edges & arrows
+  document.querySelectorAll("[id^='edge-']").forEach((edge) => {
+    edge.style.stroke = "#9499a4";
+    edge.style.strokeWidth = "2.8";
+    if (edge.hasAttribute("marker-end")) edge.setAttribute("marker-end", "url(#arrow)");
+    if (edge.hasAttribute("marker-start")) edge.setAttribute("marker-start", "url(#arrow)");
+  });
+
+  if (!reachable || path.length === 0) {
+    document.getElementById("distanceMonitor").innerHTML = "No route (One-way)";
+    document.getElementById("distanceMonitor").style.color = "#dc2626";
+    return;
+  }
+
+  document.getElementById("distanceMonitor").style.color = "#00ab13";
+
+  // Highlight active nodes
+  path.forEach((v, idx) => {
+    const node = document.getElementById("node-" + names[v]);
+    if (node) {
+      if (idx === 0) {
+        node.style.fill = "#f59e0b"; // Source (Orange)
+      } else if (idx === path.length - 1) {
+        node.style.fill = "#ef4444"; // Destination (Red)
+      } else {
+        node.style.fill = "#22c55e"; // Intermediate path nodes (Green)
+      }
+    }
+  });
+
+  // Highlight edges in sequence (u -> v). Two-way roads are one drawing with
+  // arrows on both ends: forward uses marker-end, reverse uses marker-start.
+  for (let i = 0; i < path.length - 1; i++) {
+    const u = path[i];
+    const v = path[i + 1];
+
+    const forward = document.getElementById(`edge-${u}-${v}`);
+    const backward = document.getElementById(`edge-${v}-${u}`);
+    const edge = forward || backward;
+    if (!edge) continue;
+
+    edge.style.stroke = "#16a34a";
+    edge.style.strokeWidth = "4.5";
+    edge.setAttribute(forward ? "marker-end" : "marker-start", "url(#arrow-active)");
+  }
+
+  document.getElementById("distanceMonitor").innerHTML = distance + " m";
+}
+
+async function loadLocations() {
+  const source = document.getElementById("source");
+  const destination = document.getElementById("destination");
+
+  try {
+    const response = await fetch(`${api}/locations`);
+    if (!response.ok) throw new Error("Failed");
+
+    const data = await response.json();
+    source.replaceChildren();
+    destination.replaceChildren();
+
+    const sDef = document.createElement("option");
+    sDef.value = "-1";
+    sDef.textContent = "Source";
+    source.appendChild(sDef);
+
+    const dDef = document.createElement("option");
+    dDef.value = "-1";
+    dDef.textContent = "Destination";
+    destination.appendChild(dDef);
+
+    data.locations.forEach((loc) => {
+      fetchedLocations[loc.id] = loc.name;
+
+      const opt1 = document.createElement("option");
+      opt1.value = loc.id;
+      opt1.textContent = loc.name;
+      source.appendChild(opt1);
+
+      const opt2 = document.createElement("option");
+      opt2.value = loc.id;
+      opt2.textContent = loc.name;
+      destination.appendChild(opt2);
+    });
+  } catch (error) {
+    console.error("Error loading locations:", error);
+  }
+}
+
+const findPath = async () => {
+  const source = Number(document.getElementById("source").value);
+  const destination = Number(document.getElementById("destination").value);
+
+  if (source >= 0 && destination >= 0 && source === destination) {
+    highlightPath([source], 0, true);
+    return;
+  }
+
+  if (source >= 0 && destination >= 0) {
+    try {
+      const response = await fetch(`${api}/find-path`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ source, destination }),
+      });
+
+      if (!response.ok) throw new Error("Backend request failed");
+
+      const data = await response.json();
+      highlightPath(data.path, data.distance, data.reachable);
+    } catch (error) {
+      console.error(error);
+      alert("Backend server is not running (start the C++ server first).");
+    }
+  } else {
+    alert("Please enter source & destination");
+  }
+};
+
+const search = () => {
+  const input = document.getElementById("searchInput").value.trim();
+  const searchList = document.getElementById("searchList");
+  searchList.innerHTML = "";
+
+  const entries = Object.values(fetchedLocations);
+  const filtered =
+    input === ""
+      ? entries
+      : entries.filter((item) =>
+          item.toLowerCase().includes(input.toLowerCase())
+        );
+
+  filtered.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    searchList.appendChild(li);
+  });
+};
+
+window.addEventListener("load", async () => {
+  await loadLocations();
+  search();
+  document.getElementById("searchInput").addEventListener("input", search);
+});
+
+map-controll.js
+const svg = document.getElementById("campusMap");
+const mapContent = document.getElementById("mapContent");
+
+const zoomInBtn = document.getElementById("zoomIn");
+const zoomOutBtn = document.getElementById("zoomOut");
+const resetBtn = document.getElementById("resetMap");
+
+let scale = 1;
+let x = 0;
+let y = 0;
+
+const MIN_ZOOM = 0.5;
+const MAX_ZOOM = 4;
+const ZOOM_STEP = 1.2;
+
+function updateMap() {
+  mapContent.setAttribute("transform", `translate(${x} ${y}) scale(${scale})`);
+}
+
+function getSvgPoint(event) {
+  const point = svg.createSVGPoint();
+
+  point.x = event.clientX;
+  point.y = event.clientY;
+
+  return point.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+// নির্দিষ্ট SVG position-কে কেন্দ্র করে zoom
+function zoomAt(newScale, px, py) {
+  newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newScale));
+
+  // Zoom-এর সময় pointer-এর নিচের জায়গা স্থির রাখে
+  x = px - (px - x) * (newScale / scale);
+  y = py - (py - y) * (newScale / scale);
+
+  scale = newScale;
+  updateMap();
+}
+
+// Zoom In
+zoomInBtn.addEventListener("click", () => {
+  zoomAt(scale * ZOOM_STEP, 400, 250);
+});
+
+// Zoom Out
+zoomOutBtn.addEventListener("click", () => {
+  zoomAt(scale / ZOOM_STEP, 400, 250);
+});
+
+// Reset
+resetBtn.addEventListener("click", () => {
+  scale = 1;
+  x = 0;
+  y = 0;
+  updateMap();
+});
+
+// Mouse wheel zoom
+svg.addEventListener(
+  "wheel",
+  (event) => {
+    event.preventDefault();
+
+    const point = getSvgPoint(event);
+
+    const factor = event.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
+
+    zoomAt(scale * factor, point.x, point.y);
+  },
+  { passive: false },
+);
+
+// Drag / Pan
+let dragging = false;
+let lastPoint = null;
+
+svg.addEventListener("pointerdown", (event) => {
+  // Button বা অন্য interactive element থেকে drag শুরু নয়
+  if (event.target.closest("button, a")) return;
+
+  dragging = true;
+  lastPoint = getSvgPoint(event);
+
+  svg.setPointerCapture(event.pointerId);
+  svg.classList.add("dragging");
+});
+
+svg.addEventListener("pointermove", (event) => {
+  if (!dragging) return;
+
+  const point = getSvgPoint(event);
+
+  x += point.x - lastPoint.x;
+  y += point.y - lastPoint.y;
+
+  lastPoint = point;
+  updateMap();
+});
+
+function stopDragging() {
+  dragging = false;
+  lastPoint = null;
+  svg.classList.remove("dragging");
+}
+
+svg.addEventListener("pointerup", stopDragging);
+svg.addEventListener("pointercancel", stopDragging);
+
+// প্রথম অবস্থায় map দেখাও
+updateMap();
+
+style.css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --light-dark: #bfbfbf;
+  --light-dark-2: #9499a4;
+  --light-blue: #dadaf2;
+  --blue: #2563eb;
+  --light-green: #69f957;
+}
+body {
+  background: #ebebeb;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  color: #373737;
+}
+.container {
+  padding: 0 20px 20px 20px;
+}
+button {
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+input {
+  border: none;
+  outline: none;
+}
+
+footer {text-align: center;background: var(--light-blue);padding: 10px 0;}
+
+/* Responsive */
+@media (width <= 768px) {
+  .mapSection {
+    flex-direction: column;
+  }
+  .map-container,
+  .searchSection {
+    flex-basis: 100%;
+    width: 100%;
+  }
+  .searchSection {
+    max-height: 30vh !important;
+  }
+
+.wishList{flex-direction: column;}
+.wishList .list,
+  .wishList .places {
+  width: 100% !important;
+}
+}
+
+@media (width <= 470px) {
+  .controlPanel .selector {
+    gap: 10px !important;
+  }
+  .controlPanel .selector select {
+    width: 95px !important;
+    padding: 5px !important;
+  }
+  .wishList .list-selector h3,.list button,.wishList .places li {
+    font-size: .7rem;
+  }
+}
+
+
+@media (width <= 400px) {
+  .wishList i{padding-right: 1px !important;}
+}
+
+@media (width <= 340px) {
+  .controlPanel .selector {
+    flex-direction: column;
+    justify-content: start;
+    /* align-items: start; */
+    gap: 5px;
+  }
+  .controlPanel .selector select {
+    width: 100% !important;
+  }
+}
+
+map.css
+/*===> Map <=== */
+.mapSection {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.map-container {
+  flex-basis: 70%;
+  background: #fff;
+  border: 1px solid var(--light-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+#campusMap {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: grab;
+}
+#campusMap.dragging {
+  cursor: grabbing;
+}
+.map-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.map-controls button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px #00000020;
+}
+.map-controls button:hover {
+  background: #e5e7eb;
+}
+svg {
+  width: 100%;
+  height: auto;
+  max-height: 62vh;
+  display: block;
+}
+.road {
+  stroke: var(--light-dark-2);
+  stroke-width: 2.8;
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke 0.25s ease, stroke-width 0.25s ease;
+}
+.road-distance text {
+  font-size: 10px;
+  font-weight: 700;
+  fill: #475569;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.node {
+  fill: var(--blue);
+  stroke: #fff;
+  stroke-width: 2.5;
+  transition: fill 0.25s ease;
+}
+.node.junction {
+  fill: #64748b;
+  stroke-width: 1.5;
+}
+.node-label {
+  font-size: 11.5px;
+  font-weight: bold;
+  fill: #ea580c;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 2.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.mapSection .distanceMonitor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px 20px 0 0;
+  color: #00ab13;
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom-left-radius: 10px;
+}
+
+.mapSection .searchSection {
+  flex-basis: 30%;
+  height: 50vh;
+  background: #fff;
+  border: 1px solid var(--light-dark);
+  border-radius: 12px;
+  overflow-y: scroll;
+}
+.mapSection .searchSection div {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  box-shadow: 0px 0px 5px 1px #bababa;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+.mapSection .searchSection div input {
+  width: 100%;
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 5px 0 5px 10px;
+}
+.mapSection .searchSection #searchList {
+  padding: 10px 10px 20px 50px;
+}
+.mapSection .searchSection #searchList li {
+  padding: 10px 5px;
+}
+
+controlPanel.css
+/*===> Control Panel <=== */
+.controlPanel {
+  margin: 20px 0;
+}
+.controlPanel .selector {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.controlPanel .selector select {
+  background: #fff;
+  border: 1px solid var(--light-dark);
+  outline: none;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  width: 150px;
+}
+.controlPanel button {
+  background: var(--light-blue);
+}
+
+wishList.css
+.wishList {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin: 20px 0;
+  gap: 20px;
+}
+.wishList .list {
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.wishList .places {
+  flex-basis: 50%;
+  background: #fff;
+  border: 1px solid var(--light-dark);
+  border-radius: 12px;
+  max-height: 30vh;
+  overflow-y: scroll;
+  display: flex;
+}
+.wishList .list-selector {
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 35%;
+  background: var(--light-blue);
+  padding: 10px;
+}
+.wishList .list-selector h3 {
+  cursor: pointer;
+}
+.wishList .list-selector h3:hover,
+.wishList .list-selector h3.selected {
+  color: var(--blue);
+}
+.wishList .places ol {
+  padding: 10px 20px 10px 40px;
+  width: 70%;
+}
+.wishList .places li {
+  padding: 5px;
+}
+.wishList i {
+  margin-right: 8px;
+}
+
+header.css
+/*===> Header <=== */
+header {
+  background: var(--light-blue);
+  padding: 5px 0;
+  font-size: 13px;
+  box-shadow: 0px 1px 5px 1px #bababa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+header img {
+  width: 20px;
+  height: 100%;
+}
+header h2 {
+  text-align: center;
+}
+
+main.cpp
+#include <iostream>
+#include <httplib.h>
+#include <nlohmann/json.hpp>
+#include <cstdlib>
+#include <vector>
+#include <queue>
+#include <climits>
+
+using namespace std;
+using json = nlohmann::json;
+
+int INF = INT_MAX;
+int vertex = 40; // 34 Campus Locations + 6 Road Junctions
+vector<vector<pair<int, int>>> graph(vertex);
+
+void addDirectedEdge(int u, int v, int weight, vector<vector<pair<int, int>>> &graph);
+pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph);
+
+int main()
+{
+    httplib::Server server;
+
+    server.set_default_headers({{"Access-Control-Allow-Origin", "*"},
+                                {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"},
+                                {"Access-Control-Allow-Headers", "Content-Type"}});
+
+    /*
+     * Campus Locations (0 to 33):
+     * 0: Main Gate, 1: Gate 2, 2: Gate 3, 3: Bus Stand, 4: Play Ground 1,
+     * 5: Play Ground 2, 6: Garden, 7: Canteen, 8: Central Corridor,
+     * 9: Library (b), 10: Gate (Top-Left), 11: Info Desk, 12: Boys Common Room (b),
+     * 13: Mosque (2nd), 14: Pharmacy Dept (b), 15: Plaza (2nd), 16: Sinat (3rd),
+     * 17: Inventory Room (b), 18: Auditorium (b), 19: EEE Lab (b), 20: Girls Common Room,
+     * 21: CR Center, 22: American Corner (2nd), 23: NCC Bank, 24: CSE Faculty,
+     * 25: BBA Dept (2nd), 26: EEE Prog. Office, 27: Lift, 28: CSE Prog. Office,
+     * 29: Parking, 30: Medical, 31: Gate (Top-Right), 32: Gate (Bottom-Right),
+     * 33: Stair
+     *
+     * Road Junctions (34 to 39):
+     * 34: Main Entry T-Junction, 35: Top-Left Curve Junction, 36: Top-Right Outer Junction,
+     * 37: South Corridor Junction (Parking Turn), 38: Central Spine Junction, 39: East Corridor Junction
+     */
+
+    // --- 1. Bottom Outer Road (Routes 23, 31, 80) ---
+    addDirectedEdge(0, 1, 90, graph);  // Main Gate -> Gate 2 (90m)
+    addDirectedEdge(0, 2, 140, graph); // Main Gate -> Gate 3 (140m)
+
+    // --- 2. Left & Top Outer Perimeter (Routes 23-38, 69-92) ---
+    addDirectedEdge(1, 3, 100, graph); // Gate 2 -> Bus Stand (100m)
+    addDirectedEdge(3, 35, 45, graph); // Bus Stand -> Top-Left Curve (45m)
+    addDirectedEdge(35, 3, 45, graph); // Top-Left Curve -> Bus Stand (45m)
+    addDirectedEdge(35, 4, 85, graph); // Top-Left Curve -> Play Ground 1 (85m)
+    addDirectedEdge(4, 35, 85, graph); // Play Ground 1 -> Top-Left Curve (85m)
+    addDirectedEdge(4, 5, 160, graph); // Play Ground 1 -> Play Ground 2 (160m)
+    addDirectedEdge(5, 4, 160, graph); // Play Ground 2 -> Play Ground 1 (160m)
+
+    // --- 3. Right Outer Perimeter (Routes 26-27, 34-35, 81-92) ---
+    addDirectedEdge(2, 7, 110, graph); // Gate 3 -> Canteen (110m)
+    addDirectedEdge(7, 6, 80, graph);  // Canteen -> Garden (80m)
+    addDirectedEdge(6, 7, 80, graph);  // Garden -> Canteen (80m)
+    addDirectedEdge(6, 36, 35, graph); // Garden -> Top-Right Junction (35m)
+    addDirectedEdge(36, 6, 35, graph); // Top-Right Junction -> Garden (35m)
+    addDirectedEdge(36, 5, 40, graph); // Top-Right Junction -> Play Ground 2 (40m)
+    addDirectedEdge(5, 36, 40, graph); // Play Ground 2 -> Top-Right Junction (40m)
+
+    // --- 4. Main Gate & Gate 2 Entry Curves (Routes 1-80) ---
+    addDirectedEdge(0, 34, 35, graph);  // Main Gate -> Main Entry T-Junction (35m)
+    addDirectedEdge(1, 34, 95, graph);  // Gate 2 -> Main Entry T-Junction (95m)
+    addDirectedEdge(34, 9, 45, graph);  // Main Entry T-Junction -> Library (b) (45m)
+    addDirectedEdge(34, 37, 40, graph); // Main Entry T-Junction -> South Junction (40m)
+    addDirectedEdge(37, 8, 25, graph);  // South Junction -> Central Corridor (25m)
+    addDirectedEdge(8, 33, 15, graph);  // Central Corridor -> Stair (15m)
+
+    // --- 5. Bus Stand & Top-Left Gate Connections (Routes 69-92) ---
+    addDirectedEdge(9, 3, 90, graph);   // Library (b) -> Bus Stand (90m)
+    addDirectedEdge(3, 9, 90, graph);   // Bus Stand -> Library (b) (90m)
+    addDirectedEdge(35, 10, 40, graph); // Top-Left Curve -> Top-Left Gate (40m)
+    addDirectedEdge(10, 35, 40, graph); // Top-Left Gate -> Top-Left Curve (40m)
+
+    // --- 6. Top-Left Academic Wing ---
+    addDirectedEdge(10, 11, 30, graph); // Top-Left Gate -> Info Desk (30m)
+    addDirectedEdge(11, 10, 30, graph); // Info Desk -> Top-Left Gate (30m)
+    addDirectedEdge(11, 13, 35, graph); // Info Desk -> Mosque (2nd) (35m)
+    addDirectedEdge(13, 14, 25, graph); // Mosque (2nd) -> Pharmacy Dept (b) (25m)
+    addDirectedEdge(14, 15, 30, graph); // Pharmacy Dept (b) -> Plaza (2nd) (30m)
+
+    addDirectedEdge(11, 12, 30, graph); // Info Desk -> Boys Common Room (b) (30m)
+    addDirectedEdge(12, 11, 30, graph); // Boys Common Room (b) -> Info Desk (30m)
+    addDirectedEdge(12, 16, 25, graph); // Boys Common Room (b) -> Sinat (3rd) (25m)
+    addDirectedEdge(16, 38, 25, graph); // Sinat (3rd) -> Central Spine Junction (25m)
+
+    // --- 7. Central Spine & Stair Routes (Routes 28-30, 36-38, 43-47) ---
+    addDirectedEdge(33, 38, 35, graph); // Stair -> Central Spine Junction (35m)
+    addDirectedEdge(38, 33, 35, graph); // Central Spine Junction -> Stair (35m)
+    addDirectedEdge(38, 15, 25, graph); // Central Spine Junction -> Plaza (2nd) (25m)
+    addDirectedEdge(15, 38, 25, graph); // Plaza (2nd) -> Central Spine Junction (25m)
+
+    // --- 8. Left Courtyard & Basement Loop (Routes 8-17, 55-68, 74-79, 87-92, 98-105) ---
+    addDirectedEdge(9, 17, 50, graph);  // Library (b) -> Inventory Room (b) (50m)
+    addDirectedEdge(17, 9, 50, graph);  // Inventory Room (b) -> Library (b) (50m)
+    addDirectedEdge(17, 18, 30, graph); // Inventory Room (b) -> Auditorium (b) (30m)
+    addDirectedEdge(18, 17, 30, graph); // Auditorium (b) -> Inventory Room (b) (30m)
+    addDirectedEdge(18, 19, 35, graph); // Auditorium (b) -> EEE Lab (b) (35m)
+    addDirectedEdge(19, 18, 35, graph); // EEE Lab (b) -> Auditorium (b) (35m)
+    addDirectedEdge(8, 19, 30, graph);  // Central Corridor -> EEE Lab (b) (30m)
+    addDirectedEdge(19, 8, 30, graph);  // EEE Lab (b) -> Central Corridor (30m)
+
+    // --- 9. Top-Right Wing (Girls Common, CR Center, American Corner) ---
+    addDirectedEdge(38, 20, 40, graph); // Central Spine Junction -> Girls Common Room (40m)
+    addDirectedEdge(20, 38, 40, graph); // Girls Common Room -> Central Spine Junction (40m)
+    addDirectedEdge(20, 21, 45, graph); // Girls Common Room -> CR Center (45m)
+    addDirectedEdge(21, 20, 45, graph); // CR Center -> Girls Common Room (45m)
+    addDirectedEdge(38, 22, 35, graph); // Central Spine Junction -> American Corner (2nd) (35m)
+    addDirectedEdge(22, 21, 40, graph); // American Corner (2nd) -> CR Center (40m)
+
+    // --- 10. Bottom-Right Wing & Offices ---
+    addDirectedEdge(8, 23, 25, graph);  // Central Corridor -> NCC Bank (25m)
+    addDirectedEdge(23, 22, 30, graph); // NCC Bank -> American Corner (2nd) (30m)
+    addDirectedEdge(23, 25, 35, graph); // NCC Bank -> BBA Dept (2nd) (35m)
+
+    addDirectedEdge(8, 24, 30, graph);  // Central Corridor -> CSE Faculty (30m)
+    addDirectedEdge(24, 25, 25, graph); // CSE Faculty -> BBA Dept (2nd) (25m)
+    addDirectedEdge(25, 27, 25, graph); // BBA Dept (2nd) -> Lift (25m)
+
+    addDirectedEdge(21, 26, 35, graph); // CR Center -> EEE Prog. Office (35m)
+    addDirectedEdge(26, 21, 35, graph); // EEE Prog. Office -> CR Center (35m)
+    addDirectedEdge(26, 27, 20, graph); // EEE Prog. Office -> Lift (20m)
+    addDirectedEdge(27, 26, 20, graph); // Lift -> EEE Prog. Office (20m)
+    addDirectedEdge(27, 39, 20, graph); // Lift -> East Corridor Junction (20m)
+    addDirectedEdge(39, 27, 20, graph); // East Corridor Junction -> Lift (20m)
+    addDirectedEdge(39, 28, 20, graph); // East Corridor Junction -> CSE Prog. Office (20m)
+    addDirectedEdge(28, 39, 20, graph); // CSE Prog. Office -> East Corridor Junction (20m)
+
+    // --- 11. Parking & Medical Loop (Routes 3-4, 21-22, 48-61, 93-105) ---
+    addDirectedEdge(37, 29, 65, graph); // South Junction -> Parking (65m)
+    addDirectedEdge(29, 30, 15, graph); // Parking -> Medical (15m)
+    addDirectedEdge(30, 39, 35, graph); // Medical -> East Corridor Junction (35m)
+    addDirectedEdge(29, 39, 35, graph); // Parking -> East Corridor Junction (35m)
+    addDirectedEdge(39, 29, 35, graph); // East Corridor Junction -> Parking (35m)
+
+    // --- 12. Right Side Gates to Garden & Canteen (Routes 15-17, 52-54, 71-73, 81-105) ---
+    addDirectedEdge(21, 31, 35, graph); // CR Center -> Top-Right Gate (35m)
+    addDirectedEdge(31, 21, 35, graph); // Top-Right Gate -> CR Center (35m)
+    addDirectedEdge(31, 36, 45, graph); // Top-Right Gate -> Top-Right Junction (45m)
+    addDirectedEdge(36, 31, 45, graph); // Top-Right Junction -> Top-Right Gate (45m)
+
+    addDirectedEdge(39, 32, 30, graph); // East Corridor Junction -> Bottom-Right Gate (30m)
+    addDirectedEdge(32, 39, 30, graph); // Bottom-Right Gate -> East Corridor Junction (30m)
+    addDirectedEdge(32, 7, 40, graph);  // Bottom-Right Gate -> Canteen (40m)
+    addDirectedEdge(7, 32, 40, graph);  // Canteen -> Bottom-Right Gate (40m)
+
+    server.Options("/find-path", [](const httplib::Request &req, httplib::Response &res)
+                   { res.status = 204; });
+
+    server.Post("/find-path", [](const httplib::Request &req, httplib::Response &res)
+                {
+        try
+        {
+            json data = json::parse(req.body);
+            int source = data.at("source").get<int>();
+            int destination = data.at("destination").get<int>();
+
+            auto [path, totalDist] = dijkstra(source, destination, graph);
+
+            json response = {
+                {"path", path},
+                {"distance", totalDist},
+                {"reachable", !path.empty()}
+            };
+
+            res.set_content(response.dump(), "application/json");
+        }
+        catch (const exception &e)
+        {
+            res.status = 400;
+            res.set_content(R"({"error":"Invalid input"})", "application/json");
+        } });
+
+    server.Get("/locations", [](const httplib::Request &req, httplib::Response &res)
+               {
+        json locations = {
+            {"locations", {
+                {{"id", 0}, {"name", "Main Gate"}},
+                {{"id", 1}, {"name", "Gate 2"}},
+                {{"id", 2}, {"name", "Gate 3"}},
+                {{"id", 3}, {"name", "Bus Stand"}},
+                {{"id", 4}, {"name", "Play Ground 1"}},
+                {{"id", 5}, {"name", "Play Ground 2"}},
+                {{"id", 6}, {"name", "Garden"}},
+                {{"id", 7}, {"name", "Canteen"}},
+                {{"id", 8}, {"name", "Central Corridor"}},
+                {{"id", 9}, {"name", "Library (b)"}},
+                {{"id", 10}, {"name", "Gate (Top-Left)"}},
+                {{"id", 11}, {"name", "Info Desk"}},
+                {{"id", 12}, {"name", "Boys Common Room (b)"}},
+                {{"id", 13}, {"name", "Mosque (2nd)"}},
+                {{"id", 14}, {"name", "Pharmacy Dept (b)"}},
+                {{"id", 15}, {"name", "Plaza (2nd)"}},
+                {{"id", 16}, {"name", "Sinat (3rd)"}},
+                {{"id", 17}, {"name", "Inventory Room (b)"}},
+                {{"id", 18}, {"name", "Auditorium (b)"}},
+                {{"id", 19}, {"name", "EEE Lab (b)"}},
+                {{"id", 20}, {"name", "Girls Common Room"}},
+                {{"id", 21}, {"name", "CR Center"}},
+                {{"id", 22}, {"name", "American Corner (2nd)"}},
+                {{"id", 23}, {"name", "NCC Bank"}},
+                {{"id", 24}, {"name", "CSE Faculty"}},
+                {{"id", 25}, {"name", "BBA Dept (2nd)"}},
+                {{"id", 26}, {"name", "EEE Prog. Office"}},
+                {{"id", 27}, {"name", "Lift"}},
+                {{"id", 28}, {"name", "CSE Prog. Office"}},
+                {{"id", 29}, {"name", "Parking"}},
+                {{"id", 30}, {"name", "Medical"}},
+                {{"id", 31}, {"name", "Gate (Top-Right)"}},
+                {{"id", 32}, {"name", "Gate (Bottom-Right)"}},
+                {{"id", 33}, {"name", "Stair"}}
+            }}
+        };
+
+        res.set_content(locations.dump(), "application/json"); });
+
+    const char *envPort = getenv("PORT");
+    int port = envPort ? stoi(envPort) : 8080;
+    cout << "C++ Backend running on port " << port << '\n';
+    server.listen("0.0.0.0", port);
+}
+
+void addDirectedEdge(int u, int v, int weight, vector<vector<pair<int, int>>> &graph)
+{
+    graph[u].push_back({v, weight});
+}
+
+pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph)
+{
+    int n = graph.size();
+    vector<int> dist(n, INF);
+    vector<int> parent(n, -1);
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
+    dist[source] = 0;
+    pq.push({0, source});
+
+    while (!pq.empty())
+    {
+        int currentDist = pq.top().first;
+        int u = pq.top().second;
+        pq.pop();
+
+        if (currentDist != dist[u])
+            continue;
+
+        if (u == destination)
+            break;
+
+        for (auto edge : graph[u])
+        {
+            int v = edge.first;
+            int weight = edge.second;
+
+            if (dist[u] + weight < dist[v])
+            {
+                dist[v] = dist[u] + weight;
+                parent[v] = u;
+                pq.push({dist[v], v});
+            }
+        }
+    }
+
+    if (dist[destination] == INF)
+    {
+        return {{}, -1};
+    }
+
+    vector<int> path;
+    for (int v = destination; v != -1; v = parent[v])
+    {
+        path.push_back(v);
+    }
+
+    vector<int> exactPath;
+    for (int i = path.size() - 1; i >= 0; i--)
+    {
+        exactPath.push_back(path[i]);
+    }
+
+    return {exactPath, dist[destination]};
+}

@@ -10,11 +10,11 @@ using namespace std;
 using json = nlohmann::json;
 
 int INF = INT_MAX;
-int vertex = 39; // 33 Main Locations + 6 Road Junctions for exact curve routing
+int vertex = 38; // 34 Campus Locations + 4 Road Junctions
 vector<vector<pair<int, int>>> graph(vertex);
 
-// Directed edge based on arrows in the hand-drawn map
 void addDirectedEdge(int u, int v, int weight, vector<vector<pair<int, int>>> &graph);
+void addUndirectedEdge(int u, int v, int weight, vector<vector<pair<int, int>>> &graph);
 pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph);
 
 int main()
@@ -25,104 +25,93 @@ int main()
                                 {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"},
                                 {"Access-Control-Allow-Headers", "Content-Type"}});
 
-    /*
-     * Node Mapping:
-     * 0: Main Gate, 1: Gate 2, 2: Gate 3, 3: Bus Stand, 4: Play Ground 1,
-     * 5: Play Ground 2, 6: Garden, 7: Canteen (Containe), 8: Central Corridor (Mid Gate),
-     * 9: Library (b), 10: Gate (Top-Left), 11: Info Desk, 12: Boys Common Room (b),
-     * 13: Mosque (2nd), 14: Pharmacy Dept (b), 15: Plaza (2nd), 16: Sinat (3rd),
-     * 17: Inventory Room (b), 18: Auditorium (b), 19: EEE Lab (b), 20: Girls Common Room,
-     * 21: CR Center, 22: American Corner (2nd), 23: NCC Bank, 24: CSE Faculty,
-     * 25: BBA Dept (2nd), 26: EEE Prog. Office, 27: Lift, 28: CSE Prog. Office,
-     * 29: Parking, 30: Medical, 31: Gate (Top-Right), 32: Gate (Bottom-Right)
-     *
-     * Junction Nodes (for exact arrow intersections):
-     * 33: Main Entry T-Junction (above Main Gate)
-     * 34: Top-Left Outer Curve Junction (above Bus Stand)
-     * 35: Top-Right Outer Junction (between Play Ground 2 & Garden)
-     * 36: Central Spine Junction (below Plaza)
-     * 37: South-East Corridor Junction (below CSE Faculty)
-     * 38: East Corridor Junction (below Lift)
-     */
+    // 1. Bottom Outer Road
+    addUndirectedEdge(0, 1, 90, graph); // Main Gate <-> Gate 2
+    addDirectedEdge(0, 2, 140, graph);  // Main Gate -> Gate 3
 
-    // --- 1. Bottom Horizontal Road (Arrows point outwards from Main Gate) ---
-    addDirectedEdge(0, 1, 90, graph);  // Main Gate -> Gate 2 (90m)
-    addDirectedEdge(0, 2, 140, graph); // Main Gate -> Gate 3 (140m)
+    // 2. Outer Perimeter
+    addDirectedEdge(1, 3, 100, graph);   // Gate 2 -> Bus Stand
+    addUndirectedEdge(3, 35, 45, graph); // Bus Stand <-> Top-Left Curve
+    addUndirectedEdge(35, 4, 85, graph); // Top-Left Curve <-> Play Ground 1
+    addUndirectedEdge(4, 5, 160, graph); // Play Ground 1 <-> Play Ground 2
 
-    // --- 2. Left & Top Outer Perimeter (Arrows go Up & Right) ---
-    addDirectedEdge(1, 3, 100, graph); // Gate 2 -> Bus Stand (100m)
-    addDirectedEdge(3, 34, 45, graph); // Bus Stand -> Top-Left Curve (45m)
-    addDirectedEdge(34, 4, 85, graph); // Top-Left Curve -> Play Ground 1 (85m)
-    addDirectedEdge(4, 5, 160, graph); // Play Ground 1 -> Play Ground 2 (160m)
+    addDirectedEdge(2, 7, 110, graph);   // Gate 3 -> Canteen
+    addUndirectedEdge(7, 6, 80, graph);  // Canteen <-> Garden
+    addUndirectedEdge(6, 36, 35, graph); // Garden <-> Top-Right Junction
+    addUndirectedEdge(36, 5, 40, graph); // Top-Right Junction <-> Play Ground 2
 
-    // --- 3. Right Outer Perimeter (Arrows go Up from Gate 3 to Canteen -> Garden -> PG 2) ---
-    addDirectedEdge(2, 7, 110, graph); // Gate 3 -> Canteen (110m)
-    addDirectedEdge(7, 6, 80, graph);  // Canteen -> Garden (80m)
-    addDirectedEdge(6, 35, 35, graph); // Garden -> Top-Right Junction (35m)
-    addDirectedEdge(35, 5, 40, graph); // Top-Right Junction -> Play Ground 2 (40m)
+    // 3. Main Gate & Gate 2 Entry Curves (Routes 1-80)
+    addDirectedEdge(0, 34, 35, graph); // Main Gate -> Main Entry T-Junction
+    addDirectedEdge(1, 34, 95, graph); // Gate 2 -> Main Entry T-Junction
+    addDirectedEdge(0, 3, 120, graph); // Main Gate -> Bus Stand (Route 31)
 
-    // --- 4. Main Gate Entry & Inner-Left Outer Loops ---
-    addDirectedEdge(0, 33, 35, graph); // Main Gate -> Main Entry T-Junction (35m)
-    addDirectedEdge(1, 33, 95, graph); // Gate 2 -> Main Entry T-Junction (95m)
-    addDirectedEdge(33, 9, 45, graph); // Main Entry T-Junction -> Library (b) (45m)
-    addDirectedEdge(33, 8, 55, graph); // Main Entry T-Junction -> Central Corridor (55m)
+    addDirectedEdge(34, 33, 45, graph); // Main Entry T-Junction -> Stair (Routes 43-47)
+    addDirectedEdge(34, 37, 40, graph); // Main Entry T-Junction -> South Junction
 
-    // --- 5. Bus Stand Connections ---
-    addDirectedEdge(9, 3, 90, graph);   // Library (b) -> Bus Stand (90m)
-    addDirectedEdge(34, 10, 40, graph); // Top-Left Curve -> Top-Left Gate (40m)
+    // 4. South Corridor (CSE Faculty, NCC Bank, Parking, Library, EEE Lab)
+    addUndirectedEdge(37, 24, 45, graph); // South Junction <-> CSE Faculty (Routes 1-20)
+    addUndirectedEdge(37, 29, 50, graph); // South Junction <-> Parking (Routes 21-22, 48-61)
 
-    // --- 6. Top-Left Academic Building Wing ---
-    addDirectedEdge(10, 11, 30, graph); // Top-Left Gate -> Info Desk (30m)
-    addDirectedEdge(11, 13, 35, graph); // Info Desk -> Mosque (2nd) (35m)
-    addDirectedEdge(13, 14, 25, graph); // Mosque (2nd) -> Pharmacy Dept (b) (25m)
-    addDirectedEdge(14, 15, 30, graph); // Pharmacy Dept (b) -> Plaza (2nd) (30m)
+    addUndirectedEdge(24, 23, 25, graph); // CSE Faculty <-> NCC Bank (Route 1)
+    addUndirectedEdge(24, 25, 25, graph); // CSE Faculty <-> BBA Dept
+    addUndirectedEdge(24, 29, 40, graph); // CSE Faculty <-> Parking (Routes 3-4)
+    addUndirectedEdge(24, 28, 45, graph); // CSE Faculty <-> CSE Prog. Office (Routes 5-6, 18-20)
+    addUndirectedEdge(24, 27, 40, graph); // CSE Faculty <-> Lift (Route 62)
 
-    addDirectedEdge(11, 12, 30, graph); // Info Desk -> Boys Common Room (b) (30m)
-    addDirectedEdge(12, 16, 25, graph); // Boys Common Room (b) -> Sinat (3rd) (25m)
-    addDirectedEdge(16, 36, 25, graph); // Sinat (3rd) -> Central Spine Junction (25m)
+    addUndirectedEdge(24, 19, 45, graph); // CSE Faculty <-> EEE Lab (Route 7)
+    addUndirectedEdge(24, 9, 80, graph);  // CSE Faculty <-> Library (Routes 8-17)
 
-    // --- 7. Central Spine & Left Courtyard ---
-    addDirectedEdge(15, 36, 30, graph); // Plaza (2nd) -> Central Spine Junction (30m)
-    addDirectedEdge(36, 8, 35, graph);  // Central Spine Junction -> Central Corridor (35m)
+    // 5. Left Courtyard Loop
+    addUndirectedEdge(9, 17, 50, graph);  // Library <-> Inventory Room
+    addUndirectedEdge(17, 18, 30, graph); // Inventory Room <-> Auditorium
+    addUndirectedEdge(18, 19, 35, graph); // Auditorium <-> EEE Lab
+    addUndirectedEdge(9, 19, 45, graph);  // Library <-> EEE Lab (Routes 61, 105)
+    addUndirectedEdge(17, 12, 45, graph); // Inventory Room <-> Boys Common Room (Routes 11, 58, 76, 89, 101)
 
-    addDirectedEdge(9, 17, 50, graph);  // Library (b) -> Inventory Room (b) (50m)
-    addDirectedEdge(17, 18, 30, graph); // Inventory Room (b) -> Auditorium (b) (30m)
-    addDirectedEdge(18, 19, 35, graph); // Auditorium (b) -> EEE Lab (b) (35m)
-    addDirectedEdge(8, 19, 30, graph);  // Central Corridor -> EEE Lab (b) (30m)
-    addDirectedEdge(19, 37, 45, graph); // EEE Lab (b) -> South-East Junction (45m)
+    // 6. Bus Stand Direct Connections
+    addUndirectedEdge(35, 10, 40, graph); // Top-Left Curve <-> Top-Left Gate
+    addUndirectedEdge(3, 15, 95, graph);  // Bus Stand <-> Plaza (Routes 28-30, 36-42)
+    addUndirectedEdge(3, 20, 115, graph); // Bus Stand <-> Girls Common Room (Routes 69-79, 86-92)
 
-    // --- 8. Top-Right Academic Building Wing ---
-    addDirectedEdge(36, 20, 40, graph); // Central Spine Junction -> Girls Common Room (40m)
-    addDirectedEdge(20, 21, 45, graph); // Girls Common Room -> CR Center (45m)
-    addDirectedEdge(36, 22, 35, graph); // Central Spine Junction -> American Corner (2nd) (35m)
-    addDirectedEdge(22, 21, 40, graph); // American Corner (2nd) -> CR Center (40m)
+    // 7. Top-Left Academic Wing
+    addUndirectedEdge(10, 11, 30, graph); // Gate <-> Info Desk
+    addUndirectedEdge(11, 13, 35, graph); // Info Desk <-> Mosque
+    addUndirectedEdge(13, 14, 25, graph); // Mosque <-> Pharmacy Dept
+    addUndirectedEdge(14, 15, 30, graph); // Pharmacy Dept <-> Plaza
+    addUndirectedEdge(13, 15, 50, graph); // Mosque <-> Plaza (Routes 29, 37, 46)
 
-    // --- 9. Bottom-Right Wing & Offices ---
-    addDirectedEdge(8, 23, 25, graph);  // Central Corridor -> NCC Bank (25m)
-    addDirectedEdge(23, 22, 30, graph); // NCC Bank -> American Corner (2nd) (30m)
-    addDirectedEdge(23, 25, 35, graph); // NCC Bank -> BBA Dept (2nd) (35m)
+    addUndirectedEdge(11, 12, 30, graph); // Info Desk <-> Boys Common Room
+    addUndirectedEdge(12, 14, 40, graph); // Boys Common Room <-> Pharmacy Dept (Routes 12, 57, 75, 88, 100)
+    addUndirectedEdge(12, 16, 25, graph); // Boys Common Room <-> Sinat
+    addUndirectedEdge(16, 15, 30, graph); // Sinat <-> Plaza (Routes 30, 38, 47)
 
-    addDirectedEdge(8, 24, 30, graph);  // Central Corridor -> CSE Faculty (30m)
-    addDirectedEdge(24, 25, 25, graph); // CSE Faculty -> BBA Dept (2nd) (25m)
-    addDirectedEdge(25, 27, 25, graph); // BBA Dept (2nd) -> Lift (25m)
+    // 8. Central Spine & Stair
+    addUndirectedEdge(33, 8, 25, graph); // Stair <-> Central Corridor
+    addUndirectedEdge(8, 15, 40, graph); // Central Corridor <-> Plaza (Routes 43-47)
 
-    addDirectedEdge(21, 26, 35, graph); // CR Center -> EEE Prog. Office (35m)
-    addDirectedEdge(26, 27, 20, graph); // EEE Prog. Office -> Lift (20m)
-    addDirectedEdge(27, 38, 20, graph); // Lift -> East Corridor Junction (20m)
-    addDirectedEdge(38, 28, 20, graph); // East Corridor Junction -> CSE Prog. Office (20m)
+    // 9. Top-Right Wing
+    addUndirectedEdge(14, 20, 45, graph); // Pharmacy Dept <-> Girls Common Room (Routes 13, 56, 74, 87, 99)
+    addUndirectedEdge(20, 21, 45, graph); // Girls Common Room <-> CR Center
+    addUndirectedEdge(15, 22, 35, graph); // Plaza <-> American Corner (Routes 39-42, 44-45)
+    addUndirectedEdge(22, 25, 45, graph); // American Corner <-> BBA Dept (Routes 40, 42, 45)
+    addUndirectedEdge(23, 25, 35, graph); // NCC Bank <-> BBA Dept
 
-    // --- 10. Parking & Medical Loop ---
-    addDirectedEdge(25, 29, 30, graph); // BBA Dept (2nd) -> Parking (30m)
-    addDirectedEdge(29, 30, 15, graph); // Parking -> Medical (15m)
-    addDirectedEdge(30, 38, 35, graph); // Medical -> East Corridor Junction (35m)
-    addDirectedEdge(37, 29, 30, graph); // South-East Junction -> Parking (30m)
-    addDirectedEdge(8, 37, 45, graph);  // Central Corridor -> South-East Junction (45m)
+    // 10. East Wing Offices, Lift, Parking & Medical
+    addUndirectedEdge(21, 26, 35, graph); // CR Center <-> EEE Prog. Office
+    addUndirectedEdge(26, 27, 20, graph); // EEE Prog. Office <-> Lift
+    addUndirectedEdge(27, 28, 20, graph); // Lift <-> CSE Prog. Office
 
-    // --- 11. Right Side Gates to Garden & Canteen ---
-    addDirectedEdge(21, 31, 35, graph); // CR Center -> Top-Right Gate (35m)
-    addDirectedEdge(31, 35, 45, graph); // Top-Right Gate -> Top-Right Junction (45m)
-    addDirectedEdge(38, 32, 30, graph); // East Corridor Junction -> Bottom-Right Gate (30m)
-    addDirectedEdge(32, 7, 40, graph);  // Bottom-Right Gate -> Canteen (40m)
+    addUndirectedEdge(29, 30, 15, graph); // Parking <-> Medical (Routes 4, 22)
+    addUndirectedEdge(29, 28, 30, graph); // Parking <-> CSE Prog. Office (Route 48)
+    addUndirectedEdge(29, 27, 40, graph); // Parking <-> Lift (Routes 49-61)
+
+    // 11. Right Side Gates to Garden & Canteen
+    addUndirectedEdge(21, 31, 35, graph); // CR Center <-> Top-Right Gate
+    addUndirectedEdge(31, 36, 45, graph); // Top-Right Gate <-> Top-Right Junction (Routes 15-16, 52-53, 71-72)
+    addUndirectedEdge(31, 7, 55, graph);  // Top-Right Gate <-> Canteen (Routes 17, 54, 73)
+
+    addUndirectedEdge(28, 32, 25, graph); // CSE Prog. Office <-> Bottom-Right Gate
+    addUndirectedEdge(32, 7, 40, graph);  // Bottom-Right Gate <-> Canteen (Routes 6, 93-105)
 
     server.Options("/find-path", [](const httplib::Request &req, httplib::Response &res)
                    { res.status = 204; });
@@ -153,7 +142,6 @@ int main()
 
     server.Get("/locations", [](const httplib::Request &req, httplib::Response &res)
                {
-        // Only expose actual campus locations (0 to 32) to the dropdowns
         json locations = {
             {"locations", {
                 {{"id", 0}, {"name", "Main Gate"}},
@@ -188,7 +176,8 @@ int main()
                 {{"id", 29}, {"name", "Parking"}},
                 {{"id", 30}, {"name", "Medical"}},
                 {{"id", 31}, {"name", "Gate (Top-Right)"}},
-                {{"id", 32}, {"name", "Gate (Bottom-Right)"}}
+                {{"id", 32}, {"name", "Gate (Bottom-Right)"}},
+                {{"id", 33}, {"name", "Stair"}}
             }}
         };
 
@@ -203,6 +192,12 @@ int main()
 void addDirectedEdge(int u, int v, int weight, vector<vector<pair<int, int>>> &graph)
 {
     graph[u].push_back({v, weight});
+}
+
+void addUndirectedEdge(int u, int v, int weight, vector<vector<pair<int, int>>> &graph)
+{
+    graph[u].push_back({v, weight});
+    graph[v].push_back({u, weight});
 }
 
 pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<int, int>>> &graph)
