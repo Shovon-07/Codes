@@ -1096,3 +1096,110 @@ pair<vector<int>, int> dijkstra(int source, int destination, vector<vector<pair<
 
     return {exactPath, dist[destination]};
 }
+
+road
+1. main gate - ncc bank
+2. main gate - cse faculty
+3. main gate - cse faculty - parking
+4. main gate - cse faculty - parking - medical
+5. main gate - cse faculty - cse prog. office
+6. main gate - cse faculty - cse prog. office - canteen
+7. main gate - cse faculty - eee lab
+8. main gate - cse faculty - library
+9. main gate - cse faculty - library - Inventory Room
+10. main gate - cse faculty - library - Inventory Room - Auditorium
+11. main gate - cse faculty - library - Inventory Room - Boys common room
+12. main gate - cse faculty - library - Inventory Room - Boys common room - pharmacy dept
+13. main gate - cse faculty - library - Inventory Room - Boys common room - pharmacy dept - Girls common room
+14. main gate - cse faculty - library - Inventory Room - Boys common room - pharmacy dept - Girls common room - cr center
+15. main gate - cse faculty - library - Inventory Room - Boys common room - pharmacy dept - Girls common room - cr center - garden
+16. main gate - cse faculty - library - Inventory Room - Boys common room - pharmacy dept - Girls common room - cr center - play ground 2
+17. main gate - cse faculty - library - Inventory Room - Boys common room - pharmacy dept - Girls common room - cr center - canteen
+18. main gate - cse faculty - cse prog. office - lift
+19. main gate - cse faculty - cse prog. office - lift - eee prog office
+20. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center
+21. main gate - parking
+22. main gate - parking - medical
+23. main gate - gate 2 - bus stand
+24. main gate - gate 2 - bus stand - play ground 1
+25. main gate - gate 2 - bus stand - play ground 1 - play ground 2
+26. main gate - gate 2 - bus stand - play ground 1 - play ground 2 - garden
+27. main gate - gate 2 - bus stand - play ground 1 - play ground 2 - garden canteen
+28. main gate - gate 2 - bus stand - plaze
+29. main gate - gate 2 - bus stand - plaze - masque
+30. main gate - gate 2 - bus stand - plaze - sinate
+31. main gate - bus stand
+32. main gate - bus stand - play ground 1
+33. main gate - bus stand - play ground 1 - play ground 2
+34. main gate - bus stand - play ground 1 - play ground 2 - garden
+35. main gate - bus stand - play ground 1 - play ground 2 - garden canteen
+36. main gate - bus stand - plaze
+37. main gate - bus stand - plaze - masque
+38. main gate - bus stand - plaze - sinate
+39. main gate - gate 2 - bus stand - plaze - american corner
+40. main gate - gate 2 - bus stand - plaze - american corner - bba dept
+41. main gate - bus stand - plaze - american corner
+42. main gate - bus stand - plaze - american corner - bba dept
+43. main gate - stair - plaze
+44. main gate - stair - plaze - american corner
+45. main gate - stair - plaze - american corner - bba dept
+46. main gate - stair - plaze - masque
+47. main gate - stair - plaze - sinate
+48. main gate - parking - cse prog. office
+49. main gate - parking - lift
+50. main gate - parking - lift - eee prog office
+51. main gate - parking - lift - eee prog office - cr center
+52. main gate - parking - lift - eee prog office - cr center - play ground 2
+53. main gate - parking - lift - eee prog office - cr center - garden
+54. main gate - parking - lift - eee prog office - cr center - canteen
+55. main gate - parking - lift - eee prog office - cr center - girls common
+56. main gate - parking - lift - eee prog office - cr center - girls common - pharmacy dept
+57. main gate - parking - lift - eee prog office - cr center - girls common - pharmacy dept - boys common room
+58. main gate - parking - lift - eee prog office - cr center - girls common - pharmacy dept - boys common room - inventory room
+59. main gate - parking - lift - eee prog office - cr center - girls common - pharmacy dept - boys common room - inventory room - library
+60. main gate - parking - lift - eee prog office - cr center - girls common - pharmacy dept - boys common room - inventory room - auditorium
+61. main gate - parking - lift - eee prog office - cr center - girls common - pharmacy dept - boys common room - inventory room - library - eee lab
+62. main gate - cse faculty - lift - eee prog office - cr center - girls common - pharmacy dept - boys common room - inventory room - library - eee lab
+63. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center - girls common room
+64. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center - girls common room - girls common - pharmacy dept
+65. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center - girls common room - girls common - pharmacy dept - boys common room
+66. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center - girls common room - girls common - pharmacy dept - boys common room - inventory Room
+67. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center - girls common room - girls common - pharmacy dept - boys common room - inventory room - Library
+68. main gate - cse faculty - cse prog. office - lift - eee prog office - cr center - girls common room - girls common - pharmacy dept - boys common room - inventory room - library - eee lab
+69. main gate - bus stand - girls common room
+70. main gate - bus stand - girls common room - cr center
+71. main gate - bus stand - girls common room - cr center - garden
+72. main gate - bus stand - girls common room - cr center - play ground 2
+73. main gate - bus stand - girls common room - cr center - canteen
+74. main gate - bus stand - girls common room - pharmacy
+75. main gate - bus stand - girls common room - pharmacy - boys common room
+76. main gate - bus stand - girls common room - pharmacy - boys common room - inventory room
+77. main gate - bus stand - girls common room - pharmacy - boys common room - inventory room - library
+78. main gate - bus stand - girls common room - pharmacy - boys common room - inventory room - auditorium
+79. main gate - bus stand - girls common room - pharmacy - boys common room - inventory room - auditorium - eee lab
+
+80. All roads from 1 to 68 are from the main gate. Also connect with it from gate 2.
+
+81. gate 3 - canteen
+82. gate 3 - canteen - garden
+83. gate 3 - canteen - garden - play ground 2
+84. gate 3 - canteen - garden - play ground 2 - play ground 1
+85. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand
+86. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room
+87. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - Pharmacy
+88. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - pharmacy - boys common room
+89. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - pharmacy - boys common room - inventory Room
+90. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - pharmacy - boys common room - inventory room - auditorium
+91. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - pharmacy - boys common room - inventory room - auditorium - eee lab
+92. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - pharmacy - boys common room - inventory room - library
+93. gate 3 - canteen - cse prog. office
+94. gate 3 - canteen - cse prog. office - parking
+95. gate 3 - canteen - cse prog. office - lift
+96. gate 3 - canteen - cse prog. office - lift - eee prog. office
+97. gate 3 - canteen - cse prog. office - lift - eee prog. office - cr center
+98. gate 3 - canteen - cse prog. office - lift - eee prog. office - cr center - girls common room
+99. gate 3 - canteen - cse prog. office - lift - eee prog. office - cr center - girls common room - pharmacy
+100. gate 3 - canteen - cse prog. office - lift - eee prog. office - cr center - girls common room - pharmacy - boys common room
+101. gate 3 - canteen - cse prog. office - lift - eee prog. office - cr center - girls common room - pharmacy - boys common room - inventory room
+
+93. gate 3 - canteen - garden - play ground 2 - play ground 1 - bus stand - girls common room - pharmacy - boys common room - inventory room - library
