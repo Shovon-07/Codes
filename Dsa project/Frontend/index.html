@@ -54,15 +54,24 @@
             xmlns="http://www.w3.org/2000/svg"
           >
             <g id="mapContent">
-              <!-- Academic Building Complex -->
+              <!-- Academic Building Complex (Exact Hand-Drawn Sketch Geometry) -->
               <g id="buildings">
                 <path
-                  d="M 190 175 L 845 175 L 845 465 L 485 465 L 485 375 L 190 375 Z"
+                  d="M 195 175 L 845 175 L 845 465 L 485 465 L 485 375 L 195 375 Z"
                   fill="#f8fafc"
                   stroke="#475569"
                   stroke-width="2.5"
                 />
-                <line x1="485" y1="175" x2="485" y2="375" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,5" />
+                <!-- Central Spine Divider -->
+                <line
+                  x1="485"
+                  y1="175"
+                  x2="485"
+                  y2="375"
+                  stroke="#cbd5e1"
+                  stroke-width="2"
+                  stroke-dasharray="5,5"
+                />
 
                 <!-- Central Tree Circle -->
                 <circle
@@ -85,52 +94,69 @@
                 </text>
               </g>
 
-              <!-- Roads & Pathways (Without Arrows) -->
+              <!-- Roads & Pathways (Smooth Curves, No Arrows, Multiples of 10) -->
               <g id="roads">
+                <!-- Bottom Outer Road -->
                 <line id="edge-0-1" class="road" x1="370" y1="695" x2="60" y2="695" />
                 <line id="edge-0-2" class="road" x1="370" y1="695" x2="965" y2="695" />
 
+                <!-- Left & Top Outer Perimeter -->
                 <path id="edge-1-3" class="road" d="M 60 695 Q 35 495 35 315" />
-                <path id="edge-3-35" class="road" d="M 35 315 Q 38 225 75 160" />
-                <path id="edge-35-4" class="road" d="M 75 160 Q 135 70 280 50" />
+                <path id="edge-3-39" class="road" d="M 35 315 Q 38 225 75 160" />
+                <path id="edge-39-4" class="road" d="M 75 160 Q 135 70 280 50" />
                 <path id="edge-4-5" class="road" d="M 280 50 Q 600 38 925 55" />
 
+                <!-- Right Outer Perimeter -->
                 <path id="edge-2-7" class="road" d="M 965 695 Q 985 535 980 385" />
                 <path id="edge-7-6" class="road" d="M 980 385 Q 990 255 980 135" />
-                <path id="edge-6-36" class="road" d="M 980 135 Q 970 105 940 90" />
-                <path id="edge-36-5" class="road" d="M 940 90 Q 935 70 925 55" />
+                <path id="edge-6-40" class="road" d="M 980 135 Q 970 105 940 90" />
+                <path id="edge-40-5" class="road" d="M 940 90 Q 935 70 925 55" />
 
-                <line id="edge-0-34" class="road" x1="370" y1="695" x2="370" y2="610" />
-                <path id="edge-1-34" class="road" d="M 60 695 Q 200 635 370 610" />
-                <path id="edge-0-3" class="road" d="M 370 695 Q 140 615 35 315" />
+                <!-- Main Gate (0) & Gate 2 (1) to P3 (36) -->
+                <line id="edge-0-36" class="road" x1="370" y1="695" x2="370" y2="620" />
+                <path id="edge-1-36" class="road" d="M 60 695 Q 205 645 370 620" />
 
-                <path id="edge-34-33" class="road" d="M 370 610 Q 435 585 485 520" />
-                <path id="edge-34-37" class="road" d="M 370 610 L 520 580" />
+                <!-- P3 (36) to P4 (37) to Bus Stand (3) -->
+                <path id="edge-36-37" class="road" d="M 370 620 Q 225 605 165 510" />
+                <path id="edge-37-3" class="road" d="M 165 510 Q 115 415 35 315" />
 
-                <path id="edge-37-24" class="road" d="M 520 580 Q 560 540 595 450" />
-                <path id="edge-37-29" class="road" d="M 520 580 Q 615 580 695 545" />
+                <!-- P3 (36) to P5 (38) -->
+                <line id="edge-36-38" class="road" x1="370" y1="620" x2="485" y2="605" />
 
-                <line id="edge-24-23" class="road" x1="595" y1="450" x2="545" y2="395" />
+                <!-- P5 (38) to Stair (33) & Parking (29) -->
+                <line id="edge-38-33" class="road" x1="485" y1="605" x2="485" y2="520" />
+                <path id="edge-38-29" class="road" d="M 485 605 Q 605 595 695 545" />
+
+                <!-- Main Gate (0) & Gate 2 (1) Direct Curve to NCC Bank (23) -->
+                <path id="edge-0-23" class="road" d="M 370 695 Q 430 430 545 395" />
+                <path id="edge-1-23" class="road" d="M 60 695 Q 245 480 545 395" />
+
+                <!-- NCC Bank (23) & CSE Faculty (24) Connections -->
+                <line id="edge-23-24" class="road" x1="545" y1="395" x2="595" y2="450" />
+                <line id="edge-23-25" class="road" x1="545" y1="395" x2="670" y2="430" />
                 <line id="edge-24-25" class="road" x1="595" y1="450" x2="670" y2="430" />
-                <path id="edge-24-29" class="road" d="M 595 450 Q 660 475 695 545" />
-                <path id="edge-24-28" class="road" d="M 595 450 Q 690 480 785 465" />
-                <path id="edge-24-27" class="road" d="M 595 450 Q 680 420 755 395" />
+                <path id="edge-24-29" class="road" d="M 595 450 Q 655 480 695 545" />
+                <path id="edge-24-28" class="road" d="M 595 450 Q 685 480 785 465" />
 
-                <path id="edge-24-19" class="road" d="M 595 450 Q 515 470 435 505" />
-                <path id="edge-24-9" class="road" d="M 595 450 Q 430 535 270 575" />
+                <!-- CSE Faculty (24) -> P1 (34) -> P2 (35) Loop -->
+                <path id="edge-24-34" class="road" d="M 595 450 Q 645 525 585 565" />
+                <path id="edge-34-35" class="road" d="M 585 565 Q 485 590 390 570" />
+                <path id="edge-35-19" class="road" d="M 390 570 Q 375 520 435 505" />
+                <path id="edge-35-9" class="road" d="M 390 570 Q 330 580 270 575" />
 
+                <!-- Left Courtyard Loop (Library, Inventory, Auditorium, EEE Lab) -->
                 <path id="edge-9-17" class="road" d="M 270 575 Q 210 510 225 425" />
                 <path id="edge-17-18" class="road" d="M 225 425 Q 275 395 330 410" />
                 <path id="edge-18-19" class="road" d="M 330 410 Q 400 430 435 505" />
-                <path id="edge-9-19" class="road" d="M 270 575 Q 360 565 435 505" />
-
                 <path id="edge-17-12" class="road" d="M 225 425 Q 245 360 315 335" />
 
-                <line id="edge-35-10" class="road" x1="75" y1="160" x2="190" y2="195" />
+                <!-- Bus Stand (3) to Top-Left Gate (10), Plaza (15), Girls Common (20) -->
+                <line id="edge-39-10" class="road" x1="75" y1="160" x2="195" y2="195" />
                 <path id="edge-3-15" class="road" d="M 35 315 Q 240 165 485 275" />
                 <path id="edge-3-20" class="road" d="M 35 315 Q 280 135 575 215" />
 
-                <line id="edge-10-11" class="road" x1="190" y1="195" x2="240" y2="260" />
+                <!-- Top-Left Wing (Info Desk, Mosque, Pharmacy, Boys Common, Sinat, Plaza) -->
+                <line id="edge-10-11" class="road" x1="195" y1="195" x2="240" y2="260" />
                 <path id="edge-11-13" class="road" d="M 240 260 Q 290 220 345 245" />
                 <line id="edge-13-14" class="road" x1="345" y1="245" x2="415" y2="265" />
                 <line id="edge-14-15" class="road" x1="415" y1="265" x2="485" y2="275" />
@@ -141,96 +167,100 @@
                 <line id="edge-12-16" class="road" x1="315" y1="335" x2="415" y2="335" />
                 <line id="edge-16-15" class="road" x1="415" y1="335" x2="485" y2="275" />
 
+                <!-- Central Spine (Stair -> Central Corridor -> Plaza) -->
                 <line id="edge-33-8" class="road" x1="485" y1="520" x2="485" y2="430" />
                 <line id="edge-8-15" class="road" x1="485" y1="430" x2="485" y2="275" />
 
+                <!-- Top-Right Wing (Plaza, Girls Common, American Corner, CR Center, BBA Dept) -->
                 <line id="edge-14-20" class="road" x1="415" y1="265" x2="575" y2="215" />
                 <line id="edge-20-21" class="road" x1="575" y1="215" x2="725" y2="205" />
                 <path id="edge-15-22" class="road" d="M 485 275 Q 545 290 600 275" />
                 <path id="edge-22-25" class="road" d="M 600 275 Q 645 345 670 430" />
-                <line id="edge-23-25" class="road" x1="545" y1="395" x2="670" y2="430" />
 
+                <!-- East Wing (CR Center, EEE Office, Lift, CSE Office, Parking, Medical) -->
                 <line id="edge-21-26" class="road" x1="725" y1="205" x2="755" y2="315" />
                 <line id="edge-26-27" class="road" x1="755" y1="315" x2="755" y2="395" />
                 <line id="edge-27-28" class="road" x1="755" y1="395" x2="785" y2="465" />
 
                 <line id="edge-29-30" class="road" x1="695" y1="545" x2="735" y2="545" />
                 <path id="edge-29-28" class="road" d="M 695 545 Q 750 515 785 465" />
-                <path id="edge-29-27" class="road" d="M 695 545 Q 725 465 755 395" />
 
+                <!-- Right Side Gates to Garden & Canteen -->
                 <line id="edge-21-31" class="road" x1="725" y1="205" x2="845" y2="245" />
-                <path id="edge-31-36" class="road" d="M 845 245 Q 905 170 940 90" />
+                <path id="edge-31-40" class="road" d="M 845 245 Q 905 170 940 90" />
                 <path id="edge-31-7" class="road" d="M 845 245 Q 925 305 980 385" />
 
                 <line id="edge-28-32" class="road" x1="785" y1="465" x2="845" y2="425" />
                 <path id="edge-32-7" class="road" d="M 845 425 Q 915 425 980 385" />
               </g>
 
-              <!-- Distance Labels Next to Roads -->
+              <!-- Estimated Distance Labels (Strictly Multiples of 10: 10m, 20m, 30m...) -->
               <g class="road-distance">
                 <text x="215" y="687">90m</text>
                 <text x="665" y="687">140m</text>
                 <text x="20" y="505">100m</text>
-                <text x="40" y="235">45m</text>
-                <text x="150" y="90">85m</text>
+                <text x="40" y="235">50m</text>
+                <text x="150" y="90">90m</text>
                 <text x="600" y="34">160m</text>
                 <text x="995" y="540">110m</text>
                 <text x="998" y="260">80m</text>
-                <text x="975" y="98">35m</text>
+                <text x="975" y="98">40m</text>
                 <text x="950" y="65">40m</text>
-                <text x="352" y="652">35m</text>
-                <text x="210" y="632">95m</text>
-                <text x="165" y="545">120m</text>
-                <text x="425" y="568">45m</text>
-                <text x="445" y="605">40m</text>
-                <text x="550" y="520">45m</text>
-                <text x="615" y="575">50m</text>
-                <text x="560" y="425">25m</text>
-                <text x="635" y="432">25m</text>
+                <text x="352" y="660">30m</text>
+                <text x="210" y="640">90m</text>
+                <text x="245" y="585">60m</text>
+                <text x="95" y="425">70m</text>
+                <text x="425" y="605">30m</text>
+                <text x="470" y="565">30m</text>
+                <text x="595" y="585">50m</text>
+                <text x="420" y="490">60m</text>
+                <text x="285" y="510">110m</text>
+                <text x="560" y="425">20m</text>
+                <text x="615" y="405">30m</text>
+                <text x="635" y="432">20m</text>
                 <text x="655" y="495">40m</text>
-                <text x="695" y="472">45m</text>
-                <text x="675" y="412">40m</text>
-                <text x="515" y="482">45m</text>
-                <text x="435" y="532">80m</text>
+                <text x="695" y="472">50m</text>
+                <text x="625" y="515">30m</text>
+                <text x="485" y="585">40m</text>
+                <text x="395" y="535">20m</text>
+                <text x="330" y="585">30m</text>
                 <text x="205" y="500">50m</text>
                 <text x="270" y="395">30m</text>
-                <text x="390" y="435">35m</text>
-                <text x="355" y="555">45m</text>
-                <text x="245" y="375">45m</text>
+                <text x="390" y="435">40m</text>
+                <text x="245" y="375">40m</text>
                 <text x="130" y="168">40m</text>
-                <text x="245" y="210">95m</text>
-                <text x="295" y="165">115m</text>
+                <text x="245" y="210">90m</text>
+                <text x="295" y="165">120m</text>
                 <text x="202" y="232">30m</text>
-                <text x="290" y="218">35m</text>
-                <text x="380" y="248">25m</text>
+                <text x="290" y="218">40m</text>
+                <text x="380" y="248">20m</text>
                 <text x="450" y="262">30m</text>
                 <text x="415" y="250">50m</text>
                 <text x="265" y="305">30m</text>
                 <text x="360" y="290">40m</text>
-                <text x="365" y="328">25m</text>
+                <text x="365" y="328">30m</text>
                 <text x="455" y="312">30m</text>
-                <text x="470" y="475">25m</text>
+                <text x="470" y="475">30m</text>
                 <text x="470" y="355">40m</text>
-                <text x="495" y="230">45m</text>
-                <text x="650" y="200">45m</text>
-                <text x="545" y="285">35m</text>
-                <text x="645" y="350">45m</text>
-                <text x="610" y="405">35m</text>
-                <text x="752" y="260">35m</text>
+                <text x="495" y="230">50m</text>
+                <text x="650" y="200">50m</text>
+                <text x="545" y="285">40m</text>
+                <text x="645" y="350">50m</text>
+                <text x="752" y="260">40m</text>
                 <text x="768" y="355">20m</text>
                 <text x="782" y="425">20m</text>
-                <text x="715" y="538">15m</text>
+                <text x="715" y="538">20m</text>
                 <text x="755" y="512">30m</text>
-                <text x="715" y="465">40m</text>
-                <text x="785" y="215">35m</text>
-                <text x="890" y="165">45m</text>
-                <text x="920" y="300">55m</text>
-                <text x="815" y="438">25m</text>
+                <text x="785" y="215">40m</text>
+                <text x="890" y="165">50m</text>
+                <text x="920" y="300">60m</text>
+                <text x="815" y="438">30m</text>
                 <text x="915" y="418">40m</text>
               </g>
 
               <!-- Vertices / Nodes -->
               <g id="locations">
+                <!-- Campus Locations (0 to 33) -->
                 <circle id="node-main-gate" class="node" cx="370" cy="695" r="8.5" />
                 <circle id="node-gate-2" class="node" cx="60" cy="695" r="8.5" />
                 <circle id="node-gate-3" class="node" cx="965" cy="695" r="8.5" />
@@ -241,7 +271,7 @@
                 <circle id="node-canteen" class="node" cx="980" cy="385" r="8.5" />
                 <circle id="node-mid-corridor" class="node" cx="485" cy="430" r="7.5" />
                 <circle id="node-library" class="node" cx="270" cy="575" r="8.5" />
-                <circle id="node-gate-tl" class="node" cx="190" cy="195" r="7.5" />
+                <circle id="node-gate-tl" class="node" cx="195" cy="195" r="7.5" />
                 <circle id="node-info-desk" class="node" cx="240" cy="260" r="7.5" />
                 <circle id="node-boys-common" class="node" cx="315" cy="335" r="7.5" />
                 <circle id="node-mosque" class="node" cx="345" cy="245" r="7.5" />
@@ -266,11 +296,14 @@
                 <circle id="node-gate-br" class="node" cx="845" cy="425" r="7.5" />
                 <circle id="node-stair" class="node" cx="485" cy="520" r="7.5" />
 
-                <!-- Junction Nodes -->
-                <circle id="node-junc-main" class="node junction" cx="370" cy="610" r="4.5" />
+                <!-- Junction Nodes P1-P5 & Outer Corners (34 to 40 - Not in dropdown) -->
+                <circle id="node-p1" class="node junction" cx="585" cy="565" r="5" />
+                <circle id="node-p2" class="node junction" cx="390" cy="570" r="5" />
+                <circle id="node-p3" class="node junction" cx="370" cy="620" r="5" />
+                <circle id="node-p4" class="node junction" cx="165" cy="510" r="5" />
+                <circle id="node-p5" class="node junction" cx="485" cy="605" r="5" />
                 <circle id="node-junc-tl" class="node junction" cx="75" cy="160" r="4.5" />
                 <circle id="node-junc-tr" class="node junction" cx="940" cy="90" r="4.5" />
-                <circle id="node-junc-se" class="node junction" cx="520" cy="580" r="4.5" />
               </g>
 
               <!-- Labels -->
@@ -284,7 +317,7 @@
                 <text x="1008" y="140">Garden</text>
                 <text x="1010" y="390">Canteen</text>
                 <text x="270" y="602">Library (b)</text>
-                <text x="170" y="212">Gate</text>
+                <text x="175" y="212">Gate</text>
                 <text x="240" y="280">Info Desk</text>
                 <text x="305" y="356">Boys Common (b)</text>
                 <text x="345" y="228">Mosque (2nd)</text>
@@ -303,11 +336,18 @@
                 <text x="802" y="320">EEE Prog. Office</text>
                 <text x="777" y="392">Lift</text>
                 <text x="802" y="485">CSE Prog. Office</text>
-                <text x="515" y="524">Stair</text>
+                <text x="512" y="524">Stair</text>
                 <text x="680" y="568">Parking</text>
                 <text x="745" y="568">Medical</text>
                 <text x="865" y="250">Gate</text>
                 <text x="865" y="430">Gate</text>
+
+                <!-- P1 - P5 Labels -->
+                <text x="592" y="582" fill="#475569" font-size="10.5">P1</text>
+                <text x="390" y="588" fill="#475569" font-size="10.5">P2</text>
+                <text x="385" y="625" fill="#475569" font-size="10.5">P3</text>
+                <text x="148" y="512" fill="#475569" font-size="10.5">P4</text>
+                <text x="485" y="622" fill="#475569" font-size="10.5">P5</text>
               </g>
             </g>
           </svg>

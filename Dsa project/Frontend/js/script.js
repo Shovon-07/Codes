@@ -35,10 +35,13 @@ const names = [
   "gate-tr",          // 31
   "gate-br",          // 32
   "stair",            // 33
-  "junc-main",        // 34
-  "junc-tl",          // 35
-  "junc-tr",          // 36
-  "junc-se"           // 37
+  "p1",               // 34
+  "p2",               // 35
+  "p3",               // 36
+  "p4",               // 37
+  "p5",               // 38
+  "junc-tl",          // 39
+  "junc-tr"           // 40
 ];
 
 let fetchedLocations = {};
@@ -54,7 +57,7 @@ function highlightPath(path, distance, reachable) {
   });
 
   if (!reachable || path.length === 0) {
-    document.getElementById("distanceMonitor").innerHTML = "No route (One-way)";
+    document.getElementById("distanceMonitor").innerHTML = "No route";
     document.getElementById("distanceMonitor").style.color = "#dc2626";
     return;
   }
@@ -65,11 +68,11 @@ function highlightPath(path, distance, reachable) {
     const node = document.getElementById("node-" + names[v]);
     if (node) {
       if (idx === 0) {
-        node.style.fill = "#f59e0b"; // Source
+        node.style.fill = "#f59e0b"; // Source (Orange)
       } else if (idx === path.length - 1) {
-        node.style.fill = "#ef4444"; // Destination
+        node.style.fill = "#ef4444"; // Destination (Red)
       } else {
-        node.style.fill = "#22c55e"; // Intermediate
+        node.style.fill = "#22c55e"; // Intermediate (Green)
       }
     }
   });
@@ -112,7 +115,12 @@ async function loadLocations() {
     dDef.textContent = "Destination";
     destination.appendChild(dDef);
 
-    data.locations.forEach((loc) => {
+    // Sort locations alphabetically (letter-wise)
+    const sortedLocations = [...data.locations].sort((a, b) =>
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+    );
+
+    sortedLocations.forEach((loc) => {
       fetchedLocations[loc.id] = loc.name;
 
       const opt1 = document.createElement("option");
@@ -165,7 +173,11 @@ const search = () => {
   const searchList = document.getElementById("searchList");
   searchList.innerHTML = "";
 
-  const entries = Object.values(fetchedLocations);
+  // Letter-wise sorted search list
+  const entries = Object.values(fetchedLocations).sort((a, b) =>
+    a.localeCompare(b, undefined, { sensitivity: "base" })
+  );
+
   const filtered =
     input === ""
       ? entries
