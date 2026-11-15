@@ -59,16 +59,17 @@ header {
 }
 
 header img {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  /* border-radius: 50%; */
   object-fit: cover;
-  border: 1.5px solid var(--emerald);
+  /* border: 1.5px solid var(--emerald); */
   box-shadow: 0 0 10px var(--emerald-glow);
 }
 
 header h2 {
   font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.4px;
@@ -78,7 +79,7 @@ header h2 {
 /* ================= MAIN CONTAINER ================= */
 .container {
   max-width: 1380px;
-  width: 96%;
+  width: 90%;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
@@ -553,4 +554,13 @@ footer h3 {
     flex-direction: column;
     align-items: stretch;
   }
+  .wishList .list button, .wishList .list-selector h3, .wishList ol li {
+    font-size: .6rem;
+  }
+}
+
+@media (max-width: 275px) {
+header h2 {
+  font-size: .8rem;
+}
 }
