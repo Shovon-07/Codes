@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-# প্রয়োজনীয় বিল্ড টুলস ও কার্ল (curl) ইনস্টল করা
+# প্রয়োজনীয় টুলস ইনস্টল করা
 RUN apt-get update && apt-get install -y \
     g++ \
     curl \
@@ -9,13 +9,13 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# সরাসরি গিটহাব থেকে লেটেস্ট httplib.h হেডার ফাইলটি ডাউনলোড করে নেওয়া
-RUN curl -sSL https://raw.githubusercontent.com/yhirose/cpp-httplib/master/httplib.h -o httplib.h
-
-# প্রজেক্টের বাকি ফাইলগুলো কপি করা (main.cpp, Graph.h, Wishlist.h)
+# প্রথমে প্রজেক্টের ফাইলগুলো কপি করুন (main.cpp, Graph.h, Wishlist.h)
 COPY . .
 
-# সার্ভার কম্পাইল করা
+# এরপর সরাসরি কন্টেইনারের ভেতরে httplib.h ডাউনলোড করে নিন
+RUN curl -sSL https://raw.githubusercontent.com/yhirose/cpp-httplib/master/httplib.h -o httplib.h
+
+# সবশেষে সার্ভার কম্পাইল করুন
 RUN g++ main.cpp -std=c++17 -O2 -o server -pthread
 
 EXPOSE 8080

@@ -1,11 +1,11 @@
 #define CPPHTTPLIB_IMPLEMENTATION
 #include <iostream>
-#include <httplib.h>
+#include "httplib.h"
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 #include <vector>
-#include "header/Graph.h"
-#include "header/Wishlist.h"
+#include "Graph.h"
+#include "Wishlist.h"
 
 using namespace std;
 using json = nlohmann::json;
