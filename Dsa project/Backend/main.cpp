@@ -1,3 +1,4 @@
+#define CPPHTTPLIB_IMPLEMENTATION
 #include <iostream>
 #include <httplib.h>
 #include <nlohmann/json.hpp>
