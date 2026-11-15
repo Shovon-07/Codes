@@ -1,55 +1,57 @@
-const api = `https://dsa-project-sa2h.onrender.com`;
-// const api = `http://127.0.0.1:8080`;
+// const api = `https://dsa-project-sa2h.onrender.com`;
+// const BASE_API = `http://127.0.0.1:8080`;
 
 const names = [
-  "main-gate",        // 0
-  "gate-2",           // 1
-  "gate-3",           // 2
-  "bus-stand",        // 3
-  "play-ground-1",    // 4
-  "play-ground-2",    // 5
-  "garden",           // 6
-  "canteen",          // 7
-  "mid-corridor",     // 8
-  "library",          // 9
-  "gate-tl",          // 10
-  "info-desk",        // 11
-  "boys-common",      // 12
-  "mosque",           // 13
-  "pharmacy",         // 14
-  "plaza",            // 15
-  "sinat",            // 16
-  "inventory",        // 17
-  "auditorium",       // 18
-  "eee-lab",          // 19
-  "girls-common",     // 20
-  "cr-center",        // 21
-  "american-corner",  // 22
-  "ncc-bank",         // 23
-  "cse-faculty",      // 24
-  "bba-dept",         // 25
-  "eee-office",       // 26
-  "lift",             // 27
-  "cse-office",       // 28
-  "parking",          // 29
-  "medical",          // 30
-  "gate-tr",          // 31
-  "gate-br",          // 32
-  "stair",            // 33
-  "p1",               // 34
-  "p2",               // 35
-  "p3",               // 36
-  "p4",               // 37
-  "p5",               // 38
-  "junc-tl",          // 39
-  "junc-tr"           // 40
+  "main-gate", // 0
+  "gate-2", // 1
+  "gate-3", // 2
+  "bus-stand", // 3
+  "play-ground-1", // 4
+  "play-ground-2", // 5
+  "garden", // 6
+  "canteen", // 7
+  "mid-corridor", // 8
+  "library", // 9
+  "gate-tl", // 10
+  "info-desk", // 11
+  "boys-common", // 12
+  "mosque", // 13
+  "pharmacy", // 14
+  "plaza", // 15
+  "sinat", // 16
+  "inventory", // 17
+  "auditorium", // 18
+  "eee-lab", // 19
+  "girls-common", // 20
+  "cr-center", // 21
+  "american-corner", // 22
+  "ncc-bank", // 23
+  "cse-faculty", // 24
+  "bba-dept", // 25
+  "eee-office", // 26
+  "lift", // 27
+  "cse-office", // 28
+  "parking", // 29
+  "medical", // 30
+  "gate-tr", // 31
+  "gate-br", // 32
+  "stair", // 33
+  "p1", // 34
+  "p2", // 35
+  "p3", // 36
+  "p4", // 37
+  "p5", // 38
+  "junc-tl", // 39
+  "junc-tr", // 40
 ];
 
 let fetchedLocations = {};
 
 function highlightPath(path, distance, reachable) {
   document.querySelectorAll("[id^='node-']").forEach((node) => {
-    node.style.fill = node.classList.contains("junction") ? "#64748b" : "#2563eb";
+    node.style.fill = node.classList.contains("junction")
+      ? "#64748b"
+      : "#2563eb";
   });
 
   document.querySelectorAll("[id^='edge-']").forEach((edge) => {
@@ -70,10 +72,19 @@ function highlightPath(path, distance, reachable) {
     if (node) {
       if (idx === 0) {
         node.style.fill = "#f59e0b"; // Source (Orange)
+        node.style.r = 10.5;
+        node.style.filter = "drop-shadow(0 0 8px var(--emerald))";
+        node.style.stroke = "#fff";
       } else if (idx === path.length - 1) {
         node.style.fill = "#ef4444"; // Destination (Red)
+        node.style.r = 10.5;
+        node.style.filter = "drop-shadow(0 0 8px var(--emerald))";
+        node.style.stroke = "#fff";
       } else {
         node.style.fill = "#22c55e"; // Intermediate (Green)
+        node.style.r = 10.5;
+        node.style.filter = "drop-shadow(0 0 8px var(--emerald))";
+        node.style.stroke = "#fff";
       }
     }
   });
@@ -99,7 +110,7 @@ async function loadLocations() {
   const destination = document.getElementById("destination");
 
   try {
-    const response = await fetch(`${api}/locations`);
+    const response = await fetch(`${BASE_API}/locations`);
     if (!response.ok) throw new Error("Failed");
 
     const data = await response.json();
@@ -118,7 +129,7 @@ async function loadLocations() {
 
     // Sort locations alphabetically (letter-wise)
     const sortedLocations = [...data.locations].sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+      a.name.localeCompare(b.name, undefined, { sensitivity: "base" }),
     );
 
     sortedLocations.forEach((loc) => {
@@ -150,7 +161,7 @@ const findPath = async () => {
 
   if (source >= 0 && destination >= 0) {
     try {
-      const response = await fetch(`${api}/find-path`, {
+      const response = await fetch(`${BASE_API}/find-path`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ source, destination }),
@@ -176,14 +187,14 @@ const search = () => {
 
   // Letter-wise sorted search list
   const entries = Object.values(fetchedLocations).sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: "base" })
+    a.localeCompare(b, undefined, { sensitivity: "base" }),
   );
 
   const filtered =
     input === ""
       ? entries
       : entries.filter((item) =>
-          item.toLowerCase().includes(input.toLowerCase())
+          item.toLowerCase().includes(input.toLowerCase()),
         );
 
   filtered.forEach((item) => {

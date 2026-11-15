@@ -1,4 +1,3 @@
-
 const svg = document.getElementById("campusMap");
 const mapContent = document.getElementById("mapContent");
 
@@ -15,10 +14,7 @@ const MAX_ZOOM = 4;
 const ZOOM_STEP = 1.2;
 
 function updateMap() {
-  mapContent.setAttribute(
-    "transform",
-    `translate(${x} ${y}) scale(${scale})`
-  );
+  mapContent.setAttribute("transform", `translate(${x} ${y}) scale(${scale})`);
 }
 
 // Convert screen coordinates to SVG coordinates
@@ -28,17 +24,12 @@ function getSvgPoint(event) {
   point.x = event.clientX;
   point.y = event.clientY;
 
-  return point.matrixTransform(
-    svg.getScreenCTM().inverse()
-  );
+  return point.matrixTransform(svg.getScreenCTM().inverse());
 }
 
 // Zoom around a specific SVG point
 function zoomAt(newScale, px, py) {
-  newScale = Math.max(
-    MIN_ZOOM,
-    Math.min(MAX_ZOOM, newScale)
-  );
+  newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newScale));
 
   const ratio = newScale / scale;
 
@@ -56,7 +47,7 @@ zoomInBtn.addEventListener("click", () => {
 
   const center = getSvgPoint({
     clientX: rect.left + rect.width / 2,
-    clientY: rect.top + rect.height / 2
+    clientY: rect.top + rect.height / 2,
   });
 
   zoomAt(scale * ZOOM_STEP, center.x, center.y);
@@ -67,7 +58,7 @@ zoomOutBtn.addEventListener("click", () => {
 
   const center = getSvgPoint({
     clientX: rect.left + rect.width / 2,
-    clientY: rect.top + rect.height / 2
+    clientY: rect.top + rect.height / 2,
   });
 
   zoomAt(scale / ZOOM_STEP, center.x, center.y);
@@ -83,19 +74,19 @@ resetBtn.addEventListener("click", () => {
 });
 
 // Mouse wheel zoom
-svg.addEventListener("wheel", (event) => {
-  event.preventDefault();
+svg.addEventListener(
+  "wheel",
+  (event) => {
+    event.preventDefault();
 
-  const point = getSvgPoint(event);
+    const point = getSvgPoint(event);
 
-  const factor =
-    event.deltaY < 0
-      ? ZOOM_STEP
-      : 1 / ZOOM_STEP;
+    const factor = event.deltaY < 0 ? ZOOM_STEP : 1 / ZOOM_STEP;
 
-  zoomAt(scale * factor, point.x, point.y);
-}, { passive: false });
-
+    zoomAt(scale * factor, point.x, point.y);
+  },
+  { passive: false },
+);
 
 // =================================
 // Mouse & Touch Pan / Pinch Zoom
@@ -110,23 +101,19 @@ let pinchMapPoint = null;
 
 // Calculate distance between two fingers
 function getDistance(p1, p2) {
-  return Math.hypot(
-    p2.x - p1.x,
-    p2.y - p1.y
-  );
+  return Math.hypot(p2.x - p1.x, p2.y - p1.y);
 }
 
 // Get midpoint between two fingers
 function getMidpoint(p1, p2) {
   return {
     x: (p1.x + p2.x) / 2,
-    y: (p1.y + p2.y) / 2
+    y: (p1.y + p2.y) / 2,
   };
 }
 
 // Pointer down
 svg.addEventListener("pointerdown", (event) => {
-
   if (event.target.closest("button, a")) return;
 
   event.preventDefault();
@@ -154,20 +141,17 @@ svg.addEventListener("pointerdown", (event) => {
     // Map position under the midpoint
     pinchMapPoint = {
       x: (midpoint.x - x) / scale,
-      y: (midpoint.y - y) / scale
+      y: (midpoint.y - y) / scale,
     };
 
     lastPoint = null;
   }
 
   svg.classList.add("dragging");
-
 });
-
 
 // Pointer move
 svg.addEventListener("pointermove", (event) => {
-
   if (!pointers.has(event.pointerId)) return;
 
   event.preventDefault();
@@ -178,7 +162,6 @@ svg.addEventListener("pointermove", (event) => {
 
   // One finger / mouse pan
   if (pointers.size === 1) {
-
     if (!lastPoint) {
       lastPoint = point;
       return;
@@ -194,21 +177,15 @@ svg.addEventListener("pointermove", (event) => {
 
   // Two finger pinch zoom
   else if (pointers.size === 2) {
-
     const [p1, p2] = [...pointers.values()];
 
     const currentDistance = getDistance(p1, p2);
 
     if (pinchStartDistance === 0) return;
 
-    let newScale =
-      pinchStartScale *
-      (currentDistance / pinchStartDistance);
+    let newScale = pinchStartScale * (currentDistance / pinchStartDistance);
 
-    newScale = Math.max(
-      MIN_ZOOM,
-      Math.min(MAX_ZOOM, newScale)
-    );
+    newScale = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newScale));
 
     const midpoint = getMidpoint(p1, p2);
 
@@ -220,22 +197,16 @@ svg.addEventListener("pointermove", (event) => {
 
     updateMap();
   }
-
 });
-
 
 // Pointer up / cancel
 function stopDragging(event) {
-
   pointers.delete(event.pointerId);
 
   if (pointers.size === 1) {
-
     // Continue dragging with remaining finger
     lastPoint = [...pointers.values()][0];
-
   } else {
-
     lastPoint = null;
     pinchStartDistance = 0;
     pinchMapPoint = null;
@@ -244,17 +215,14 @@ function stopDragging(event) {
   if (pointers.size === 0) {
     svg.classList.remove("dragging");
   }
-
 }
 
 svg.addEventListener("pointerup", stopDragging);
 svg.addEventListener("pointercancel", stopDragging);
 svg.addEventListener("lostpointercapture", stopDragging);
 
-
 // Initial map
 updateMap();
-
 
 // const svg = document.getElementById("campusMap");
 // const mapContent = document.getElementById("mapContent");

@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1, user-scalable=no"
+    />
     <link rel="stylesheet" href="./css/style.css" />
     <!-- <link rel="stylesheet" href="./css/header.css" />
     <link rel="stylesheet" href="./css/map.css" />
@@ -45,8 +48,13 @@
         <div class="map-container">
           <div class="map-controls">
             <button id="zoomIn" aria-label="Zoom in">+</button>
-            <button id="zoomOut" aria-label="Zoom out">−</button>
-            <button id="resetMap" aria-label="Reset map">⌂</button>
+            <button id="zoomOut" aria-label="Zoom out">-</button>
+            <button id="resetMap" aria-label="Reset map">
+              <i class="fa-solid fa-arrow-rotate-right"></i>
+            </button>
+            <button id="resetMap" aria-label="Reset map">
+              <i class="fa-solid fa-angles-left"></i>
+            </button>
           </div>
           <svg
             id="campusMap"
@@ -97,101 +105,414 @@
               <!-- Roads & Pathways (Smooth Curves, No Arrows, Multiples of 10) -->
               <g id="roads">
                 <!-- Bottom Outer Road -->
-                <line id="edge-0-1" class="road" x1="370" y1="695" x2="60" y2="695" />
-                <line id="edge-0-2" class="road" x1="370" y1="695" x2="965" y2="695" />
+                <line
+                  id="edge-0-1"
+                  class="road"
+                  x1="370"
+                  y1="695"
+                  x2="60"
+                  y2="695"
+                />
+                <line
+                  id="edge-0-2"
+                  class="road"
+                  x1="370"
+                  y1="695"
+                  x2="965"
+                  y2="695"
+                />
 
                 <!-- Left & Top Outer Perimeter -->
                 <path id="edge-1-3" class="road" d="M 60 695 Q 35 495 35 315" />
-                <path id="edge-3-39" class="road" d="M 35 315 Q 38 225 75 160" />
-                <path id="edge-39-4" class="road" d="M 75 160 Q 135 70 280 50" />
+                <path
+                  id="edge-3-39"
+                  class="road"
+                  d="M 35 315 Q 38 225 75 160"
+                />
+                <path
+                  id="edge-39-4"
+                  class="road"
+                  d="M 75 160 Q 135 70 280 50"
+                />
                 <path id="edge-4-5" class="road" d="M 280 50 Q 600 38 925 55" />
 
                 <!-- Right Outer Perimeter -->
-                <path id="edge-2-7" class="road" d="M 965 695 Q 985 535 980 385" />
-                <path id="edge-7-6" class="road" d="M 980 385 Q 990 255 980 135" />
-                <path id="edge-6-40" class="road" d="M 980 135 Q 970 105 940 90" />
-                <path id="edge-40-5" class="road" d="M 940 90 Q 935 70 925 55" />
+                <path
+                  id="edge-2-7"
+                  class="road"
+                  d="M 965 695 Q 985 535 980 385"
+                />
+                <path
+                  id="edge-7-6"
+                  class="road"
+                  d="M 980 385 Q 990 255 980 135"
+                />
+                <path
+                  id="edge-6-40"
+                  class="road"
+                  d="M 980 135 Q 970 105 940 90"
+                />
+                <path
+                  id="edge-40-5"
+                  class="road"
+                  d="M 940 90 Q 935 70 925 55"
+                />
 
                 <!-- Main Gate (0) & Gate 2 (1) to P3 (36) -->
-                <line id="edge-0-36" class="road" x1="370" y1="695" x2="370" y2="620" />
-                <path id="edge-1-36" class="road" d="M 60 695 Q 205 645 370 620" />
+                <line
+                  id="edge-0-36"
+                  class="road"
+                  x1="370"
+                  y1="695"
+                  x2="370"
+                  y2="620"
+                />
+                <path
+                  id="edge-1-36"
+                  class="road"
+                  d="M 60 695 Q 205 645 370 620"
+                />
 
                 <!-- P3 (36) to P4 (37) to Bus Stand (3) -->
-                <path id="edge-36-37" class="road" d="M 370 620 Q 225 605 165 510" />
-                <path id="edge-37-3" class="road" d="M 165 510 Q 115 415 35 315" />
+                <path
+                  id="edge-36-37"
+                  class="road"
+                  d="M 370 620 Q 225 605 165 510"
+                />
+                <path
+                  id="edge-37-3"
+                  class="road"
+                  d="M 165 510 Q 115 415 35 315"
+                />
 
                 <!-- P3 (36) to P5 (38) -->
-                <line id="edge-36-38" class="road" x1="370" y1="620" x2="485" y2="605" />
+                <line
+                  id="edge-36-38"
+                  class="road"
+                  x1="370"
+                  y1="620"
+                  x2="485"
+                  y2="605"
+                />
 
                 <!-- P5 (38) to Stair (33) & Parking (29) -->
-                <line id="edge-38-33" class="road" x1="485" y1="605" x2="485" y2="520" />
-                <path id="edge-38-29" class="road" d="M 485 605 Q 605 595 695 545" />
+                <line
+                  id="edge-38-33"
+                  class="road"
+                  x1="485"
+                  y1="605"
+                  x2="485"
+                  y2="520"
+                />
+                <path
+                  id="edge-38-29"
+                  class="road"
+                  d="M 485 605 Q 605 595 695 545"
+                />
 
                 <!-- Main Gate (0) & Gate 2 (1) Direct Curve to NCC Bank (23) -->
-                <path id="edge-0-23" class="road" d="M 370 695 Q 430 430 545 395" />
-                <path id="edge-1-23" class="road" d="M 60 695 Q 245 480 545 395" />
+                <path
+                  id="edge-0-23"
+                  class="road"
+                  d="M 370 695 Q 430 430 545 395"
+                />
+                <path
+                  id="edge-1-23"
+                  class="road"
+                  d="M 60 695 Q 245 480 545 395"
+                />
 
                 <!-- NCC Bank (23) & CSE Faculty (24) Connections -->
-                <line id="edge-23-24" class="road" x1="545" y1="395" x2="595" y2="450" />
-                <line id="edge-23-25" class="road" x1="545" y1="395" x2="670" y2="430" />
-                <line id="edge-24-25" class="road" x1="595" y1="450" x2="670" y2="430" />
-                <path id="edge-24-29" class="road" d="M 595 450 Q 655 480 695 545" />
-                <path id="edge-24-28" class="road" d="M 595 450 Q 685 480 785 465" />
+                <line
+                  id="edge-23-24"
+                  class="road"
+                  x1="545"
+                  y1="395"
+                  x2="595"
+                  y2="450"
+                />
+                <line
+                  id="edge-23-25"
+                  class="road"
+                  x1="545"
+                  y1="395"
+                  x2="670"
+                  y2="430"
+                />
+                <line
+                  id="edge-24-25"
+                  class="road"
+                  x1="595"
+                  y1="450"
+                  x2="670"
+                  y2="430"
+                />
+                <path
+                  id="edge-24-29"
+                  class="road"
+                  d="M 595 450 Q 655 480 695 545"
+                />
+                <path
+                  id="edge-24-28"
+                  class="road"
+                  d="M 595 450 Q 685 480 785 465"
+                />
 
                 <!-- CSE Faculty (24) -> P1 (34) -> P2 (35) Loop -->
-                <path id="edge-24-34" class="road" d="M 595 450 Q 645 525 585 565" />
-                <path id="edge-34-35" class="road" d="M 585 565 Q 485 590 390 570" />
-                <path id="edge-35-19" class="road" d="M 390 570 Q 375 520 435 505" />
-                <path id="edge-35-9" class="road" d="M 390 570 Q 330 580 270 575" />
+                <path
+                  id="edge-24-34"
+                  class="road"
+                  d="M 595 450 Q 645 525 585 565"
+                />
+                <path
+                  id="edge-34-35"
+                  class="road"
+                  d="M 585 565 Q 485 590 390 570"
+                />
+                <path
+                  id="edge-35-19"
+                  class="road"
+                  d="M 390 570 Q 375 520 435 505"
+                />
+                <path
+                  id="edge-35-9"
+                  class="road"
+                  d="M 390 570 Q 330 580 270 575"
+                />
 
                 <!-- Left Courtyard Loop (Library, Inventory, Auditorium, EEE Lab) -->
-                <path id="edge-9-17" class="road" d="M 270 575 Q 210 510 225 425" />
-                <path id="edge-17-18" class="road" d="M 225 425 Q 275 395 330 410" />
-                <path id="edge-18-19" class="road" d="M 330 410 Q 400 430 435 505" />
-                <path id="edge-17-12" class="road" d="M 225 425 Q 245 360 315 335" />
+                <path
+                  id="edge-9-17"
+                  class="road"
+                  d="M 270 575 Q 210 510 225 425"
+                />
+                <path
+                  id="edge-17-18"
+                  class="road"
+                  d="M 225 425 Q 275 395 330 410"
+                />
+                <path
+                  id="edge-18-19"
+                  class="road"
+                  d="M 330 410 Q 400 430 435 505"
+                />
+                <path
+                  id="edge-17-12"
+                  class="road"
+                  d="M 225 425 Q 245 360 315 335"
+                />
 
                 <!-- Bus Stand (3) to Top-Left Gate (10), Plaza (15), Girls Common (20) -->
-                <line id="edge-39-10" class="road" x1="75" y1="160" x2="195" y2="195" />
-                <path id="edge-3-15" class="road" d="M 35 315 Q 240 165 485 275" />
-                <path id="edge-3-20" class="road" d="M 35 315 Q 280 135 575 215" />
+                <line
+                  id="edge-39-10"
+                  class="road"
+                  x1="75"
+                  y1="160"
+                  x2="195"
+                  y2="195"
+                />
+                <path
+                  id="edge-3-15"
+                  class="road"
+                  d="M 35 315 Q 240 165 485 275"
+                />
+                <path
+                  id="edge-3-20"
+                  class="road"
+                  d="M 35 315 Q 280 135 575 215"
+                />
 
                 <!-- Top-Left Wing (Info Desk, Mosque, Pharmacy, Boys Common, Sinat, Plaza) -->
-                <line id="edge-10-11" class="road" x1="195" y1="195" x2="240" y2="260" />
-                <path id="edge-11-13" class="road" d="M 240 260 Q 290 220 345 245" />
-                <line id="edge-13-14" class="road" x1="345" y1="245" x2="415" y2="265" />
-                <line id="edge-14-15" class="road" x1="415" y1="265" x2="485" y2="275" />
-                <line id="edge-13-15" class="road" x1="345" y1="245" x2="485" y2="275" />
+                <line
+                  id="edge-10-11"
+                  class="road"
+                  x1="195"
+                  y1="195"
+                  x2="240"
+                  y2="260"
+                />
+                <path
+                  id="edge-11-13"
+                  class="road"
+                  d="M 240 260 Q 290 220 345 245"
+                />
+                <line
+                  id="edge-13-14"
+                  class="road"
+                  x1="345"
+                  y1="245"
+                  x2="415"
+                  y2="265"
+                />
+                <line
+                  id="edge-14-15"
+                  class="road"
+                  x1="415"
+                  y1="265"
+                  x2="485"
+                  y2="275"
+                />
+                <line
+                  id="edge-13-15"
+                  class="road"
+                  x1="345"
+                  y1="245"
+                  x2="485"
+                  y2="275"
+                />
 
-                <line id="edge-11-12" class="road" x1="240" y1="260" x2="315" y2="335" />
-                <line id="edge-12-14" class="road" x1="315" y1="335" x2="415" y2="265" />
-                <line id="edge-12-16" class="road" x1="315" y1="335" x2="415" y2="335" />
-                <line id="edge-16-15" class="road" x1="415" y1="335" x2="485" y2="275" />
+                <line
+                  id="edge-11-12"
+                  class="road"
+                  x1="240"
+                  y1="260"
+                  x2="315"
+                  y2="335"
+                />
+                <line
+                  id="edge-12-14"
+                  class="road"
+                  x1="315"
+                  y1="335"
+                  x2="415"
+                  y2="265"
+                />
+                <line
+                  id="edge-12-16"
+                  class="road"
+                  x1="315"
+                  y1="335"
+                  x2="415"
+                  y2="335"
+                />
+                <line
+                  id="edge-16-15"
+                  class="road"
+                  x1="415"
+                  y1="335"
+                  x2="485"
+                  y2="275"
+                />
 
                 <!-- Central Spine (Stair -> Central Corridor -> Plaza) -->
-                <line id="edge-33-8" class="road" x1="485" y1="520" x2="485" y2="430" />
-                <line id="edge-8-15" class="road" x1="485" y1="430" x2="485" y2="275" />
+                <line
+                  id="edge-33-8"
+                  class="road"
+                  x1="485"
+                  y1="520"
+                  x2="485"
+                  y2="430"
+                />
+                <line
+                  id="edge-8-15"
+                  class="road"
+                  x1="485"
+                  y1="430"
+                  x2="485"
+                  y2="275"
+                />
 
                 <!-- Top-Right Wing (Plaza, Girls Common, American Corner, CR Center, BBA Dept) -->
-                <line id="edge-14-20" class="road" x1="415" y1="265" x2="575" y2="215" />
-                <line id="edge-20-21" class="road" x1="575" y1="215" x2="725" y2="205" />
-                <path id="edge-15-22" class="road" d="M 485 275 Q 545 290 600 275" />
-                <path id="edge-22-25" class="road" d="M 600 275 Q 645 345 670 430" />
+                <line
+                  id="edge-14-20"
+                  class="road"
+                  x1="415"
+                  y1="265"
+                  x2="575"
+                  y2="215"
+                />
+                <line
+                  id="edge-20-21"
+                  class="road"
+                  x1="575"
+                  y1="215"
+                  x2="725"
+                  y2="205"
+                />
+                <path
+                  id="edge-15-22"
+                  class="road"
+                  d="M 485 275 Q 545 290 600 275"
+                />
+                <path
+                  id="edge-22-25"
+                  class="road"
+                  d="M 600 275 Q 645 345 670 430"
+                />
 
                 <!-- East Wing (CR Center, EEE Office, Lift, CSE Office, Parking, Medical) -->
-                <line id="edge-21-26" class="road" x1="725" y1="205" x2="755" y2="315" />
-                <line id="edge-26-27" class="road" x1="755" y1="315" x2="755" y2="395" />
-                <line id="edge-27-28" class="road" x1="755" y1="395" x2="785" y2="465" />
+                <line
+                  id="edge-21-26"
+                  class="road"
+                  x1="725"
+                  y1="205"
+                  x2="755"
+                  y2="315"
+                />
+                <line
+                  id="edge-26-27"
+                  class="road"
+                  x1="755"
+                  y1="315"
+                  x2="755"
+                  y2="395"
+                />
+                <line
+                  id="edge-27-28"
+                  class="road"
+                  x1="755"
+                  y1="395"
+                  x2="785"
+                  y2="465"
+                />
 
-                <line id="edge-29-30" class="road" x1="695" y1="545" x2="735" y2="545" />
-                <path id="edge-29-28" class="road" d="M 695 545 Q 750 515 785 465" />
+                <line
+                  id="edge-29-30"
+                  class="road"
+                  x1="695"
+                  y1="545"
+                  x2="735"
+                  y2="545"
+                />
+                <path
+                  id="edge-29-28"
+                  class="road"
+                  d="M 695 545 Q 750 515 785 465"
+                />
 
                 <!-- Right Side Gates to Garden & Canteen -->
-                <line id="edge-21-31" class="road" x1="725" y1="205" x2="845" y2="245" />
-                <path id="edge-31-40" class="road" d="M 845 245 Q 905 170 940 90" />
-                <path id="edge-31-7" class="road" d="M 845 245 Q 925 305 980 385" />
+                <line
+                  id="edge-21-31"
+                  class="road"
+                  x1="725"
+                  y1="205"
+                  x2="845"
+                  y2="245"
+                />
+                <path
+                  id="edge-31-40"
+                  class="road"
+                  d="M 845 245 Q 905 170 940 90"
+                />
+                <path
+                  id="edge-31-7"
+                  class="road"
+                  d="M 845 245 Q 925 305 980 385"
+                />
 
-                <line id="edge-28-32" class="road" x1="785" y1="465" x2="845" y2="425" />
-                <path id="edge-32-7" class="road" d="M 845 425 Q 915 425 980 385" />
+                <line
+                  id="edge-28-32"
+                  class="road"
+                  x1="785"
+                  y1="465"
+                  x2="845"
+                  y2="425"
+                />
+                <path
+                  id="edge-32-7"
+                  class="road"
+                  d="M 845 425 Q 915 425 980 385"
+                />
               </g>
 
               <!-- Estimated Distance Labels (Strictly Multiples of 10: 10m, 20m, 30m...) -->
@@ -261,49 +582,289 @@
               <!-- Vertices / Nodes -->
               <g id="locations">
                 <!-- Campus Locations (0 to 33) -->
-                <circle id="node-main-gate" class="node" cx="370" cy="695" r="8.5" />
-                <circle id="node-gate-2" class="node" cx="60" cy="695" r="8.5" />
-                <circle id="node-gate-3" class="node" cx="965" cy="695" r="8.5" />
-                <circle id="node-bus-stand" class="node" cx="35" cy="315" r="8.5" />
-                <circle id="node-play-ground-1" class="node" cx="280" cy="50" r="8.5" />
-                <circle id="node-play-ground-2" class="node" cx="925" cy="55" r="8.5" />
-                <circle id="node-garden" class="node" cx="980" cy="135" r="8.5" />
-                <circle id="node-canteen" class="node" cx="980" cy="385" r="8.5" />
-                <circle id="node-mid-corridor" class="node" cx="485" cy="430" r="7.5" />
-                <circle id="node-library" class="node" cx="270" cy="575" r="8.5" />
-                <circle id="node-gate-tl" class="node" cx="195" cy="195" r="7.5" />
-                <circle id="node-info-desk" class="node" cx="240" cy="260" r="7.5" />
-                <circle id="node-boys-common" class="node" cx="315" cy="335" r="7.5" />
-                <circle id="node-mosque" class="node" cx="345" cy="245" r="7.5" />
-                <circle id="node-pharmacy" class="node" cx="415" cy="265" r="7.5" />
-                <circle id="node-plaza" class="node" cx="485" cy="275" r="7.5" />
-                <circle id="node-sinat" class="node" cx="415" cy="335" r="7.5" />
-                <circle id="node-inventory" class="node" cx="225" cy="425" r="7.5" />
-                <circle id="node-auditorium" class="node" cx="330" cy="410" r="7.5" />
-                <circle id="node-eee-lab" class="node" cx="435" cy="505" r="7.5" />
-                <circle id="node-girls-common" class="node" cx="575" cy="215" r="7.5" />
-                <circle id="node-cr-center" class="node" cx="725" cy="205" r="7.5" />
-                <circle id="node-american-corner" class="node" cx="600" cy="275" r="7.5" />
-                <circle id="node-ncc-bank" class="node" cx="545" cy="395" r="7.5" />
-                <circle id="node-cse-faculty" class="node" cx="595" cy="450" r="7.5" />
-                <circle id="node-bba-dept" class="node" cx="670" cy="430" r="7.5" />
-                <circle id="node-eee-office" class="node" cx="755" cy="315" r="7.5" />
+                <circle
+                  id="node-main-gate"
+                  class="node"
+                  cx="370"
+                  cy="695"
+                  r="8.5"
+                />
+                <circle
+                  id="node-gate-2"
+                  class="node"
+                  cx="60"
+                  cy="695"
+                  r="8.5"
+                />
+                <circle
+                  id="node-gate-3"
+                  class="node"
+                  cx="965"
+                  cy="695"
+                  r="8.5"
+                />
+                <circle
+                  id="node-bus-stand"
+                  class="node"
+                  cx="35"
+                  cy="315"
+                  r="8.5"
+                />
+                <circle
+                  id="node-play-ground-1"
+                  class="node"
+                  cx="280"
+                  cy="50"
+                  r="8.5"
+                />
+                <circle
+                  id="node-play-ground-2"
+                  class="node"
+                  cx="925"
+                  cy="55"
+                  r="8.5"
+                />
+                <circle
+                  id="node-garden"
+                  class="node"
+                  cx="980"
+                  cy="135"
+                  r="8.5"
+                />
+                <circle
+                  id="node-canteen"
+                  class="node"
+                  cx="980"
+                  cy="385"
+                  r="8.5"
+                />
+                <circle
+                  id="node-mid-corridor"
+                  class="node"
+                  cx="485"
+                  cy="430"
+                  r="7.5"
+                />
+                <circle
+                  id="node-library"
+                  class="node"
+                  cx="270"
+                  cy="575"
+                  r="8.5"
+                />
+                <circle
+                  id="node-gate-tl"
+                  class="node"
+                  cx="195"
+                  cy="195"
+                  r="7.5"
+                />
+                <circle
+                  id="node-info-desk"
+                  class="node"
+                  cx="240"
+                  cy="260"
+                  r="7.5"
+                />
+                <circle
+                  id="node-boys-common"
+                  class="node"
+                  cx="315"
+                  cy="335"
+                  r="7.5"
+                />
+                <circle
+                  id="node-mosque"
+                  class="node"
+                  cx="345"
+                  cy="245"
+                  r="7.5"
+                />
+                <circle
+                  id="node-pharmacy"
+                  class="node"
+                  cx="415"
+                  cy="265"
+                  r="7.5"
+                />
+                <circle
+                  id="node-plaza"
+                  class="node"
+                  cx="485"
+                  cy="275"
+                  r="7.5"
+                />
+                <circle
+                  id="node-sinat"
+                  class="node"
+                  cx="415"
+                  cy="335"
+                  r="7.5"
+                />
+                <circle
+                  id="node-inventory"
+                  class="node"
+                  cx="225"
+                  cy="425"
+                  r="7.5"
+                />
+                <circle
+                  id="node-auditorium"
+                  class="node"
+                  cx="330"
+                  cy="410"
+                  r="7.5"
+                />
+                <circle
+                  id="node-eee-lab"
+                  class="node"
+                  cx="435"
+                  cy="505"
+                  r="7.5"
+                />
+                <circle
+                  id="node-girls-common"
+                  class="node"
+                  cx="575"
+                  cy="215"
+                  r="7.5"
+                />
+                <circle
+                  id="node-cr-center"
+                  class="node"
+                  cx="725"
+                  cy="205"
+                  r="7.5"
+                />
+                <circle
+                  id="node-american-corner"
+                  class="node"
+                  cx="600"
+                  cy="275"
+                  r="7.5"
+                />
+                <circle
+                  id="node-ncc-bank"
+                  class="node"
+                  cx="545"
+                  cy="395"
+                  r="7.5"
+                />
+                <circle
+                  id="node-cse-faculty"
+                  class="node"
+                  cx="595"
+                  cy="450"
+                  r="7.5"
+                />
+                <circle
+                  id="node-bba-dept"
+                  class="node"
+                  cx="670"
+                  cy="430"
+                  r="7.5"
+                />
+                <circle
+                  id="node-eee-office"
+                  class="node"
+                  cx="755"
+                  cy="315"
+                  r="7.5"
+                />
                 <circle id="node-lift" class="node" cx="755" cy="395" r="7.5" />
-                <circle id="node-cse-office" class="node" cx="785" cy="465" r="7.5" />
-                <circle id="node-parking" class="node" cx="695" cy="545" r="7.5" />
-                <circle id="node-medical" class="node" cx="735" cy="545" r="7.5" />
-                <circle id="node-gate-tr" class="node" cx="845" cy="245" r="7.5" />
-                <circle id="node-gate-br" class="node" cx="845" cy="425" r="7.5" />
-                <circle id="node-stair" class="node" cx="485" cy="520" r="7.5" />
+                <circle
+                  id="node-cse-office"
+                  class="node"
+                  cx="785"
+                  cy="465"
+                  r="7.5"
+                />
+                <circle
+                  id="node-parking"
+                  class="node"
+                  cx="695"
+                  cy="545"
+                  r="7.5"
+                />
+                <circle
+                  id="node-medical"
+                  class="node"
+                  cx="735"
+                  cy="545"
+                  r="7.5"
+                />
+                <circle
+                  id="node-gate-tr"
+                  class="node"
+                  cx="845"
+                  cy="245"
+                  r="7.5"
+                />
+                <circle
+                  id="node-gate-br"
+                  class="node"
+                  cx="845"
+                  cy="425"
+                  r="7.5"
+                />
+                <circle
+                  id="node-stair"
+                  class="node"
+                  cx="485"
+                  cy="520"
+                  r="7.5"
+                />
 
                 <!-- Junction Nodes P1-P5 & Outer Corners (34 to 40 - Not in dropdown) -->
-                <circle id="node-p1" class="node junction" cx="585" cy="565" r="5" />
-                <circle id="node-p2" class="node junction" cx="390" cy="570" r="5" />
-                <circle id="node-p3" class="node junction" cx="370" cy="620" r="5" />
-                <circle id="node-p4" class="node junction" cx="165" cy="510" r="5" />
-                <circle id="node-p5" class="node junction" cx="485" cy="605" r="5" />
-                <circle id="node-junc-tl" class="node junction" cx="75" cy="160" r="4.5" />
-                <circle id="node-junc-tr" class="node junction" cx="940" cy="90" r="4.5" />
+                <circle
+                  id="node-p1"
+                  class="node junction"
+                  cx="585"
+                  cy="565"
+                  r="5"
+                />
+                <circle
+                  id="node-p2"
+                  class="node junction"
+                  cx="390"
+                  cy="570"
+                  r="5"
+                />
+                <circle
+                  id="node-p3"
+                  class="node junction"
+                  cx="370"
+                  cy="620"
+                  r="5"
+                />
+                <circle
+                  id="node-p4"
+                  class="node junction"
+                  cx="165"
+                  cy="510"
+                  r="5"
+                />
+                <circle
+                  id="node-p5"
+                  class="node junction"
+                  cx="485"
+                  cy="605"
+                  r="5"
+                />
+                <circle
+                  id="node-junc-tl"
+                  class="node junction"
+                  cx="75"
+                  cy="160"
+                  r="4.5"
+                />
+                <circle
+                  id="node-junc-tr"
+                  class="node junction"
+                  cx="940"
+                  cy="90"
+                  r="4.5"
+                />
               </g>
 
               <!-- Labels -->
@@ -311,7 +872,9 @@
                 <text x="370" y="722">Main Gate</text>
                 <text x="60" y="722">Gate 2</text>
                 <text x="965" y="722">Gate 3</text>
-                <text x="18" y="315" transform="rotate(-90 18,315)">Bus Stand</text>
+                <text x="18" y="315" transform="rotate(-90 18,315)">
+                  Bus Stand
+                </text>
                 <text x="280" y="33">Play Ground 1</text>
                 <text x="925" y="37">Play Ground 2</text>
                 <text x="1008" y="140">Garden</text>
@@ -356,37 +919,101 @@
         </div>
         <div class="searchSection">
           <div>
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Search location"
-            />
+            <input type="text" id="searchInput" placeholder="Search location" />
           </div>
-          <ol id="searchList"class="custom-scrollbar"></ol>
+          <ol id="searchList" class="custom-scrollbar"></ol>
         </div>
       </section>
 
       <section class="wishList">
         <div class="list">
-          <button><i class="fa-regular fa-heart"></i>Favorites +</button>
+          <button
+            id="btn-favorites"
+            class="selected"
+            onclick="switchTab('favorites')"
+          >
+            <i class="fa-regular fa-heart"></i>Favorites
+            <span
+              onclick="
+                event.stopPropagation();
+                promptAddItem('favorites');
+              "
+              style="margin-left: auto; font-weight: bold"
+              >+</span
+            >
+          </button>
+          <button id="btn-saved" onclick="switchTab('saved')">
+            <i class="fa-regular fa-bookmark"></i>Saved places
+            <span
+              onclick="
+                event.stopPropagation();
+                promptAddItem('saved');
+              "
+              style="margin-left: auto; font-weight: bold"
+              >+</span
+            >
+          </button>
+          <button id="btn-want" onclick="switchTab('want')">
+            <i class="fa-regular fa-flag"></i>Want to go
+            <span
+              onclick="
+                event.stopPropagation();
+                promptAddItem('want');
+              "
+              style="margin-left: auto; font-weight: bold"
+              >+</span
+            >
+          </button>
+        </div>
+        <div class="places">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 8px;
+            "
+          >
+            <p id="wishlistTitle" style="font-weight: 700; font-size: 0.9rem">
+              Favorites
+            </p>
+            <button
+              onclick="saveCurrentRoute()"
+              style="
+                padding: 5px 12px;
+                font-size: 0.78rem;
+                font-weight: 600;
+                background: #2563eb;
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+              "
+            >
+              <i class="fa-solid fa-plus"></i> Save Route
+            </button>
+          </div>
+          <ol id="wishlistContainer" class="custom-scrollbar">
+            <!-- Backend থেকে ডায়নামিকালি লোড হবে -->
+          </ol>
+        </div>
+      </section>
+
+      <!-- <section class="wishList">
+        <div class="list">
+          <button class="selected"><i class="fa-regular fa-heart"></i>Favorites +</button>
           <button><i class="fa-regular fa-bookmark"></i>Saved places +</button>
           <button><i class="fa-regular fa-flag"></i>Want to go +</button>
         </div>
         <div class="places">
-          <div class="list-selector">
-            <h3 class="selected">
-              <i class="fa-regular fa-heart"></i>Favorites
-            </h3>
-            <h3><i class="fa-regular fa-bookmark"></i>Saved</h3>
-            <h3><i class="fa-regular fa-flag"></i>Want to go</h3>
-          </div>
+          <p>Places</p>
           <ol>
             <li>Main Gate -> CSE Faculty</li>
             <li>Gate 2 -> Library (b)</li>
             <li>Bus Stand -> Canteen</li>
           </ol>
         </div>
-      </section>
+      </section> -->
     </div>
 
     <footer>
@@ -394,5 +1021,6 @@
     </footer>
     <script src="./js/script.js"></script>
     <script src="./js/map-controll.js"></script>
+    <script src="./js/save-route.js"></script>
   </body>
 </html>

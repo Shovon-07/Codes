@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 
 :root {
-  --bg-dark: #090d16;         /* Deep Midnight Base */
-  --panel-bg: #111827;        /* Elevated Dark Card */
-  --panel-light: #1e293b;     /* Input & Hover Surface */
-  --emerald: #10b981;         /* Iconic Neon Emerald Accent */
+  --bg-dark: #090d16; /* Deep Midnight Base */
+  --panel-bg: #111827; /* Elevated Dark Card */
+  --panel-light: #1e293b; /* Input & Hover Surface */
+  --emerald: #10b981; /* Iconic Neon Emerald Accent */
   --emerald-glow: rgba(16, 185, 129, 0.35);
   --cyan: #06b6d4;
   --text-light: #f8fafc;
@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 body {
@@ -68,7 +68,7 @@ header img {
 }
 
 header h2 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   text-transform: uppercase;
   font-size: 1.05rem;
   font-weight: 700;
@@ -124,7 +124,7 @@ header h2 {
 .selector button {
   height: 36px;
   padding: 0 22px;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 0.88rem;
   font-weight: 700;
   color: #06281e;
@@ -216,7 +216,8 @@ header h2 {
 }
 
 /* Active Shortest Path Neon Glow */
-.road.active, .active-path {
+.road.active,
+.active-path {
   stroke: var(--emerald) !important;
   stroke-width: 6 !important;
   filter: drop-shadow(0 0 8px var(--emerald));
@@ -296,6 +297,9 @@ header h2 {
   background: var(--emerald);
   color: #06281e;
 }
+.map-controls #resetMap {
+  font-size: 0.7rem;
+}
 
 /* Cyber Distance HUD Pill */
 .distanceMonitor {
@@ -322,7 +326,7 @@ header h2 {
 }
 
 .distanceMonitor h3 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
@@ -475,7 +479,8 @@ header h2 {
   background: var(--panel-light);
 }
 
-.list-selector h3.selected {
+.list-selector h3.selected,
+.list button.selected {
   background: rgba(16, 185, 129, 0.15);
   color: #34d399;
   border: 1px solid rgba(16, 185, 129, 0.3);
@@ -560,13 +565,15 @@ footer h3 {
     flex-direction: column;
     align-items: stretch;
   }
-  .wishList .list button, .wishList .list-selector h3, .wishList ol li {
-    font-size: .6rem;
+  .wishList .list button,
+  .wishList .list-selector h3,
+  .wishList ol li {
+    font-size: 0.6rem;
   }
 }
 
 @media (max-width: 275px) {
-header h2 {
-  font-size: .8rem;
-}
+  header h2 {
+    font-size: 0.8rem;
+  }
 }
