@@ -4,8 +4,8 @@
 #include <nlohmann/json.hpp>
 #include <cstdlib>
 #include <vector>
-#include "Graph.h"
-#include "Wishlist.h"
+#include "header/Graph.h"
+#include "header/Wishlist.h"
 
 using namespace std;
 using json = nlohmann::json;
