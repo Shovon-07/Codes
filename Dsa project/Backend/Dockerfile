@@ -1,23 +1,23 @@
 FROM debian:bookworm-slim
 
-# প্রয়োজনীয় বিল্ড টুলস ও লাইব্রেরি ইনস্টল করা
+# প্রয়োজনীয় বিল্ড টুলস ও কার্ল (curl) ইনস্টল করা
 RUN apt-get update && apt-get install -y \
     g++ \
-    libcpp-httplib-dev \
+    curl \
     nlohmann-json3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# প্রজেক্টের সব ফাইল (main.cpp, Graph.h, Wishlist.h) কপি করা
+# সরাসরি গিটহাব থেকে লেটেস্ট httplib.h হেডার ফাইলটি ডাউনলোড করে নেওয়া
+RUN curl -sSL https://raw.githubusercontent.com/yhirose/cpp-httplib/master/httplib.h -o httplib.h
+
+# প্রজেক্টের বাকি ফাইলগুলো কপি করা (main.cpp, Graph.h, Wishlist.h)
 COPY . .
 
-# কোড কম্পাইল করা 
-# (নোট: cpp-httplib হেডার-অনলি হওয়ায় -lcpp-httplib বাদ দেওয়া হয়েছে)
-RUN g++ main.cpp -std=c++17 -O2 \
-    -o server -pthread
+# সার্ভার কম্পাইল করা
+RUN g++ main.cpp -std=c++17 -O2 -o server -pthread
 
-# সার্ভার পোর্ট এক্সপোজ করা
 EXPOSE 8080
 
 CMD ["./server"]
