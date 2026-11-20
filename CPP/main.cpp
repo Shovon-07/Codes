@@ -5,10 +5,23 @@
 #include "header/matrix.h"
 using namespace std;
 
+class car
+{
+public:
+    car() { cout << "Car \n"; }
+    ~car() { cout << "Destruct Car \n"; }
+};
+class sportsCar : public car
+{
+
+public:
+    sportsCar() { cout << "Sports car\n"; }
+    ~sportsCar() { cout << "Destruct Sports car\n"; }
+};
+
 int main()
 {
-    matrix obj;
-    obj.display();
+    sportsCar s1;
 
     return 0;
 }

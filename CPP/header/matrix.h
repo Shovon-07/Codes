@@ -33,6 +33,12 @@ public:
             cout << endl;
         }
     }
+
+    /*
+    Use these in main.cpp
+    matrix obj;
+    obj.display();
+    */
 };
 
 #endif
