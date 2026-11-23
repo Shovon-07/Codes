@@ -22,7 +22,6 @@ public:
         root->left->left->left = new Node('g');
         root->left->left->right = new Node('h');
         root->left->right->right = new Node('i');
-
         root->right = new Node('c');
         root->right->left = new Node('f');
         root->right->left->right = new Node('j');
@@ -40,31 +39,31 @@ public:
         cout << endl;
     }
 
-    void preOrder(Node *root)
+    void preOrder(Node *n)
     {
-        if (root == nullptr)
+        if (n == nullptr)
             return;
-        cout << root->data << " ";
-        preOrder(root->left);
-        preOrder(root->right);
+        cout << n->data << " ";
+        preOrder(n->left);
+        preOrder(n->right);
     }
 
-    void postOrder(Node *root)
+    void postOrder(Node *n)
     {
-        if (root == nullptr)
+        if (n == nullptr)
             return;
-        postOrder(root->left);
-        postOrder(root->right);
-        cout << root->data << " ";
+        postOrder(n->left);
+        postOrder(n->right);
+        cout << n->data << " ";
     }
 
-    void inOrder(Node *root)
+    void inOrder(Node *n)
     {
-        if (root == nullptr)
+        if (n == nullptr)
             return;
-        inOrder(root->left);
-        cout << root->data << " ";
-        inOrder(root->right);
+        inOrder(n->left);
+        cout << n->data << " ";
+        inOrder(n->right);
     }
 
     /*
