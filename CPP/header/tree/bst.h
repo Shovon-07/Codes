@@ -56,7 +56,46 @@ public:
         return root;
     }
 
-    Node *deleteNode(Node *root, int target) {}
+    Node *deleteBst(Node *root, int target)
+    {
+        if (root == nullptr)
+            return nullptr;
+        else if (root->data > target)
+            root->left = deleteBst(root->left, target);
+        else if (root->data < target)
+            root->right = deleteBst(root->right, target);
+        else
+        {
+            if (root->left == nullptr && root->right == nullptr)
+            {
+                delete root;
+                return nullptr;
+            }
+            else if (root->right == nullptr)
+            {
+                Node *temp = root->left;
+                delete root;
+                return temp;
+            }
+            else if (root->left == nullptr)
+            {
+                Node *temp = root->right;
+                delete root;
+                return temp;
+            }
+            else
+            {
+                Node *temp = findMin(root->right);
+                root->data = temp->data;
+                root->right = deleteBst(root->right, temp->data);
+            }
+        }
+        return root;
+    }
+    void deleteBst(int target)
+    {
+        root = deleteBst(root, target);
+    }
 
     void preOrder(Node *n)
     {
@@ -82,6 +121,25 @@ public:
         cout << "\nIn order : ";
         inOrder(root);
     }
-};
 
+    //     /*
+    // bst t;
+    // t.insert(50);
+    // t.insert(30);
+    // t.insert(70);
+    // t.insert(20);
+    // t.insert(40);
+    // t.insert(60);
+    // t.insert(80);
+
+    // cout << "After insert : \n";
+    // t.traverse();
+
+    // t.search(90);
+
+    // t.deleteBst(30);
+    // cout << "After delete : \n";
+    // t.traverse();
+    //     */
+};
 #endif

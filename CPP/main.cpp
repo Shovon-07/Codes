@@ -18,8 +18,14 @@ int main()
     t.insert(60);
     t.insert(80);
 
+    cout << "After insert : \n";
     t.traverse();
-    t.search(10);
+
+    t.search(90);
+
+    t.deleteBst(30);
+    cout << "After delete : \n";
+    t.traverse();
 
     return 0;
 }
