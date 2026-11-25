@@ -1,31 +1,15 @@
 #include <iostream>
+using namespace std;
 // #include "header/stack.h"
 // #include "header/circulerQueue.h"
 // #include "header/recursion.h"
 // #include "header/matrix.h"
 // #include "header/tree/tree.h"
-#include "header/tree/bst.h"
-using namespace std;
+// #include "header/tree/bst.h"
+#include "header/fileHandling/fileHandle.h"
 
 int main()
 {
-    bst t;
-    t.insert(50);
-    t.insert(30);
-    t.insert(70);
-    t.insert(20);
-    t.insert(40);
-    t.insert(60);
-    t.insert(80);
-
-    cout << "After insert : \n";
-    t.traverse();
-
-    t.search(90);
-
-    t.deleteBst(30);
-    cout << "After delete : \n";
-    t.traverse();
 
     return 0;
 }
