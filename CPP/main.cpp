@@ -10,6 +10,12 @@ using namespace std;
 
 int main()
 {
+    fileHandle fwr;
+    // fwr.file1();
+    // fwr.file2();
+    // fwr.file3();
+    // fwr.deleteFile("data.txt");
+    fwr.deleteAllFile();
 
     return 0;
 }
